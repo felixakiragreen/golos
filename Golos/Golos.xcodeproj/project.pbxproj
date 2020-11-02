@@ -7,79 +7,88 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D0867B1254E700900436F08 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0867B0254E700900436F08 /* Tests_iOS.swift */; };
-		1D0867BC254E700900436F08 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0867BB254E700900436F08 /* Tests_macOS.swift */; };
-		1D0867BE254E700900436F08 /* golos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D086792254E700800436F08 /* golos.xcdatamodeld */; };
-		1D0867BF254E700900436F08 /* golos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D086792254E700800436F08 /* golos.xcdatamodeld */; };
-		1D0867C0254E700900436F08 /* golosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086794254E700800436F08 /* golosApp.swift */; };
-		1D0867C1254E700900436F08 /* golosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086794254E700800436F08 /* golosApp.swift */; };
-		1D0867C2254E700900436F08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086795254E700800436F08 /* ContentView.swift */; };
-		1D0867C3254E700900436F08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086795254E700800436F08 /* ContentView.swift */; };
-		1D0867C4254E700900436F08 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086796254E700800436F08 /* Persistence.swift */; };
-		1D0867C5254E700900436F08 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D086796254E700800436F08 /* Persistence.swift */; };
-		1D0867C6254E700900436F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D086797254E700900436F08 /* Assets.xcassets */; };
-		1D0867C7254E700900436F08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D086797254E700900436F08 /* Assets.xcassets */; };
+		1DAB628F254FA479005E46D8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB628E254FA479005E46D8 /* Tests_iOS.swift */; };
+		1DAB629A254FA479005E46D8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6299254FA479005E46D8 /* Tests_macOS.swift */; };
+		1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */; };
+		1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */; };
+		1DAB629E254FA479005E46D8 /* GolosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6272254FA479005E46D8 /* GolosApp.swift */; };
+		1DAB629F254FA479005E46D8 /* GolosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6272254FA479005E46D8 /* GolosApp.swift */; };
+		1DAB62A0254FA479005E46D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6273254FA479005E46D8 /* ContentView.swift */; };
+		1DAB62A1254FA479005E46D8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6273254FA479005E46D8 /* ContentView.swift */; };
+		1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6274254FA479005E46D8 /* Persistence.swift */; };
+		1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6274254FA479005E46D8 /* Persistence.swift */; };
+		1DAB62A4254FA479005E46D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAB6275254FA479005E46D8 /* Assets.xcassets */; };
+		1DAB62A5254FA479005E46D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DAB6275254FA479005E46D8 /* Assets.xcassets */; };
+		1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */; };
+		1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */; };
+		1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
+		1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
+		1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
+		1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1D0867AD254E700900436F08 /* PBXContainerItemProxy */ = {
+		1DAB628B254FA479005E46D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1D08678D254E700800436F08 /* Project object */;
+			containerPortal = 1DAB626B254FA478005E46D8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D08679B254E700900436F08;
-			remoteInfo = "golos (iOS)";
+			remoteGlobalIDString = 1DAB6279254FA479005E46D8;
+			remoteInfo = "Golos (iOS)";
 		};
-		1D0867B8254E700900436F08 /* PBXContainerItemProxy */ = {
+		1DAB6296254FA479005E46D8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1D08678D254E700800436F08 /* Project object */;
+			containerPortal = 1DAB626B254FA478005E46D8 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 1D0867A3254E700900436F08;
-			remoteInfo = "golos (macOS)";
+			remoteGlobalIDString = 1DAB6281254FA479005E46D8;
+			remoteInfo = "Golos (macOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D086793254E700800436F08 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
-		1D086794254E700800436F08 /* golosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golosApp.swift; sourceTree = "<group>"; };
-		1D086795254E700800436F08 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		1D086796254E700800436F08 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		1D086797254E700900436F08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1D08679C254E700900436F08 /* golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D08679F254E700900436F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D0867A4254E700900436F08 /* golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D0867A6254E700900436F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D0867A7254E700900436F08 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		1D0867AC254E700900436F08 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D0867B0254E700900436F08 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		1D0867B2254E700900436F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D0867B7254E700900436F08 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D0867BB254E700900436F08 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		1D0867BD254E700900436F08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
+		1DAB6272254FA479005E46D8 /* GolosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosApp.swift; sourceTree = "<group>"; };
+		1DAB6273254FA479005E46D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1DAB6274254FA479005E46D8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		1DAB6275254FA479005E46D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1DAB627A254FA479005E46D8 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DAB627D254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DAB6282254FA479005E46D8 /* Golos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Golos.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DAB6284254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DAB6285254FA479005E46D8 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		1DAB628A254FA479005E46D8 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DAB628E254FA479005E46D8 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
+		1DAB6290254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DAB6295254FA479005E46D8 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DAB6299254FA479005E46D8 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
+		1DAB629B254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
+		1DAB62C3254FA685005E46D8 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
+		1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarRoomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1D086799254E700900436F08 /* Frameworks */ = {
+		1DAB6277254FA479005E46D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867A1254E700900436F08 /* Frameworks */ = {
+		1DAB627F254FA479005E46D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867A9254E700900436F08 /* Frameworks */ = {
+		1DAB6287254FA479005E46D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867B4254E700900436F08 /* Frameworks */ = {
+		1DAB6292254FA479005E46D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -89,72 +98,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D08678C254E700800436F08 = {
+		1DAB626A254FA478005E46D8 = {
 			isa = PBXGroup;
 			children = (
-				1D086791254E700800436F08 /* Shared */,
-				1D08679E254E700900436F08 /* iOS */,
-				1D0867A5254E700900436F08 /* macOS */,
-				1D0867AF254E700900436F08 /* Tests iOS */,
-				1D0867BA254E700900436F08 /* Tests macOS */,
-				1D08679D254E700900436F08 /* Products */,
+				1DAB626F254FA478005E46D8 /* Shared */,
+				1DAB627C254FA479005E46D8 /* iOS */,
+				1DAB6283254FA479005E46D8 /* macOS */,
+				1DAB628D254FA479005E46D8 /* Tests iOS */,
+				1DAB6298254FA479005E46D8 /* Tests macOS */,
+				1DAB627B254FA479005E46D8 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1D086791254E700800436F08 /* Shared */ = {
+		1DAB626F254FA478005E46D8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				1D086794254E700800436F08 /* golosApp.swift */,
-				1D086795254E700800436F08 /* ContentView.swift */,
-				1D086796254E700800436F08 /* Persistence.swift */,
-				1D086797254E700900436F08 /* Assets.xcassets */,
-				1D086792254E700800436F08 /* golos.xcdatamodeld */,
+				1DAB6272254FA479005E46D8 /* GolosApp.swift */,
+				1DAB6273254FA479005E46D8 /* ContentView.swift */,
+				1DAB6274254FA479005E46D8 /* Persistence.swift */,
+				1DAB6275254FA479005E46D8 /* Assets.xcassets */,
+				1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */,
+				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
+				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
+				1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		1D08679D254E700900436F08 /* Products */ = {
+		1DAB627B254FA479005E46D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D08679C254E700900436F08 /* golos.app */,
-				1D0867A4254E700900436F08 /* golos.app */,
-				1D0867AC254E700900436F08 /* Tests iOS.xctest */,
-				1D0867B7254E700900436F08 /* Tests macOS.xctest */,
+				1DAB627A254FA479005E46D8 /* Golos.app */,
+				1DAB6282254FA479005E46D8 /* Golos.app */,
+				1DAB628A254FA479005E46D8 /* Tests iOS.xctest */,
+				1DAB6295254FA479005E46D8 /* Tests macOS.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1D08679E254E700900436F08 /* iOS */ = {
+		1DAB627C254FA479005E46D8 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1D08679F254E700900436F08 /* Info.plist */,
+				1DAB627D254FA479005E46D8 /* Info.plist */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
 		};
-		1D0867A5254E700900436F08 /* macOS */ = {
+		1DAB6283254FA479005E46D8 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				1D0867A6254E700900436F08 /* Info.plist */,
-				1D0867A7254E700900436F08 /* macOS.entitlements */,
+				1DAB6284254FA479005E46D8 /* Info.plist */,
+				1DAB6285254FA479005E46D8 /* macOS.entitlements */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
 		};
-		1D0867AF254E700900436F08 /* Tests iOS */ = {
+		1DAB628D254FA479005E46D8 /* Tests iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1D0867B0254E700900436F08 /* Tests_iOS.swift */,
-				1D0867B2254E700900436F08 /* Info.plist */,
+				1DAB628E254FA479005E46D8 /* Tests_iOS.swift */,
+				1DAB6290254FA479005E46D8 /* Info.plist */,
 			);
 			path = "Tests iOS";
 			sourceTree = "<group>";
 		};
-		1D0867BA254E700900436F08 /* Tests macOS */ = {
+		1DAB6298254FA479005E46D8 /* Tests macOS */ = {
 			isa = PBXGroup;
 			children = (
-				1D0867BB254E700900436F08 /* Tests_macOS.swift */,
-				1D0867BD254E700900436F08 /* Info.plist */,
+				1DAB6299254FA479005E46D8 /* Tests_macOS.swift */,
+				1DAB629B254FA479005E46D8 /* Info.plist */,
 			);
 			path = "Tests macOS";
 			sourceTree = "<group>";
@@ -162,102 +174,102 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D08679B254E700900436F08 /* golos (iOS) */ = {
+		1DAB6279254FA479005E46D8 /* Golos (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D0867CA254E700900436F08 /* Build configuration list for PBXNativeTarget "golos (iOS)" */;
+			buildConfigurationList = 1DAB62A8254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Golos (iOS)" */;
 			buildPhases = (
-				1D086798254E700900436F08 /* Sources */,
-				1D086799254E700900436F08 /* Frameworks */,
-				1D08679A254E700900436F08 /* Resources */,
+				1DAB6276254FA479005E46D8 /* Sources */,
+				1DAB6277254FA479005E46D8 /* Frameworks */,
+				1DAB6278254FA479005E46D8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "golos (iOS)";
-			productName = "golos (iOS)";
-			productReference = 1D08679C254E700900436F08 /* golos.app */;
+			name = "Golos (iOS)";
+			productName = "Golos (iOS)";
+			productReference = 1DAB627A254FA479005E46D8 /* Golos.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1D0867A3254E700900436F08 /* golos (macOS) */ = {
+		1DAB6281254FA479005E46D8 /* Golos (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D0867CD254E700900436F08 /* Build configuration list for PBXNativeTarget "golos (macOS)" */;
+			buildConfigurationList = 1DAB62AB254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Golos (macOS)" */;
 			buildPhases = (
-				1D0867A0254E700900436F08 /* Sources */,
-				1D0867A1254E700900436F08 /* Frameworks */,
-				1D0867A2254E700900436F08 /* Resources */,
+				1DAB627E254FA479005E46D8 /* Sources */,
+				1DAB627F254FA479005E46D8 /* Frameworks */,
+				1DAB6280254FA479005E46D8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "golos (macOS)";
-			productName = "golos (macOS)";
-			productReference = 1D0867A4254E700900436F08 /* golos.app */;
+			name = "Golos (macOS)";
+			productName = "Golos (macOS)";
+			productReference = 1DAB6282254FA479005E46D8 /* Golos.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1D0867AB254E700900436F08 /* Tests iOS */ = {
+		1DAB6289254FA479005E46D8 /* Tests iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D0867D0254E700900436F08 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildConfigurationList = 1DAB62AE254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
 			buildPhases = (
-				1D0867A8254E700900436F08 /* Sources */,
-				1D0867A9254E700900436F08 /* Frameworks */,
-				1D0867AA254E700900436F08 /* Resources */,
+				1DAB6286254FA479005E46D8 /* Sources */,
+				1DAB6287254FA479005E46D8 /* Frameworks */,
+				1DAB6288254FA479005E46D8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1D0867AE254E700900436F08 /* PBXTargetDependency */,
+				1DAB628C254FA479005E46D8 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
 			productName = "Tests iOS";
-			productReference = 1D0867AC254E700900436F08 /* Tests iOS.xctest */;
+			productReference = 1DAB628A254FA479005E46D8 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		1D0867B6254E700900436F08 /* Tests macOS */ = {
+		1DAB6294254FA479005E46D8 /* Tests macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D0867D3254E700900436F08 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildConfigurationList = 1DAB62B1254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
 			buildPhases = (
-				1D0867B3254E700900436F08 /* Sources */,
-				1D0867B4254E700900436F08 /* Frameworks */,
-				1D0867B5254E700900436F08 /* Resources */,
+				1DAB6291254FA479005E46D8 /* Sources */,
+				1DAB6292254FA479005E46D8 /* Frameworks */,
+				1DAB6293254FA479005E46D8 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1D0867B9254E700900436F08 /* PBXTargetDependency */,
+				1DAB6297254FA479005E46D8 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
 			productName = "Tests macOS";
-			productReference = 1D0867B7254E700900436F08 /* Tests macOS.xctest */;
+			productReference = 1DAB6295254FA479005E46D8 /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1D08678D254E700800436F08 /* Project object */ = {
+		1DAB626B254FA478005E46D8 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1220;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
-					1D08679B254E700900436F08 = {
+					1DAB6279254FA479005E46D8 = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					1D0867A3254E700900436F08 = {
+					1DAB6281254FA479005E46D8 = {
 						CreatedOnToolsVersion = 12.2;
 					};
-					1D0867AB254E700900436F08 = {
+					1DAB6289254FA479005E46D8 = {
 						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 1D08679B254E700900436F08;
+						TestTargetID = 1DAB6279254FA479005E46D8;
 					};
-					1D0867B6254E700900436F08 = {
+					1DAB6294254FA479005E46D8 = {
 						CreatedOnToolsVersion = 12.2;
-						TestTargetID = 1D0867A3254E700900436F08;
+						TestTargetID = 1DAB6281254FA479005E46D8;
 					};
 				};
 			};
-			buildConfigurationList = 1D086790254E700800436F08 /* Build configuration list for PBXProject "golos" */;
+			buildConfigurationList = 1DAB626E254FA478005E46D8 /* Build configuration list for PBXProject "Golos" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -265,44 +277,44 @@
 				en,
 				Base,
 			);
-			mainGroup = 1D08678C254E700800436F08;
-			productRefGroup = 1D08679D254E700900436F08 /* Products */;
+			mainGroup = 1DAB626A254FA478005E46D8;
+			productRefGroup = 1DAB627B254FA479005E46D8 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D08679B254E700900436F08 /* golos (iOS) */,
-				1D0867A3254E700900436F08 /* golos (macOS) */,
-				1D0867AB254E700900436F08 /* Tests iOS */,
-				1D0867B6254E700900436F08 /* Tests macOS */,
+				1DAB6279254FA479005E46D8 /* Golos (iOS) */,
+				1DAB6281254FA479005E46D8 /* Golos (macOS) */,
+				1DAB6289254FA479005E46D8 /* Tests iOS */,
+				1DAB6294254FA479005E46D8 /* Tests macOS */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1D08679A254E700900436F08 /* Resources */ = {
+		1DAB6278254FA479005E46D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867C6254E700900436F08 /* Assets.xcassets in Resources */,
+				1DAB62A4254FA479005E46D8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867A2254E700900436F08 /* Resources */ = {
+		1DAB6280254FA479005E46D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867C7254E700900436F08 /* Assets.xcassets in Resources */,
+				1DAB62A5254FA479005E46D8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867AA254E700900436F08 /* Resources */ = {
+		1DAB6288254FA479005E46D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867B5254E700900436F08 /* Resources */ = {
+		1DAB6293254FA479005E46D8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -312,61 +324,67 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1D086798254E700900436F08 /* Sources */ = {
+		1DAB6276254FA479005E46D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867C0254E700900436F08 /* golosApp.swift in Sources */,
-				1D0867C4254E700900436F08 /* Persistence.swift in Sources */,
-				1D0867BE254E700900436F08 /* golos.xcdatamodeld in Sources */,
-				1D0867C2254E700900436F08 /* ContentView.swift in Sources */,
+				1DAB629E254FA479005E46D8 /* GolosApp.swift in Sources */,
+				1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */,
+				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
+				1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */,
+				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
+				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
+				1DAB62A0254FA479005E46D8 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867A0254E700900436F08 /* Sources */ = {
+		1DAB627E254FA479005E46D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867C1254E700900436F08 /* golosApp.swift in Sources */,
-				1D0867C5254E700900436F08 /* Persistence.swift in Sources */,
-				1D0867BF254E700900436F08 /* golos.xcdatamodeld in Sources */,
-				1D0867C3254E700900436F08 /* ContentView.swift in Sources */,
+				1DAB629F254FA479005E46D8 /* GolosApp.swift in Sources */,
+				1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */,
+				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
+				1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */,
+				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
+				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
+				1DAB62A1254FA479005E46D8 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867A8254E700900436F08 /* Sources */ = {
+		1DAB6286254FA479005E46D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867B1254E700900436F08 /* Tests_iOS.swift in Sources */,
+				1DAB628F254FA479005E46D8 /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D0867B3254E700900436F08 /* Sources */ = {
+		1DAB6291254FA479005E46D8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D0867BC254E700900436F08 /* Tests_macOS.swift in Sources */,
+				1DAB629A254FA479005E46D8 /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1D0867AE254E700900436F08 /* PBXTargetDependency */ = {
+		1DAB628C254FA479005E46D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1D08679B254E700900436F08 /* golos (iOS) */;
-			targetProxy = 1D0867AD254E700900436F08 /* PBXContainerItemProxy */;
+			target = 1DAB6279254FA479005E46D8 /* Golos (iOS) */;
+			targetProxy = 1DAB628B254FA479005E46D8 /* PBXContainerItemProxy */;
 		};
-		1D0867B9254E700900436F08 /* PBXTargetDependency */ = {
+		1DAB6297254FA479005E46D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1D0867A3254E700900436F08 /* golos (macOS) */;
-			targetProxy = 1D0867B8254E700900436F08 /* PBXContainerItemProxy */;
+			target = 1DAB6281254FA479005E46D8 /* Golos (macOS) */;
+			targetProxy = 1DAB6296254FA479005E46D8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1D0867C8254E700900436F08 /* Debug */ = {
+		1DAB62A6254FA479005E46D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -425,7 +443,7 @@
 			};
 			name = Debug;
 		};
-		1D0867C9254E700900436F08 /* Release */ = {
+		1DAB62A7254FA479005E46D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -477,7 +495,7 @@
 			};
 			name = Release;
 		};
-		1D0867CB254E700900436F08 /* Debug */ = {
+		1DAB62A9254FA479005E46D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -491,15 +509,15 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = green.felix.golos;
-				PRODUCT_NAME = golos;
+				PRODUCT_BUNDLE_IDENTIFIER = green.felix.Golos;
+				PRODUCT_NAME = Golos;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1D0867CC254E700900436F08 /* Release */ = {
+		1DAB62AA254FA479005E46D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -513,8 +531,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = green.felix.golos;
-				PRODUCT_NAME = golos;
+				PRODUCT_BUNDLE_IDENTIFIER = green.felix.Golos;
+				PRODUCT_NAME = Golos;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -522,7 +540,7 @@
 			};
 			name = Release;
 		};
-		1D0867CE254E700900436F08 /* Debug */ = {
+		1DAB62AC254FA479005E46D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -539,14 +557,14 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = green.felix.golos;
-				PRODUCT_NAME = golos;
+				PRODUCT_BUNDLE_IDENTIFIER = green.felix.Golos;
+				PRODUCT_NAME = Golos;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		1D0867CF254E700900436F08 /* Release */ = {
+		1DAB62AD254FA479005E46D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -563,14 +581,14 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = green.felix.golos;
-				PRODUCT_NAME = golos;
+				PRODUCT_BUNDLE_IDENTIFIER = green.felix.Golos;
+				PRODUCT_NAME = Golos;
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		1D0867D1254E700900436F08 /* Debug */ = {
+		1DAB62AF254FA479005E46D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -588,11 +606,11 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "golos (iOS)";
+				TEST_TARGET_NAME = "Golos (iOS)";
 			};
 			name = Debug;
 		};
-		1D0867D2254E700900436F08 /* Release */ = {
+		1DAB62B0254FA479005E46D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -610,12 +628,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "golos (iOS)";
+				TEST_TARGET_NAME = "Golos (iOS)";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		1D0867D4254E700900436F08 /* Debug */ = {
+		1DAB62B2254FA479005E46D8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -633,11 +651,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "golos (macOS)";
+				TEST_TARGET_NAME = "Golos (macOS)";
 			};
 			name = Debug;
 		};
-		1D0867D5254E700900436F08 /* Release */ = {
+		1DAB62B3254FA479005E46D8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
@@ -655,54 +673,54 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "golos (macOS)";
+				TEST_TARGET_NAME = "Golos (macOS)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D086790254E700800436F08 /* Build configuration list for PBXProject "golos" */ = {
+		1DAB626E254FA478005E46D8 /* Build configuration list for PBXProject "Golos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D0867C8254E700900436F08 /* Debug */,
-				1D0867C9254E700900436F08 /* Release */,
+				1DAB62A6254FA479005E46D8 /* Debug */,
+				1DAB62A7254FA479005E46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D0867CA254E700900436F08 /* Build configuration list for PBXNativeTarget "golos (iOS)" */ = {
+		1DAB62A8254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Golos (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D0867CB254E700900436F08 /* Debug */,
-				1D0867CC254E700900436F08 /* Release */,
+				1DAB62A9254FA479005E46D8 /* Debug */,
+				1DAB62AA254FA479005E46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D0867CD254E700900436F08 /* Build configuration list for PBXNativeTarget "golos (macOS)" */ = {
+		1DAB62AB254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Golos (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D0867CE254E700900436F08 /* Debug */,
-				1D0867CF254E700900436F08 /* Release */,
+				1DAB62AC254FA479005E46D8 /* Debug */,
+				1DAB62AD254FA479005E46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D0867D0254E700900436F08 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+		1DAB62AE254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D0867D1254E700900436F08 /* Debug */,
-				1D0867D2254E700900436F08 /* Release */,
+				1DAB62AF254FA479005E46D8 /* Debug */,
+				1DAB62B0254FA479005E46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D0867D3254E700900436F08 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+		1DAB62B1254FA479005E46D8 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D0867D4254E700900436F08 /* Debug */,
-				1D0867D5254E700900436F08 /* Release */,
+				1DAB62B2254FA479005E46D8 /* Debug */,
+				1DAB62B3254FA479005E46D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -710,17 +728,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1D086792254E700800436F08 /* golos.xcdatamodeld */ = {
+		1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1D086793254E700800436F08 /* Shared.xcdatamodel */,
+				1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */,
 			);
-			currentVersion = 1D086793254E700800436F08 /* Shared.xcdatamodel */;
-			path = golos.xcdatamodeld;
+			currentVersion = 1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */;
+			path = Golos.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 1D08678D254E700800436F08 /* Project object */;
+	rootObject = 1DAB626B254FA478005E46D8 /* Project object */;
 }
