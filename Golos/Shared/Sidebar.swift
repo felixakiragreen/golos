@@ -35,6 +35,7 @@ struct Sidebar: View {
 	
 	var sidebar: some View {
 		List(selection: $selection) {
+			// War Room
 			Group {
 				NavigationLink(
 					destination: WarRoomView(),
@@ -47,6 +48,7 @@ struct Sidebar: View {
 	
 			Spacer()
 			
+			// Scratchpad
 			Group {
 				NavigationLink(
 					destination: WarRoomView(),
@@ -57,10 +59,12 @@ struct Sidebar: View {
 				}.tag(NavigationItem.scratchpad)
 		
 				Text("TODO: quick add")
+				Text("What do I want to remember?")
 			}
 			
 			Spacer()
 			
+			// Feedback
 			Group {
 				NavigationLink(
 					destination: WarRoomView(),
@@ -75,6 +79,7 @@ struct Sidebar: View {
 			
 			Spacer()
 			
+			// Updates
 			Group {
 				NavigationLink(
 					destination: WarRoomView(),
