@@ -42,7 +42,7 @@ struct Sidebar: View {
 					tag: NavigationItem.warroom,
 					selection: $selection
 				) {
-					Label("War Room", systemImage: "crown")
+					Label("War Room", systemImage: "circles.hexagonpath")
 				}.tag(NavigationItem.warroom)
 			}
 	
