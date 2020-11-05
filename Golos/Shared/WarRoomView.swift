@@ -11,18 +11,31 @@ struct WarRoomView: View {
     var body: some View {
 		
 		VStack {
-			VSplitView() {
+			VStack() {
+				HStack {
+					Text("Past")
+					Text("Present")
+					Text("Future")
+				}
+				.frame(
+					maxWidth: .infinity,
+					maxHeight: .infinity
+				)
 				TimelineView()
 				HStack {
 					Text("Objectives")
 					Text("Chracter")
 					Text("Metrics")
 				}
+				.frame(
+					maxWidth: .infinity,
+					maxHeight: .infinity
+				)
 			}
-//			.frame(
-//				idealWidth: .infinity,
-//				idealHeight: .infinity
-//			)
+			.frame(
+				maxWidth: .infinity,
+				maxHeight: .infinity
+			)
 		}
 		.navigationTitle("War Room")
 		.frame(
