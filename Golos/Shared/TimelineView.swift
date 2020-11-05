@@ -14,6 +14,8 @@ struct TimelineView: View {
 			Text("Timeline")
 			Spacer()
 		}
+		.frame(minHeight: 100)
+		.background(Color(.systemRed).opacity(0.1))
 	}
 }
 
