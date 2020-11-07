@@ -7,8 +7,10 @@
 
 import SwiftUI
 
-struct WarRoomView: View {
-    var body: some View {
+struct OverView: View {
+	@State var percentValue: Double = 20
+	
+   var body: some View {
 		
 		VStack {
 			VStack() {
@@ -17,13 +19,31 @@ struct WarRoomView: View {
 					Text("Past")
 					Text("Present")
 					Text("Future")
-					SquareBrick()
+					
+					
+					SquareBrick(percent: percentValue)
+						.frame(width: 20, height: 20)
 				}
 				Spacer()
 //				.frame(
 //					maxWidth: .infinity,
 //					maxHeight: .infinity
 //				)
+				
+				Slider(value: $percentValue, in: 0...100)
+				
+				Button("Random Progress", action: {
+					withAnimation {
+						let newPercent = Double.random(in: 0...100)
+						percentValue = newPercent
+					}
+				})
+//					.onTapGesture {
+//					let newPercent = CGFloat.random(in: 0...100)
+//					print(newPercent)
+//					self.percentValue = newPercent
+//				}
+				
 				TimelineView()
 				Spacer()
 				HStack {
@@ -42,7 +62,7 @@ struct WarRoomView: View {
 				maxHeight: .infinity
 			)
 		}
-		.navigationTitle("War Room")
+		.navigationTitle("Overview")
 		.frame(
 			minWidth: 640,
 			idealWidth: 1200,
@@ -55,8 +75,8 @@ struct WarRoomView: View {
     }
 }
 
-struct WarRoomView_Previews: PreviewProvider {
+struct OverView_Previews: PreviewProvider {
     static var previews: some View {
-        WarRoomView()
+        OverView()
     }
 }

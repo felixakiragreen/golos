@@ -13,13 +13,13 @@ import SwiftUI
 struct Sidebar: View {
 	
 	enum NavigationItem {
-		case warroom
+		case overview
 		case scratchpad
 		case feedback
 		case updates
 	}
 	
-	@State private var selection: NavigationItem? = .warroom
+	@State private var selection: NavigationItem? = .overview
 	
 	var body: some View {
 		sidebar.toolbar {
@@ -35,15 +35,15 @@ struct Sidebar: View {
 	
 	var sidebar: some View {
 		List(selection: $selection) {
-			// War Room
+			// Overview
 			Group {
 				NavigationLink(
-					destination: WarRoomView(),
-					tag: NavigationItem.warroom,
+					destination: OverView(),
+					tag: NavigationItem.overview,
 					selection: $selection
 				) {
-					Label("War Room", systemImage: "circles.hexagonpath")
-				}.tag(NavigationItem.warroom)
+					Label("Overview", systemImage: "gyroscope")
+				}.tag(NavigationItem.overview)
 			}
 	
 			Spacer()
@@ -51,7 +51,7 @@ struct Sidebar: View {
 			// Scratchpad
 			Group {
 				NavigationLink(
-					destination: WarRoomView(),
+					destination: OverView(),
 					tag: NavigationItem.scratchpad,
 					selection: $selection
 				) {
@@ -67,7 +67,7 @@ struct Sidebar: View {
 			// Feedback
 			Group {
 				NavigationLink(
-					destination: WarRoomView(),
+					destination: OverView(),
 					tag: NavigationItem.feedback,
 					selection: $selection
 				) {
@@ -82,7 +82,7 @@ struct Sidebar: View {
 			// Updates
 			Group {
 				NavigationLink(
-					destination: WarRoomView(),
+					destination: OverView(),
 					tag: NavigationItem.updates,
 					selection: $selection
 				) {

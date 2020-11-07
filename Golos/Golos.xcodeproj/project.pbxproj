@@ -27,8 +27,8 @@
 		1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */; };
 		1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
 		1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
-		1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
-		1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
+		1DAB62DF254FABDD005E46D8 /* OverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* OverView.swift */; };
+		1DAB62E0254FABDD005E46D8 /* OverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* OverView.swift */; };
 		1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
 		1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
 		1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE375E2555F6D5002B6491 /* RingShape.swift */; };
@@ -73,7 +73,7 @@
 		1DAB629B254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		1DAB62C3254FA685005E46D8 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarRoomView.swift; sourceTree = "<group>"; };
+		1DAB62DE254FABDD005E46D8 /* OverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverView.swift; sourceTree = "<group>"; };
 		1DFE37572555F47D002B6491 /* SquareBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SquareBrick.swift; path = Shared/SquareBrick.swift; sourceTree = SOURCE_ROOT; };
 		1DFE375E2555F6D5002B6491 /* RingShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +133,7 @@
 				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
 				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
 				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
-				1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */,
+				1DAB62DE254FABDD005E46D8 /* OverView.swift */,
 				1D78192B25563FF70054BB00 /* Extensions.swift */,
 				1DB06D612555F05B003AA366 /* Shapes */,
 			);
@@ -358,7 +358,7 @@
 				1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */,
 				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
-				1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */,
+				1DAB62DF254FABDD005E46D8 /* OverView.swift in Sources */,
 				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192C25563FF70054BB00 /* Extensions.swift in Sources */,
@@ -376,7 +376,7 @@
 				1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */,
 				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
-				1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */,
+				1DAB62E0254FABDD005E46D8 /* OverView.swift in Sources */,
 				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192D25563FF70054BB00 /* Extensions.swift in Sources */,
