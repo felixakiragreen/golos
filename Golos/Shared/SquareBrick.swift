@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 // The direction in which the shape fills up
 enum ProgressDirection {
 	case toTop
@@ -17,7 +16,6 @@ enum ProgressDirection {
 	case toCenter
 	case toBorder
 }
-
 
 // TODO: if the percent is 0 or 100 just return it early with the simple shape?
 
@@ -130,12 +128,12 @@ struct SquareBrick: View {
 	// Helper function to derive the dimensions of the clipped shape
 	static func computeClipSize(direction: ProgressDirection, size: CGSize, clipLength: CGFloat) -> CGSize {
 		switch direction {
-			case .toTop, .toBottom:
-				return CGSize(width: size.width, height: clipLength)
-			case .toLeft, .toRight:
-				return CGSize(width: clipLength, height: size.height)
-			case .toCenter, .toBorder:
-				return CGSize(width: clipLength, height: clipLength)
+		case .toTop, .toBottom:
+			return CGSize(width: size.width, height: clipLength)
+		case .toLeft, .toRight:
+			return CGSize(width: clipLength, height: size.height)
+		case .toCenter, .toBorder:
+			return CGSize(width: clipLength, height: clipLength)
 		}
 	}
 	
@@ -171,7 +169,6 @@ struct SquareBrickClipView: View {
 		}
 	}
 }
-
 
 struct SquareBrick_Previews: PreviewProvider {
 	static var previews: some View {
