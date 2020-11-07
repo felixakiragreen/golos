@@ -10,16 +10,14 @@ import SwiftUI
 struct OverView: View {
 	@State var percentValue: Double = 20
 	
-   var body: some View {
-		
+	var body: some View {
 		VStack {
-			VStack() {
+			VStack {
 				Spacer()
 				HStack {
 					Text("Past")
 					Text("Present")
 					Text("Future")
-					
 					
 					SquareBrick(percent: percentValue)
 						.frame(width: 20, height: 20)
@@ -72,11 +70,11 @@ struct OverView: View {
 			maxHeight: .infinity
 //			alignment: .leading
 		)
-    }
+	}
 }
 
 struct OverView_Previews: PreviewProvider {
-    static var previews: some View {
-        OverView()
-    }
+	static var previews: some View {
+		OverView()
+	}
 }
