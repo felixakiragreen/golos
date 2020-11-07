@@ -18,9 +18,21 @@ enum ProgressDirection {
 	case toBorder
 }
 
+
+// TODO: if the percent is 0 or 100 just return it early with the simple shape?
+
 struct SquareBrick: View {
 	var percent: Double = 100
 	var fillDirection: ProgressDirection = .toTop
+	
+	var animatableData: Double {
+		get {
+			return percent
+		}
+		set {
+			percent = newValue
+		}
+	}
 	
 	var body: some View {
 		// This makes .toCenter flow in the right direction
@@ -55,8 +67,7 @@ struct SquareBrick: View {
 				RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
 					.foregroundColor(Color.green.opacity(0.2))
 							
-				switch fillDirection {
-				case .toCenter:
+				if fillDirection == .toCenter {
 					RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
 						.foregroundColor(Color.green)
 						.inverseMask(
@@ -69,20 +80,7 @@ struct SquareBrick: View {
 								clipSize: clipSize
 							)
 						)
-				case .toBorder:
-					RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
-						.foregroundColor(Color.green)
-						.mask(
-							SquareBrickClipView(
-								geometry: geometry,
-								fillDirection: fillDirection,
-								cornerRadius: cornerRadius,
-								clipLength: clipLength,
-								clipOffset: clipOffset,
-								clipSize: clipSize
-							)
-						)
-				default:
+				} else {
 					RoundedRectangle(cornerRadius: cornerRadius, style: .continuous)
 						.foregroundColor(Color.green)
 						.mask(
