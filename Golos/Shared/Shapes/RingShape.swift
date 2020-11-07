@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct RingShape: Shape {
-	
 //	private var percent: Double = 100
 //	private var startAngle: Angle = .degrees(0)
 //	private let drawnClockwise: Bool = false
