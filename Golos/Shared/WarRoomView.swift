@@ -12,25 +12,30 @@ struct WarRoomView: View {
 		
 		VStack {
 			VStack() {
+				Spacer()
 				HStack {
 					Text("Past")
 					Text("Present")
 					Text("Future")
+					SquareBrick()
 				}
-				.frame(
-					maxWidth: .infinity,
-					maxHeight: .infinity
-				)
+				Spacer()
+//				.frame(
+//					maxWidth: .infinity,
+//					maxHeight: .infinity
+//				)
 				TimelineView()
+				Spacer()
 				HStack {
 					Text("Objectives")
 					Text("Chracter")
 					Text("Metrics")
 				}
-				.frame(
-					maxWidth: .infinity,
-					maxHeight: .infinity
-				)
+				Spacer()
+//				.frame(
+//					maxWidth: .infinity,
+//					maxHeight: .infinity
+//				)
 			}
 			.frame(
 				maxWidth: .infinity,
