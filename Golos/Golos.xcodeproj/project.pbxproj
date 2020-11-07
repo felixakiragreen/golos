@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
+		1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
+		1D78192C25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
+		1D78192D25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
 		1DAB628F254FA479005E46D8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB628E254FA479005E46D8 /* Tests_iOS.swift */; };
 		1DAB629A254FA479005E46D8 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6299254FA479005E46D8 /* Tests_macOS.swift */; };
 		1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */; };
@@ -25,6 +29,10 @@
 		1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
 		1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
 		1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */; };
+		1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
+		1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
+		1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE375E2555F6D5002B6491 /* RingShape.swift */; };
+		1DFE37602555F6D5002B6491 /* RingShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE375E2555F6D5002B6491 /* RingShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityBricksView.swift; sourceTree = "<group>"; };
+		1D78192B25563FF70054BB00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1DAB6272254FA479005E46D8 /* GolosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosApp.swift; sourceTree = "<group>"; };
 		1DAB6273254FA479005E46D8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -64,6 +74,8 @@
 		1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		1DAB62C3254FA685005E46D8 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarRoomView.swift; sourceTree = "<group>"; };
+		1DFE37572555F47D002B6491 /* SquareBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SquareBrick.swift; path = Shared/SquareBrick.swift; sourceTree = SOURCE_ROOT; };
+		1DFE375E2555F6D5002B6491 /* RingShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +132,10 @@
 				1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */,
 				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
 				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
+				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
 				1DAB62DE254FABDD005E46D8 /* WarRoomView.swift */,
+				1D78192B25563FF70054BB00 /* Extensions.swift */,
+				1DB06D612555F05B003AA366 /* Shapes */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -169,6 +184,15 @@
 				1DAB629B254FA479005E46D8 /* Info.plist */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		1DB06D612555F05B003AA366 /* Shapes */ = {
+			isa = PBXGroup;
+			children = (
+				1DFE37572555F47D002B6491 /* SquareBrick.swift */,
+				1DFE375E2555F6D5002B6491 /* RingShape.swift */,
+			);
+			path = Shapes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,11 +353,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DAB629E254FA479005E46D8 /* GolosApp.swift in Sources */,
+				1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */,
+				1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */,
 				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
 				1DAB62DF254FABDD005E46D8 /* WarRoomView.swift in Sources */,
 				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
+				1D78192C25563FF70054BB00 /* Extensions.swift in Sources */,
 				1DAB62A0254FA479005E46D8 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -343,11 +371,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DAB629F254FA479005E46D8 /* GolosApp.swift in Sources */,
+				1DFE37602555F6D5002B6491 /* RingShape.swift in Sources */,
+				1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */,
 				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
 				1DAB62E0254FABDD005E46D8 /* WarRoomView.swift in Sources */,
 				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
+				1D78192D25563FF70054BB00 /* Extensions.swift in Sources */,
 				1DAB62A1254FA479005E46D8 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
