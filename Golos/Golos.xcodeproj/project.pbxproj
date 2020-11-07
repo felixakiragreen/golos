@@ -56,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		1D3A43822557352100882F8D /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
+		1D3A439525574B0D00882F8D /* Exploration.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Exploration.playground; path = ../../Exploration.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityBricksView.swift; sourceTree = "<group>"; };
 		1D78192B25563FF70054BB00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -140,6 +141,7 @@
 				1DAB6275254FA479005E46D8 /* Assets.xcassets */,
 				1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */,
 				1DAB6274254FA479005E46D8 /* Persistence.swift */,
+				1D3A439525574B0D00882F8D /* Exploration.playground */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
