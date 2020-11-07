@@ -5,8 +5,8 @@
 //  Created by Felix Akira Green on 11/1/20.
 //
 
-import SwiftUI
 import CoreData
+import SwiftUI
 
 struct ContentView: View {
 	@Environment(\.managedObjectContext) private var viewContext
@@ -40,8 +40,6 @@ struct ContentView: View {
 			}
 		}
 	}
-	
-	
 	
 	private func addItem() {
 		withAnimation {
