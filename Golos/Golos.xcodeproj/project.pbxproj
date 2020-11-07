@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3A43832557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
+		1D3A43842557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
 		1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
 		1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
 		1D78192C25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
@@ -53,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D3A43822557352100882F8D /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityBricksView.swift; sourceTree = "<group>"; };
 		1D78192B25563FF70054BB00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -126,16 +129,17 @@
 			isa = PBXGroup;
 			children = (
 				1DAB6272254FA479005E46D8 /* GolosApp.swift */,
+				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
 				1DAB6273254FA479005E46D8 /* ContentView.swift */,
-				1DAB6274254FA479005E46D8 /* Persistence.swift */,
+				1DAB62DE254FABDD005E46D8 /* OverView.swift */,
+				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
+				1D3A43822557352100882F8D /* NowView.swift */,
+				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
+				1DB06D612555F05B003AA366 /* Shapes */,
+				1D78192B25563FF70054BB00 /* Extensions.swift */,
 				1DAB6275254FA479005E46D8 /* Assets.xcassets */,
 				1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */,
-				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
-				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
-				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
-				1DAB62DE254FABDD005E46D8 /* OverView.swift */,
-				1D78192B25563FF70054BB00 /* Extensions.swift */,
-				1DB06D612555F05B003AA366 /* Shapes */,
+				1DAB6274254FA479005E46D8 /* Persistence.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -363,6 +367,7 @@
 				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192C25563FF70054BB00 /* Extensions.swift in Sources */,
 				1DAB62A0254FA479005E46D8 /* ContentView.swift in Sources */,
+				1D3A43832557352100882F8D /* NowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,6 +386,7 @@
 				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192D25563FF70054BB00 /* Extensions.swift in Sources */,
 				1DAB62A1254FA479005E46D8 /* ContentView.swift in Sources */,
+				1D3A43842557352100882F8D /* NowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
