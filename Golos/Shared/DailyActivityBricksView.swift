@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct DailyActivityBricksView: View {
-    var body: some View {
-		
+	var body: some View {
 		VStack(spacing: 8) {
 			HStack(spacing: 8) {
 				HabitBrick()
@@ -33,7 +32,7 @@ struct DailyActivityBricksView: View {
 				Image(systemName: "sunset")
 			}
 		}.font(.title)
-    }
+	}
 }
 
 //	TODO: rename, refactor, reorgnize
@@ -51,13 +50,13 @@ enum HabitLevel {
 struct HabitBrick: View {
 	var completion: HabitCompletion = .unstarted
 	var level: HabitLevel = .habitual
-		
+
 	var body: some View {
 		let iconName: String = getIconName(level: level, completion: completion)
-		
+
 		Image(systemName: iconName).foregroundColor(.green)
 	}
-	
+
 	func getIconName(level: HabitLevel, completion: HabitCompletion) -> String {
 		switch (level, completion) {
 			case (.habitual, .completed):
@@ -73,7 +72,7 @@ struct HabitBrick: View {
 }
 
 struct DailyActivityBricksView_Previews: PreviewProvider {
-    static var previews: some View {
-        DailyActivityBricksView()
-    }
+	static var previews: some View {
+		DailyActivityBricksView()
+	}
 }

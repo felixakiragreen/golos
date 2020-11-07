@@ -1,17 +1,16 @@
 /*
-Sidebar.swift
-Golos
+ Sidebar.swift
+ Golos
 
-Created by Felix Akira Green on 11/1/20.
+ Created by Felix Akira Green on 11/1/20.
 
-Abstract:
-App's navigation
-*/
+ Abstract:
+ App's navigation
+ */
 
 import SwiftUI
 
 struct Sidebar: View {
-	
 	enum NavigationItem {
 		case overview
 		case scratchpad
@@ -98,7 +97,6 @@ struct Sidebar: View {
 		NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
 		#endif
 	}
-	
 }
 
 struct Sidebar_Previews: PreviewProvider {
