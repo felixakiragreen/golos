@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		1D3A43832557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
 		1D3A43842557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
+		1D3A43A02557809C00882F8D /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A439F2557809C00882F8D /* PlannerView.swift */; };
+		1D3A43A12557809C00882F8D /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A439F2557809C00882F8D /* PlannerView.swift */; };
+		1D3A43AB255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */; };
+		1D3A43AC255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */; };
+		1D3A43BC2557864600882F8D /* HolisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43BB2557864600882F8D /* HolisticView.swift */; };
+		1D3A43BD2557864600882F8D /* HolisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43BB2557864600882F8D /* HolisticView.swift */; };
 		1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
 		1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
 		1D78192C25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
@@ -57,6 +63,9 @@
 /* Begin PBXFileReference section */
 		1D3A43822557352100882F8D /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		1D3A439525574B0D00882F8D /* Exploration.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Exploration.playground; path = ../../Exploration.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		1D3A439F2557809C00882F8D /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
+		1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySelectedDateView.swift; sourceTree = "<group>"; };
+		1D3A43BB2557864600882F8D /* HolisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolisticView.swift; sourceTree = "<group>"; };
 		1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityBricksView.swift; sourceTree = "<group>"; };
 		1D78192B25563FF70054BB00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -114,6 +123,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D3A439E2557808600882F8D /* Planner */ = {
+			isa = PBXGroup;
+			children = (
+				1D3A439F2557809C00882F8D /* PlannerView.swift */,
+				1D3A43822557352100882F8D /* NowView.swift */,
+				1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */,
+			);
+			path = Planner;
+			sourceTree = "<group>";
+		};
+		1D3A43B92557818100882F8D /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
+				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
+		1D3A43BA2557863000882F8D /* Holistic */ = {
+			isa = PBXGroup;
+			children = (
+				1D3A43BB2557864600882F8D /* HolisticView.swift */,
+			);
+			path = Holistic;
+			sourceTree = "<group>";
+		};
 		1DAB626A254FA478005E46D8 = {
 			isa = PBXGroup;
 			children = (
@@ -133,9 +169,9 @@
 				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
 				1DAB6273254FA479005E46D8 /* ContentView.swift */,
 				1DAB62DE254FABDD005E46D8 /* OverView.swift */,
-				1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */,
-				1D3A43822557352100882F8D /* NowView.swift */,
-				1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */,
+				1D3A439E2557808600882F8D /* Planner */,
+				1D3A43B92557818100882F8D /* Timeline */,
+				1D3A43BA2557863000882F8D /* Holistic */,
 				1DB06D612555F05B003AA366 /* Shapes */,
 				1D78192B25563FF70054BB00 /* Extensions.swift */,
 				1DAB6275254FA479005E46D8 /* Assets.xcassets */,
@@ -360,9 +396,12 @@
 			files = (
 				1DAB629E254FA479005E46D8 /* GolosApp.swift in Sources */,
 				1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */,
+				1D3A43A02557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
 				1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */,
+				1D3A43BC2557864600882F8D /* HolisticView.swift in Sources */,
+				1D3A43AB255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
 				1DAB62DF254FABDD005E46D8 /* OverView.swift in Sources */,
 				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
@@ -379,9 +418,12 @@
 			files = (
 				1DAB629F254FA479005E46D8 /* GolosApp.swift in Sources */,
 				1DFE37602555F6D5002B6491 /* RingShape.swift in Sources */,
+				1D3A43A12557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
 				1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */,
+				1D3A43BD2557864600882F8D /* HolisticView.swift in Sources */,
+				1D3A43AC255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
 				1DAB62E0254FABDD005E46D8 /* OverView.swift in Sources */,
 				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
