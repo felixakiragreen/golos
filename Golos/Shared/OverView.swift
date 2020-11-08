@@ -11,23 +11,9 @@ struct OverView: View {
 	var body: some View {
 		VStack {
 			VStack {
-				Spacer()
-				HStack {
-					Text("Past")
-					NowView()
-					Text("Future")
-				}
-			
-				Spacer()
+				PlannerView()
 				TimelineView()
-				Spacer()
-				
-				HStack {
-					Text("Objectives")
-					Text("Chracter")
-					Text("Metrics")
-				}
-				Spacer()
+				HolisticView()
 			}
 		}
 		.navigationTitle("Overview")
@@ -44,13 +30,13 @@ struct OverView: View {
 
 struct AnimationExperiment: View {
 	@State var percentValue: Double = 20
-	
+
 	var body: some View {
 		HStack {
 			SquareBrick(percent: percentValue)
 				.frame(width: 20, height: 20)
 			Slider(value: $percentValue, in: 0...100)
-			
+
 			Button("Random Progress", action: {
 				withAnimation {
 					let newPercent = Double.random(in: 0...100)
