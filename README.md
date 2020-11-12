@@ -1,6 +1,6 @@
 # The Game of Life Operating System
 
-## Abtract
+## Abstract
 
 ## Why
 
@@ -16,7 +16,7 @@
 
 (Put these in a visual grid)
 
-### Planned for v1.0
+### Planned for v1.0 (01.jan.12021)
 
 - Habit Tracker
   - Track & visualize your progress & consistency at maintaining certain habits over time.
@@ -28,7 +28,7 @@
   - Visualize & track your own stats as a Character in a Role Playing game.
   - Inspiration drawn from D&D and every RPG. v1.0
 
-Planned for 2020
+Planned through out 12021
 (I think I’ll be able to do a module every 2 weeks, that’s my goal at least)
 
 - Planning
