@@ -39,8 +39,8 @@
 		1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */; };
 		1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
 		1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62C3254FA685005E46D8 /* Sidebar.swift */; };
-		1DAB62DF254FABDD005E46D8 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* OverviewView.swift */; };
-		1DAB62E0254FABDD005E46D8 /* OverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* OverviewView.swift */; };
+		1DAB62DF254FABDD005E46D8 /* Overview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* Overview.swift */; };
+		1DAB62E0254FABDD005E46D8 /* Overview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB62DE254FABDD005E46D8 /* Overview.swift */; };
 		1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
 		1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE37572555F47D002B6491 /* SquareBrick.swift */; };
 		1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFE375E2555F6D5002B6491 /* RingShape.swift */; };
@@ -92,7 +92,7 @@
 		1DAB629B254FA479005E46D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DAB62B8254FA4C7005E46D8 /* TimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineView.swift; sourceTree = "<group>"; };
 		1DAB62C3254FA685005E46D8 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
-		1DAB62DE254FABDD005E46D8 /* OverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewView.swift; sourceTree = "<group>"; };
+		1DAB62DE254FABDD005E46D8 /* Overview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Overview.swift; sourceTree = "<group>"; };
 		1DFE37572555F47D002B6491 /* SquareBrick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SquareBrick.swift; path = Shared/SquareBrick.swift; sourceTree = SOURCE_ROOT; };
 		1DFE375E2555F6D5002B6491 /* RingShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,9 +174,9 @@
 				1DAB6272254FA479005E46D8 /* GolosApp.swift */,
 				1DAB62C3254FA685005E46D8 /* Sidebar.swift */,
 				1DAB6273254FA479005E46D8 /* ContentView.swift */,
-				1DAB62DE254FABDD005E46D8 /* OverviewView.swift */,
-				1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */,
+				1DAB62DE254FABDD005E46D8 /* Overview.swift */,
 				1D1BA9092560AEE700B3E414 /* SetupView.swift */,
+				1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */,
 				1D3A439E2557808600882F8D /* Planner */,
 				1D3A43B92557818100882F8D /* Timeline */,
 				1D3A43BA2557863000882F8D /* Holistic */,
@@ -412,7 +412,7 @@
 				1D3A43BC2557864600882F8D /* HolisticView.swift in Sources */,
 				1D3A43AB255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
-				1DAB62DF254FABDD005E46D8 /* OverviewView.swift in Sources */,
+				1DAB62DF254FABDD005E46D8 /* Overview.swift in Sources */,
 				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192C25563FF70054BB00 /* Extensions.swift in Sources */,
@@ -436,7 +436,7 @@
 				1D3A43BD2557864600882F8D /* HolisticView.swift in Sources */,
 				1D3A43AC255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
-				1DAB62E0254FABDD005E46D8 /* OverviewView.swift in Sources */,
+				1DAB62E0254FABDD005E46D8 /* Overview.swift in Sources */,
 				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192D25563FF70054BB00 /* Extensions.swift in Sources */,

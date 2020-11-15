@@ -12,6 +12,7 @@ import SwiftUI
 
 struct Sidebar: View {
 	enum NavigationItem {
+		case setup
 		case overview
 		case scratchpad
 		case feedback
@@ -34,46 +35,57 @@ struct Sidebar: View {
 	
 	var sidebar: some View {
 		List(selection: $selection) {
+			// Setup
+			Group {
+				NavigationLink(
+					destination: SetupView(),
+					tag: NavigationItem.setup,
+					selection: $selection
+				) {
+					Label("Setup", systemImage: "figure.wave")
+				}.tag(NavigationItem.setup)
+			}
+			
 			// Overview
 			Group {
 				NavigationLink(
-					destination: OverView(),
+					destination: Overview(),
 					tag: NavigationItem.overview,
 					selection: $selection
 				) {
-					Label("Overview", systemImage: "gyroscope")
+					Label("Overview", systemImage: "hexagon")
 				}.tag(NavigationItem.overview)
 			}
 	
 			Spacer()
 			
 			// Scratchpad
-			Group {
-				NavigationLink(
-					destination: OverView(),
-					tag: NavigationItem.scratchpad,
-					selection: $selection
-				) {
-					Label("Scratchpad", systemImage: "pencil.and.outline")
-				}.tag(NavigationItem.scratchpad)
-		
-				Text("TODO: quick add")
-				Text("What do I want to remember?")
-			}
+//			Group {
+//				NavigationLink(
+//					destination: Overview(),
+//					tag: NavigationItem.scratchpad,
+//					selection: $selection
+//				) {
+//					Label("Scratchpad", systemImage: "pencil.and.outline")
+//				}.tag(NavigationItem.scratchpad)
+//
+//				Text("TODO: quick add")
+//				Text("What do I want to remember?")
+//			}
 			
-			Spacer()
+//			Spacer()
 			
 			// Feedback
 			Group {
 				NavigationLink(
-					destination: OverView(),
+					destination: Overview(),
 					tag: NavigationItem.feedback,
 					selection: $selection
 				) {
 					Label("Feedback", systemImage: "lightbulb")
 				}.tag(NavigationItem.feedback)
 		
-				Text("TODO: quick add")
+//				Text("TODO: quick add")
 			}
 			
 			Spacer()
@@ -81,7 +93,7 @@ struct Sidebar: View {
 			// Updates
 			Group {
 				NavigationLink(
-					destination: OverView(),
+					destination: Overview(),
 					tag: NavigationItem.updates,
 					selection: $selection
 				) {
