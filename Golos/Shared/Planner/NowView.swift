@@ -78,7 +78,8 @@ struct TaskView: View {
 //	@Binding
 	
 	
-	@ObservedObject var task: Task
+//	@ObservedObject
+	var task: Task
 	
 //	var planning = TaskPlanning()
 //	@Binding var selection: Set<Task>
@@ -106,7 +107,7 @@ struct TaskView: View {
 //			if isEditing {
 //				TextEditor(text: $task.title)
 //			} else {
-				Text($task.title)
+				Text(task.title)
 					.strikethrough(task.completed)
 					.foregroundColor(task.completed ? .secondary : .primary)
 //			}

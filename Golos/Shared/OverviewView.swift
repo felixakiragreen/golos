@@ -1,5 +1,5 @@
 //
-//  WarRoomView.swift
+//  Overview.swift
 //  Golos
 //
 //  Created by Felix Akira Green on 11/1/20.
@@ -7,13 +7,14 @@
 
 import SwiftUI
 
-struct OverView: View {
+struct Overview: View {
 	var body: some View {
 		VStack {
 			VStack {
-				PlannerView()
-				TimelineView()
-				HolisticView()
+				TimeBlocker()
+//				PlannerView()
+//				TimelineView()
+//				HolisticView()
 			}
 		}
 		.navigationTitle("Overview")
@@ -47,8 +48,8 @@ struct AnimationExperiment: View {
 	}
 }
 
-struct OverView_Previews: PreviewProvider {
+struct Overview_Previews: PreviewProvider {
 	static var previews: some View {
-		OverView()
+		Overview()
 	}
 }
