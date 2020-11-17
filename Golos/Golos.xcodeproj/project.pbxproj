@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D1BA8FF2560AEBB00B3E414 /* TimeBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */; };
-		1D1BA9002560AEBB00B3E414 /* TimeBlocker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */; };
+		1D1BA8FF2560AEBB00B3E414 /* TimeBlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */; };
+		1D1BA9002560AEBB00B3E414 /* TimeBlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */; };
 		1D1BA90A2560AEE700B3E414 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA9092560AEE700B3E414 /* SetupView.swift */; };
 		1D1BA90B2560AEE700B3E414 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA9092560AEE700B3E414 /* SetupView.swift */; };
 		1D3A43832557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
@@ -19,6 +19,10 @@
 		1D3A43AC255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */; };
 		1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
 		1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */; };
+		1D4B9A772563778200155F99 /* TimeBlockerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B9A762563778200155F99 /* TimeBlockerModel.swift */; };
+		1D4B9A782563778200155F99 /* TimeBlockerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B9A762563778200155F99 /* TimeBlockerModel.swift */; };
+		1D4B9A7E256377B600155F99 /* TimeBlockerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B9A7D256377B600155F99 /* TimeBlockerSetupView.swift */; };
+		1D4B9A7F256377B600155F99 /* TimeBlockerSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4B9A7D256377B600155F99 /* TimeBlockerSetupView.swift */; };
 		1D78192C25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
 		1D78192D25563FF70054BB00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D78192B25563FF70054BB00 /* Extensions.swift */; };
 		1DAB628F254FA479005E46D8 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DAB628E254FA479005E46D8 /* Tests_iOS.swift */; };
@@ -63,13 +67,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlocker.swift; sourceTree = "<group>"; };
+		1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockerView.swift; sourceTree = "<group>"; };
 		1D1BA9092560AEE700B3E414 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
 		1D3A43822557352100882F8D /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		1D3A439525574B0D00882F8D /* Exploration.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Exploration.playground; path = ../../Exploration.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1D3A439F2557809C00882F8D /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
 		1D3A43AA255780BD00882F8D /* DisplaySelectedDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplaySelectedDateView.swift; sourceTree = "<group>"; };
 		1D47D4AA2554721A00494762 /* DailyActivityBricksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyActivityBricksView.swift; sourceTree = "<group>"; };
+		1D4B9A762563778200155F99 /* TimeBlockerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockerModel.swift; sourceTree = "<group>"; };
+		1D4B9A7D256377B600155F99 /* TimeBlockerSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockerSetupView.swift; sourceTree = "<group>"; };
 		1D78192B25563FF70054BB00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1DAB6271254FA479005E46D8 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1DAB6272254FA479005E46D8 /* GolosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GolosApp.swift; sourceTree = "<group>"; };
@@ -129,7 +135,9 @@
 		1D1BA920256248A300B3E414 /* TimeBlocker */ = {
 			isa = PBXGroup;
 			children = (
-				1D1BA8FE2560AEBB00B3E414 /* TimeBlocker.swift */,
+				1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */,
+				1D4B9A762563778200155F99 /* TimeBlockerModel.swift */,
+				1D4B9A7D256377B600155F99 /* TimeBlockerSetupView.swift */,
 			);
 			path = TimeBlocker;
 			sourceTree = "<group>";
@@ -402,16 +410,18 @@
 				1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */,
 				1D3A43A02557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1D4B9A772563778200155F99 /* TimeBlockerModel.swift in Sources */,
 				1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1D1BA90A2560AEE700B3E414 /* SetupView.swift in Sources */,
 				1DAB62A2254FA479005E46D8 /* Persistence.swift in Sources */,
 				1D3A43AB255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629C254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
+				1D4B9A7E256377B600155F99 /* TimeBlockerSetupView.swift in Sources */,
 				1DAB62DF254FABDD005E46D8 /* Overview.swift in Sources */,
 				1DAB62B9254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C4254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192C25563FF70054BB00 /* Extensions.swift in Sources */,
-				1D1BA8FF2560AEBB00B3E414 /* TimeBlocker.swift in Sources */,
+				1D1BA8FF2560AEBB00B3E414 /* TimeBlockerView.swift in Sources */,
 				1DAB62A0254FA479005E46D8 /* ContentView.swift in Sources */,
 				1D3A43832557352100882F8D /* NowView.swift in Sources */,
 			);
@@ -425,16 +435,18 @@
 				1DFE37602555F6D5002B6491 /* RingShape.swift in Sources */,
 				1D3A43A12557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1D4B9A782563778200155F99 /* TimeBlockerModel.swift in Sources */,
 				1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1D1BA90B2560AEE700B3E414 /* SetupView.swift in Sources */,
 				1DAB62A3254FA479005E46D8 /* Persistence.swift in Sources */,
 				1D3A43AC255780BD00882F8D /* DisplaySelectedDateView.swift in Sources */,
 				1DAB629D254FA479005E46D8 /* Golos.xcdatamodeld in Sources */,
+				1D4B9A7F256377B600155F99 /* TimeBlockerSetupView.swift in Sources */,
 				1DAB62E0254FABDD005E46D8 /* Overview.swift in Sources */,
 				1DAB62BA254FA4C7005E46D8 /* TimelineView.swift in Sources */,
 				1DAB62C5254FA685005E46D8 /* Sidebar.swift in Sources */,
 				1D78192D25563FF70054BB00 /* Extensions.swift in Sources */,
-				1D1BA9002560AEBB00B3E414 /* TimeBlocker.swift in Sources */,
+				1D1BA9002560AEBB00B3E414 /* TimeBlockerView.swift in Sources */,
 				1DAB62A1254FA479005E46D8 /* ContentView.swift in Sources */,
 				1D3A43842557352100882F8D /* NowView.swift in Sources */,
 			);
