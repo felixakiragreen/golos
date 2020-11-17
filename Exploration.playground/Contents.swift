@@ -34,3 +34,6 @@ print(dateFormatter.string(from: selectedDate))
 //let m = DateFormatter.string(<#T##self: DateFormatter##DateFormatter#>)
 //
 //print("\()m" )
+
+let hours: [Int] = Array(stride(from: 0, to: 48, by: 6))
+print(hours)
