@@ -9,7 +9,10 @@ import SwiftUI
 
 struct SetupView: View {
     var body: some View {
-        Text("We will do all the setup here.")
+		VStack(spacing: 8.0) {
+			Text("We will do all the setup here...")
+			TimeBlockerSetupView()
+		}
     }
 }
 
