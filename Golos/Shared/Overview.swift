@@ -11,7 +11,7 @@ struct Overview: View {
 	var body: some View {
 		VStack {
 			VStack {
-				TimeBlocker()
+				TimeBlockerView()
 //				PlannerView()
 //				TimelineView()
 //				HolisticView()
