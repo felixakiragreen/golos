@@ -11,6 +11,8 @@
 		1D1BA9002560AEBB00B3E414 /* TimeBlockerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */; };
 		1D1BA90A2560AEE700B3E414 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA9092560AEE700B3E414 /* SetupView.swift */; };
 		1D1BA90B2560AEE700B3E414 /* SetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BA9092560AEE700B3E414 /* SetupView.swift */; };
+		1D27ABF6256A0E2E007DEF29 /* PrescienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D27ABF5256A0E2E007DEF29 /* PrescienceView.swift */; };
+		1D27ABF7256A0E2E007DEF29 /* PrescienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D27ABF5256A0E2E007DEF29 /* PrescienceView.swift */; };
 		1D3A43832557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
 		1D3A43842557352100882F8D /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A43822557352100882F8D /* NowView.swift */; };
 		1D3A43A02557809C00882F8D /* PlannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3A439F2557809C00882F8D /* PlannerView.swift */; };
@@ -69,6 +71,7 @@
 /* Begin PBXFileReference section */
 		1D1BA8FE2560AEBB00B3E414 /* TimeBlockerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBlockerView.swift; sourceTree = "<group>"; };
 		1D1BA9092560AEE700B3E414 /* SetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupView.swift; sourceTree = "<group>"; };
+		1D27ABF5256A0E2E007DEF29 /* PrescienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescienceView.swift; sourceTree = "<group>"; };
 		1D3A43822557352100882F8D /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		1D3A439525574B0D00882F8D /* Exploration.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Exploration.playground; path = ../../Exploration.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1D3A439F2557809C00882F8D /* PlannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannerView.swift; sourceTree = "<group>"; };
@@ -190,6 +193,7 @@
 				1DAB6270254FA479005E46D8 /* Golos.xcdatamodeld */,
 				1DAB6274254FA479005E46D8 /* Persistence.swift */,
 				1D3A439525574B0D00882F8D /* Exploration.playground */,
+				1D27ABF5256A0E2E007DEF29 /* PrescienceView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -410,6 +414,7 @@
 				1DFE375F2555F6D5002B6491 /* RingShape.swift in Sources */,
 				1D3A43A02557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AB2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1D27ABF6256A0E2E007DEF29 /* PrescienceView.swift in Sources */,
 				1D4B9A772563778200155F99 /* TimeBlockerModel.swift in Sources */,
 				1DFE37582555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1D1BA90A2560AEE700B3E414 /* SetupView.swift in Sources */,
@@ -435,6 +440,7 @@
 				1DFE37602555F6D5002B6491 /* RingShape.swift in Sources */,
 				1D3A43A12557809C00882F8D /* PlannerView.swift in Sources */,
 				1D47D4AC2554721A00494762 /* DailyActivityBricksView.swift in Sources */,
+				1D27ABF7256A0E2E007DEF29 /* PrescienceView.swift in Sources */,
 				1D4B9A782563778200155F99 /* TimeBlockerModel.swift in Sources */,
 				1DFE37592555F47D002B6491 /* SquareBrick.swift in Sources */,
 				1D1BA90B2560AEE700B3E414 /* SetupView.swift in Sources */,
