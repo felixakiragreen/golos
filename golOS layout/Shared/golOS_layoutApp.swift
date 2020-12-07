@@ -9,9 +9,9 @@ import SwiftUI
 
 @main
 struct golOS_layoutApp: App {
-    var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
-    }
+	var body: some Scene {
+		WindowGroup {
+			ContentView()
+		}
+	}
 }
