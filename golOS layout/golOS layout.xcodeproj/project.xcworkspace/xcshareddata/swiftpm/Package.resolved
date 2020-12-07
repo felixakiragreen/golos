@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Shapes",
+        "repositoryURL": "git@github.com:swift-extensions/swiftui-shapes.git",
+        "state": {
+          "branch": null,
+          "revision": "13dec88f0e3731f191ee650c8fc21708692e2302",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

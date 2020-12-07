@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,10 @@
 		1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A308257EAC22003B52E3 /* ContentView.swift */; };
 		1D38A31E257EAC24003B52E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D38A309257EAC24003B52E3 /* Assets.xcassets */; };
 		1D38A31F257EAC24003B52E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D38A309257EAC24003B52E3 /* Assets.xcassets */; };
+		1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A353257EC20D003B52E3 /* TemporalView.swift */; };
+		1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A353257EC20D003B52E3 /* TemporalView.swift */; };
+		1D38A35A257EC69F003B52E3 /* Shapes in Frameworks */ = {isa = PBXBuildFile; productRef = 1D38A359257EC69F003B52E3 /* Shapes */; };
+		1D38A35F257EC6D4003B52E3 /* Shapes in Frameworks */ = {isa = PBXBuildFile; productRef = 1D38A35E257EC6D4003B52E3 /* Shapes */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,7 @@
 		1D38A316257EAC24003B52E3 /* golOS layout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "golOS layout.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D38A318257EAC24003B52E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D38A319257EAC24003B52E3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		1D38A353257EC20D003B52E3 /* TemporalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D38A35F257EC6D4003B52E3 /* Shapes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D38A35A257EC69F003B52E3 /* Shapes in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +58,7 @@
 				1D38A310257EAC24003B52E3 /* iOS */,
 				1D38A317257EAC24003B52E3 /* macOS */,
 				1D38A30F257EAC24003B52E3 /* Products */,
+				1D38A35D257EC6D4003B52E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +68,7 @@
 				1D38A307257EAC22003B52E3 /* golOS_layoutApp.swift */,
 				1D38A308257EAC22003B52E3 /* ContentView.swift */,
 				1D38A309257EAC24003B52E3 /* Assets.xcassets */,
+				1D38A353257EC20D003B52E3 /* TemporalView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -90,6 +99,13 @@
 			path = macOS;
 			sourceTree = "<group>";
 		};
+		1D38A35D257EC6D4003B52E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,6 +122,9 @@
 			dependencies = (
 			);
 			name = "golOS layout (iOS)";
+			packageProductDependencies = (
+				1D38A35E257EC6D4003B52E3 /* Shapes */,
+			);
 			productName = "golOS layout (iOS)";
 			productReference = 1D38A30E257EAC24003B52E3 /* golOS layout.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +142,9 @@
 			dependencies = (
 			);
 			name = "golOS layout (macOS)";
+			packageProductDependencies = (
+				1D38A359257EC69F003B52E3 /* Shapes */,
+			);
 			productName = "golOS layout (macOS)";
 			productReference = 1D38A316257EAC24003B52E3 /* golOS layout.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +175,9 @@
 				Base,
 			);
 			mainGroup = 1D38A301257EAC22003B52E3;
+			packageReferences = (
+				1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */,
+			);
 			productRefGroup = 1D38A30F257EAC24003B52E3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -189,6 +214,7 @@
 			files = (
 				1D38A31C257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1D38A31A257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,6 +224,7 @@
 			files = (
 				1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1D38A31B257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +466,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:swift-extensions/swiftui-shapes.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1D38A359257EC69F003B52E3 /* Shapes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */;
+			productName = Shapes;
+		};
+		1D38A35E257EC6D4003B52E3 /* Shapes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */;
+			productName = Shapes;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1D38A302257EAC22003B52E3 /* Project object */;
 }
