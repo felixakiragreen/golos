@@ -107,7 +107,7 @@ struct TemporalView: View {
 					.frame(height: 13)
 					*/
 					
-					Slider(value: $zoomLevel, in: 0 ... 6) {
+					Slider(value: $zoomLevel, in: 0 ... 6, step: 0.25) {
 						Text("zoomLevel \(zoomLevel)")
 					}
 						.frame(width: 240)
@@ -142,113 +142,9 @@ struct TemporalView: View {
 								}
 							}
 							
-							HStack(spacing: 0) {
-//								CGFloat(floor(zoomLevel * 2.0))
-								ForEach(pentaminutes) { idx in
-									// TODO: conditionally display the grid lines
-									// based on zoom level
-									// and the interval
-									
-									let h = 60/5
-									let onTheQuarter = idx % 3 == 0
-									let onTheHour = idx % h == 0
-									let onTheHexahour = idx % (6*h) == 0
-									let onTheDay = idx % (24*h) == 0
-									
-									let major = (zoomLevel >= 2 && onTheDay) || (zoomLevel >= 3 && onTheHexahour)
-									let mezzo = (zoomLevel >= 1 && onTheDay) || (zoomLevel >= 2 && onTheHexahour) || (zoomLevel >= 3 && onTheHour)
-									let micro = onTheDay || (zoomLevel >= 1 && onTheHexahour) || (zoomLevel >= 2 && onTheHour) || (zoomLevel >= 3 && onTheQuarter)
-									let nano = onTheHexahour || (zoomLevel >= 1 && onTheHour) || (zoomLevel >= 2 && onTheQuarter) || zoomLevel >= 3
-									let space = onTheHour || (zoomLevel >= 1 && onTheQuarter) || zoomLevel >= 2
-									
-									let spaceWidth: CGFloat = {
-										switch true {
-										case major || mezzo || micro || nano || space:
-											return CGFloat(floor(zoomLevel * 3.0) + 1)
-										default:
-											// hidden
-											return 0.0
-										}
-									}()
-									
-									let lineWidth: CGFloat = {
-										switch true {
-										case major:
-											return 5.0
-										case mezzo:
-											return 3.0
-										case micro || nano:
-											return 1.0
-										default:
-											// hidden
-											return 0.0
-										}
-									}()
-									
-//									let lineHeight: CGFloat = {
-//										switch true {
-//										case major:
-//											return 100
-//										case mezzo:
-//											return 100
-//										case micro:
-//											return 50
-//										case nano:
-//											return 25
-//										case space:
-//											return 100
-//										default:
-//											// hidden
-//											return 0
-//										}
-//									}()
-									
-//									let lineColor: Color = {
-//										switch true {
-//										case major:
-//											return Color.green
-//										case mezzo:
-//											return Color.red
-//										case micro:
-//											return Color.blue
-//										case nano:
-//											return Color.purple
-//										default:
-//											return Color.gray
-//										}
-//									}()
-									
-									let lineOpacity: Double = {
-										switch true {
-										case major:
-											return 1.0
-										case mezzo:
-											return 0.75
-										case micro:
-											return 0.5
-										case nano:
-											return 0.25
-										default:
-											return 0
-										}
-									}()
-									
-									
-									
-									Rectangle()
-										.frame(
-											width: lineWidth,
-											height: 100
-										)
-										.foregroundColor(Color.primary.opacity(lineOpacity))
-									Rectangle()
-										.frame(
-											width: spaceWidth,
-											height: 100
-										)
-										.foregroundColor(Color.gray.opacity(0.1))
-								}
-							}
+							TimeScalingGridView(
+								intervals: pentaminutes, zoomLevel: zoomLevel
+							)
 //							.frame(height: 100)
 //							.background(Color.red)
 						}
@@ -322,5 +218,120 @@ struct TemporalView: View {
 struct TemporalView_Previews: PreviewProvider {
 	static var previews: some View {
 		TemporalView()
+	}
+}
+
+struct TimeScalingGridView: View {
+	let intervals: Range<Int>
+	let zoomLevel: Double
+	
+	var body: some View {
+		HStack(spacing: 0) {
+			//	CGFloat(floor(zoomLevel * 2.0))
+			ForEach(intervals) { idx in
+				// TODO: conditionally display the grid lines
+				// based on zoom level
+				// and the interval
+				
+				let h = 60/5
+				let onTheQuarter = idx % 3 == 0
+				let onTheHour = idx % h == 0
+				let onTheHexahour = idx % (6*h) == 0
+				let onTheDay = idx % (24*h) == 12*h
+				
+				let major = (zoomLevel >= 2 && onTheDay) || (zoomLevel >= 3 && onTheHexahour)
+				let mezzo = (zoomLevel >= 1 && onTheDay) || (zoomLevel >= 2 && onTheHexahour) || (zoomLevel >= 3 && onTheHour)
+				let micro = onTheDay || (zoomLevel >= 1 && onTheHexahour) || (zoomLevel >= 2 && onTheHour) || (zoomLevel >= 3 && onTheQuarter)
+				let nano = onTheHexahour || (zoomLevel >= 1 && onTheHour) || (zoomLevel >= 2 && onTheQuarter) || zoomLevel >= 3
+				let space = onTheHour || (zoomLevel >= 1 && onTheQuarter) || zoomLevel >= 2
+				
+				let spaceWidth: CGFloat = {
+					switch true {
+					case (idx == intervals.count - 1):
+						return 0.0
+					case major || mezzo || micro || nano || space:
+						return CGFloat(floor(zoomLevel * 3.0) + 1)
+					default:
+						// hidden
+						return 0.0
+					}
+				}()
+				
+				let lineWidth: CGFloat = {
+					switch true {
+					case major:
+						return 5.0
+					case mezzo:
+						return 3.0
+					case micro || nano:
+						return 1.0
+					default:
+						// hidden
+						return 0.0
+					}
+				}()
+				
+//				let lineHeight: CGFloat = {
+//					switch true {
+//					case major:
+//						return 100
+//					case mezzo:
+//						return 100
+//					case micro:
+//						return 50
+//					case nano:
+//						return 25
+//					case space:
+//						return 100
+//					default:
+//						// hidden
+//						return 0
+//					}
+//				}()
+//
+//				let lineColor: Color = {
+//					switch true {
+//					case major:
+//						return Color.green
+//					case mezzo:
+//						return Color.red
+//					case micro:
+//						return Color.blue
+//					case nano:
+//						return Color.purple
+//					default:
+//						return Color.gray
+//					}
+//				}()
+				
+				let lineOpacity: Double = {
+					switch true {
+					case major:
+						return 1.0
+					case mezzo:
+						return 0.5
+					case micro:
+						return 0.25
+					case nano:
+						return 0.125
+					default:
+						return 0
+					}
+				}()
+				
+				Rectangle()
+					.frame(
+						width: lineWidth
+//						height: 100
+					)
+					.foregroundColor(Color.primary.opacity(lineOpacity))
+				Rectangle()
+					.frame(
+						width: spaceWidth
+//						height: 100
+					)
+					.foregroundColor(Color.gray.opacity(0.1))
+			}
+		}
 	}
 }
