@@ -11,8 +11,9 @@ import Shapes
 struct TemporalView: View {
 	// MARK: - PROPERTIES
 	
-	let hours = 0..<48
-	let days = 0..<15
+	let pentaminutes = 0 ..< Int((60 / 5 * 48) + 1)
+	let hours = 0 ..< 48 + 1
+	let days = 0 ..< 7 + 1 + 7 + 1
 	
 	let hourLabels = [
 		("12:00","-24h"),
@@ -26,6 +27,8 @@ struct TemporalView: View {
 		("12:00","+24h"),
 	]
 	
+	@State var zoomLevel = 1.0
+	
 	// MARK: - BODY
 	var body: some View {
 		VStack(spacing: 8) {
@@ -35,7 +38,7 @@ struct TemporalView: View {
 			
 			VStack {
 				VStack(alignment: .leading, spacing: 8) {
-				
+					/* // labels
 					GeometryReader { geometry in
 						let labelWidth = geometry.size.width / 8
 						HStack(spacing: 0) {
@@ -102,11 +105,160 @@ struct TemporalView: View {
 						}//: HSTACK
 					}//: LABEL
 					.frame(height: 13)
-				
-				
+					*/
+					
+					Slider(value: $zoomLevel, in: 0 ... 6) {
+						Text("zoomLevel \(zoomLevel)")
+					}
+						.frame(width: 240)
+					
+//					Button("Scroll to bottom") {
+//								  withAnimation {
+//										scrollView.scrollTo(99, anchor: .center)
+//								  }
+//							 }
+
+//						{ offset in
+//							print(offset)
+//						}
+//					ScrollView(.horizontal, showsIndicators: true, offsetChanged: { print($0) }) {
+//					ScrollView(/*@START_MENU_TOKEN@*/.vertical/*@END_MENU_TOKEN@*/, showsIndicators: /*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/, content: {
+//						/*@START_MENU_TOKEN@*/Text("Placeholder")/*@END_MENU_TOKEN@*/
+//					})
+					
+					ScrollView(.horizontal) {
+						
+						VStack(alignment: .leading) {
+							
+							HStack(alignment: .bottom, spacing: CGFloat(floor(zoomLevel * 8.0))) {
+								ForEach(hours) { idx in
+									RoundedRectangle(cornerRadius: 1, style: .circular)
+										.frame(
+											width: idx % 6 == 0 ? 3.0 : 1.0,
+											height: idx % 6 == 0 ? 16 : 8
+										)
+										//								.offset(x: 1.0 * CGFloat(idx), y: 0)
+										.foregroundColor(Color.gray.opacity(idx % 6 == 0 ? 0.75 : 0.3))
+								}
+							}
+							
+							HStack(spacing: 0) {
+//								CGFloat(floor(zoomLevel * 2.0))
+								ForEach(pentaminutes) { idx in
+									// TODO: conditionally display the grid lines
+									// based on zoom level
+									// and the interval
+									
+									let h = 60/5
+									let onTheQuarter = idx % 3 == 0
+									let onTheHour = idx % h == 0
+									let onTheHexahour = idx % (6*h) == 0
+									let onTheDay = idx % (24*h) == 0
+									
+									let major = (zoomLevel >= 2 && onTheDay) || (zoomLevel >= 3 && onTheHexahour)
+									let mezzo = (zoomLevel >= 1 && onTheDay) || (zoomLevel >= 2 && onTheHexahour) || (zoomLevel >= 3 && onTheHour)
+									let micro = onTheDay || (zoomLevel >= 1 && onTheHexahour) || (zoomLevel >= 2 && onTheHour) || (zoomLevel >= 3 && onTheQuarter)
+									let nano = onTheHexahour || (zoomLevel >= 1 && onTheHour) || (zoomLevel >= 2 && onTheQuarter) || zoomLevel >= 3
+									let space = onTheHour || (zoomLevel >= 1 && onTheQuarter) || zoomLevel >= 2
+									
+									let spaceWidth: CGFloat = {
+										switch true {
+										case major || mezzo || micro || nano || space:
+											return CGFloat(floor(zoomLevel * 3.0) + 1)
+										default:
+											// hidden
+											return 0.0
+										}
+									}()
+									
+									let lineWidth: CGFloat = {
+										switch true {
+										case major:
+											return 5.0
+										case mezzo:
+											return 3.0
+										case micro || nano:
+											return 1.0
+										default:
+											// hidden
+											return 0.0
+										}
+									}()
+									
+//									let lineHeight: CGFloat = {
+//										switch true {
+//										case major:
+//											return 100
+//										case mezzo:
+//											return 100
+//										case micro:
+//											return 50
+//										case nano:
+//											return 25
+//										case space:
+//											return 100
+//										default:
+//											// hidden
+//											return 0
+//										}
+//									}()
+									
+//									let lineColor: Color = {
+//										switch true {
+//										case major:
+//											return Color.green
+//										case mezzo:
+//											return Color.red
+//										case micro:
+//											return Color.blue
+//										case nano:
+//											return Color.purple
+//										default:
+//											return Color.gray
+//										}
+//									}()
+									
+									let lineOpacity: Double = {
+										switch true {
+										case major:
+											return 1.0
+										case mezzo:
+											return 0.75
+										case micro:
+											return 0.5
+										case nano:
+											return 0.25
+										default:
+											return 0
+										}
+									}()
+									
+									
+									
+									Rectangle()
+										.frame(
+											width: lineWidth,
+											height: 100
+										)
+										.foregroundColor(Color.primary.opacity(lineOpacity))
+									Rectangle()
+										.frame(
+											width: spaceWidth,
+											height: 100
+										)
+										.foregroundColor(Color.gray.opacity(0.1))
+								}
+							}
+//							.frame(height: 100)
+//							.background(Color.red)
+						}
+						.frame(maxWidth: .infinity)
+						.animation(.spring())
+					}
 					
 //					Text("days") // Replace with hour labels (can be manual for now)
 					
+					/*
 					VStack {
 						ZStack {
 							// REDO
@@ -126,17 +278,11 @@ struct TemporalView: View {
 								.stroke(Color.gray.opacity(0.5), style: .init(lineWidth: 3, lineCap: .round))
 	//							.background(Color.gray.opacity(0.1))
 							
-							/*
-							ForEach(hours) { item in
-								Rectangle()
-									.frame(width: 1.0)
-									.foregroundColor(Color.gray.opacity(0.2))
-							}
-							*/
 						}//: ZSTACK
 					}
 					.frame(maxHeight: .infinity)
-					
+					*/
+
 				}//: DAYS
 				.padding()
 				.frame(maxWidth: .infinity)
@@ -144,7 +290,8 @@ struct TemporalView: View {
 					RoundedRectangle(cornerRadius: 8, style: .circular)
 						.foregroundColor(Color.gray.opacity(0.1))
 				)
-				
+
+				/*
 				VStack {
 					VStack {
 						Text("weeks")
@@ -160,13 +307,14 @@ struct TemporalView: View {
 					.frame(maxWidth: .infinity)
 				}//: WEEKS
 				.frame(maxWidth: .infinity)
+				*/
 
 			}//: VSTACK
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			
 		}//: VSTACK - ALL
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-		.padding()
+//		.padding()
 	}
 }
 
