@@ -108,9 +108,9 @@ struct TemporalView: View {
 					*/
 					
 					Slider(value: $zoomLevel, in: 0 ... 6, step: 0.25) {
-						Text("zoomLevel \(zoomLevel)")
+						Text("zoomLevel \(zoomLevel, specifier: "%.2f")")
 					}
-						.frame(width: 240)
+//						.frame(width: 420)
 					
 //					Button("Scroll to bottom") {
 //								  withAnimation {
@@ -145,11 +145,18 @@ struct TemporalView: View {
 							TimeScalingGridView(
 								intervals: pentaminutes, zoomLevel: zoomLevel
 							)
-//							.frame(height: 100)
-//							.background(Color.red)
+							.frame(height: 40)
+							
+//							TimeScalingGridView2(
+//								intervals: pentaminutes,
+//								zoomLevel: zoomLevel,
+//								radius: CGFloat(floor(zoomLevel))
+//							)
+//							.frame(height: 40)
 						}
 						.frame(maxWidth: .infinity)
-						.animation(.spring())
+						.animation(.easeInOut)
+//						.drawingGroup()
 					}
 					
 //					Text("days") // Replace with hour labels (can be manual for now)
@@ -218,6 +225,7 @@ struct TemporalView: View {
 struct TemporalView_Previews: PreviewProvider {
 	static var previews: some View {
 		TemporalView()
+			.preferredColorScheme(.dark)
 	}
 }
 
@@ -330,7 +338,109 @@ struct TimeScalingGridView: View {
 						width: spaceWidth
 //						height: 100
 					)
-					.foregroundColor(Color.gray.opacity(0.1))
+					.foregroundColor(Color.gray.opacity(0.0))
+			}
+		}
+	}
+}
+
+
+enum TimeUnit: Int {
+	case pentaminute = 5
+	case decaminute = 10
+	case quarterhour = 15
+	case icosaminute = 20
+	case halfhour = 30
+	case hour = 60
+	case dihour = 120
+	case tetrahour = 240
+	case hexahour = 360
+	case octahour = 480
+	case halfday = 720
+	case day = 1440
+}
+
+struct ZoomingUnits {
+	var space: TimeUnit
+	var major: TimeUnit
+	var mezzo: TimeUnit
+	var micro: TimeUnit
+	var nano: TimeUnit
+}
+
+struct TimeScalingGridView2: View {
+	let zoomLevel: Double
+	
+	let intervalLength: Int
+	let intervalUnit: TimeUnit
+	let intervalZoom: ZoomingUnits
+	let intervalRadius: CGFloat
+	
+	// zoomUnitsConfig
+	//	space
+	// major
+	// mezzo
+	// micro
+	// nano
+	
+	var body: some View {
+		HStack(spacing: 0) {
+			ForEach(0 ..< intervalLength) { idx in
+				
+				let h = 60/5
+				let onTheQuarter = idx % 3 == 0
+				let onTheHour = idx % h == 0
+				let onTheHexahour = idx % (6*h) == 0
+				let onTheDay = idx % (24*h) == 12*h
+				
+//				let major =
+//				let mezzo =
+//				let micro =
+//				let nano =
+////				let space =
+				
+				let spaceWidth: CGFloat = {
+					switch true {
+					case (idx == intervalLength - 1):
+						return 0.0
+//					case major || mezzo || micro || nano || space:
+//						return CGFloat(floor(zoomLevel * 3.0) + 1)
+					default:
+						// hidden
+						return intervalRadius
+					}
+				}()
+				
+				let lineWidth: CGFloat = {
+					switch true {
+//					case major:
+//						return 5.0
+//					case mezzo:
+//						return 3.0
+//					case micro || nano:
+//						return 1.0
+					default:
+						// hidden
+						return 0.0
+					}
+				}()
+
+				
+				
+				
+				// line
+				Rectangle()
+					.frame(
+						width: lineWidth
+					)
+					.foregroundColor(Color.primary)
+//					.opacity(lineOpacity)
+				// space
+				Rectangle()
+					.frame(
+						width: spaceWidth
+					)
+					.foregroundColor(Color.gray)
 			}
 		}
 	}
