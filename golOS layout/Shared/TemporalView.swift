@@ -11,7 +11,7 @@ import Shapes
 struct TemporalView: View {
 	// MARK: - PROPERTIES
 	
-	let pentaminutes = 0 ..< Int((60 / 5 * 48) + 1)
+	let pentaminutes = 0 ..< Int(60 / 5 * 48)
 	let hours = 0 ..< 48 + 1
 	let days = 0 ..< 7 + 1 + 7 + 1
 	
@@ -120,15 +120,11 @@ struct TemporalView: View {
 							Text("zoomLevel \(zoomLevel, specifier: "%.2f")")
 						}
 						.frame(width: 200)
+						// TODO: remove
 						
 						Spacer()
 						
 						// zoom "LEVEL"
-//						Picker(selection: $zoomLevel, label: Text("zoomLevel")) {
-//							Text("1").tag(1.0)
-//							Text("2").tag(2.0)
-//							Text("3").tag(3.0)
-//						}.pickerStyle(SegmentedPickerStyle())
 					}
 					
 					
@@ -172,9 +168,13 @@ struct TemporalView: View {
 								zoomUnits: [
 									ZoomingUnits(
 										space: .hour,
+										nano: .halfday,
+										major: .day
+									),
+									ZoomingUnits(
+										space: .quarterhour,
 										nano: .hour,
 										micro: .hexahour,
-										mezzo: .day,
 										major: .day
 									),
 									ZoomingUnits(
@@ -184,13 +184,7 @@ struct TemporalView: View {
 										mezzo: .hexahour,
 										major: .day
 									),
-									ZoomingUnits(
-										space: .quarterhour,
-										nano: .hour,
-										micro: .hexahour,
-										mezzo: .day,
-										major: .day
-									),
+									
 								],
 								interval: IntervalConfig(
 									unit: .pentaminute,
@@ -407,6 +401,7 @@ enum TimeUnit: Int {
 }
 
 struct ZoomingUnits {
+	// TODO: insert guards requiring nano < micro < mezzo < major
 	var space: TimeUnit
 	var nano: TimeUnit?
 	var micro: TimeUnit?
@@ -420,166 +415,117 @@ struct IntervalConfig {
 	var radius: CGFloat // width of the smallest unit
 }
 
+enum LineType {
+	case none, nano, micro, mezzo, major
+}
+
 struct TimeScalingGridView2: View {
 	let zoomLevel: Double // 0.0 - 4.0
 	let zoomUnits: [ZoomingUnits] // zoom configuration
-	
 	let interval: IntervalConfig
-	
-	// zoomUnitsConfig
-	// major
-	// mezzo
-	// micro
-	// nano
-	//	space
-	
+
 	var body: some View {
-		
-//		let h = 60/5
 		
 		let currentZoomIndex = min(Int(floor(zoomLevel)), zoomUnits.count - 1)
 		let zoom = zoomUnits[currentZoomIndex]
-		
-		let majorInterval: Int? = { () -> Int? in
-			if zoom.major?.rawValue != nil {
-				return Int(zoom.major.rawValue / interval.unit.rawValue)
-			} else {
-				return nil
-			}
-		}()
 
-		let mezzoInterval: Int? = { () -> Int? in
-			if zoom.mezzo?.rawValue != nil {
-				return Int(zoom.mezzo.rawValue / interval.unit.rawValue)
-			} else {
-				return nil
-			}
-		}()
-		let microInterval: Int? = { () -> Int? in
-			if zoom.micro?.rawValue != nil {
-				return Int(zoom.micro.rawValue / interval.unit.rawValue)
-			} else {
-				return nil
-			}
-		}()
-		let nanoInterval: Int? = { () -> Int? in
-			if zoom.nano?.rawValue != nil {
-				return Int(zoom.nano.rawValue / interval.unit.rawValue)
-			} else {
-				return nil
-			}
-		}()
-		
-//		let majorInterval = (zoom.major?.rawValue ?? 0 / interval.unit.rawValue) ?? 0
-
-//		let majorInterval = (zoom.major?.rawValue ?? 0 / interval.unit.rawValue) ?? 0
-		
-//		let mezzoInterval = zoom.mezzo.rawValue / interval.unit.rawValue
-//		let microInterval = zoom.micro.rawValue / interval.unit.rawValue
-//		let nanoInterval = zoom.nano.rawValue / interval.unit.rawValue
-//		let spaceInterval = zoom.space.rawValue / interval.unit.rawValue
-//
 		let totalMinutes = interval.count * interval.unit.rawValue
-		let spacedSegments = totalMinutes / zoom.space.rawValue
+		let spacedSegments = Int(totalMinutes / zoom.space.rawValue) + 1
 		
 //		TODO: doesn't handle offset lul
 		
-		HStack(spacing: 0) {
-			ForEach(0 ..< spacedSegments) { idx in
-
-				let nano = nanoInterval ? (idx % nanoInterval == 0) : false
-				let micro = microInterval ? (idx % microInterval == 0) : false
-				let mezzo = mezzoInterval ? (idx % mezzoInterval == 0) : false
-				let major = majorInterval ? (idx % majorInterval == 0) : false
-
-				let spaceWidth: CGFloat = {
-					switch true {
-					case (idx == spacedSegments - 1):
-						// hide the last one
-						return 0.0
-					default:
-						// width of each unit on screen
-						return interval.radius
-					}
-				}()
+		HStack(spacing: 1) {
+//			Text("\(totalMinutes)  ")
+//			Text("\(spacedSegments)  ")
+			ForEach(0 ..< spacedSegments, id: \.self) { idx in
 				
-				let lineWidth: CGFloat = {
-					switch true {
-					case major:
-						return 5.0
-					case mezzo:
-						return 3.0
-					case micro || nano:
-						return 1.0
-					default:
-						// hidden
-						return 0.0
-					}
-				}()
+				let whichLine = TimeScalingGridView2.renderWhichLine(zoom: zoom, index: idx, intervalUnit: zoom.space.rawValue)
 				
-				let lineColor: Color = {
-					switch true {
-					case major:
-						return Color.green
-					case mezzo:
-						return Color.red
-					case micro:
-						return Color.blue
-					case nano:
-						return Color.purple
-					default:
-						return Color.gray
-					}
-				}()
-				
-//				let lineOpacity: Double = {
-//					switch true {
-//					case major:
-//						return 1.0
-//					case mezzo:
-//						return 0.5
-//					case micro:
-//						return 0.25
-//					case nano:
-//						return 0.125
-//					default:
-//						return 0
-//					}
-//				}()
-
 				// line
-				Rectangle()
-					.frame(
-						width: lineWidth
-					)
-					.foregroundColor(lineColor)
-//					.opacity(lineOpacity)
+				if whichLine == .major {
+					MajorLine()
+				} else if whichLine == .mezzo {
+					MezzoLine()
+				} else if whichLine == .micro {
+					MicroLine()
+				} else if whichLine == .nano {
+					NanoLine()
+				}
+				
 				// space
 				Rectangle()
-					.frame(
-						width: spaceWidth
-					)
+					.frame(width: interval.radius * 3)
 					.foregroundColor(Color.gray.opacity(0.1))
+//					.overlay(
+//						Text("\(idx)")
+//							.font(.caption)
+//					)
 			}
 		}
 	}
 
-//	static func get
+	static func renderWhichLine(
+		zoom: ZoomingUnits,
+		index: Int,
+		intervalUnit: Int
+	) -> LineType {
+		if let majorValue = zoom.major?.rawValue {
+			let majorInterval = Int(majorValue / intervalUnit)
+			if index % majorInterval == 0 {
+				return .major
+			}
+		}
+		if let mezzoValue = zoom.mezzo?.rawValue {
+			let mezzoInterval = Int(mezzoValue / intervalUnit)
+			if index % mezzoInterval == 0 {
+				return .mezzo
+			}
+		}
+		if let microValue = zoom.micro?.rawValue {
+			let microInterval = Int(microValue / intervalUnit)
+			if index % microInterval == 0 {
+				return .micro
+			}
+		}
+		if let nanoValue = zoom.nano?.rawValue {
+			let nanoInterval = Int(nanoValue / intervalUnit)
+			if index % nanoInterval == 0 {
+				return .nano
+			}
+		}
+		return .none
+	}
 }
 
 
-//struct MajorLine: View {
-//	
-//	let index: Int
-//	let showOnInterval: Int
-//	
-//	var body: some View {
-//		
-//		
-//		Rectangle()
-//			.frame(
-//				width: lineWidth
-//			)
-//			.foregroundColor(Color.green)
-//	}
-//}
+struct MajorLine: View {
+	var body: some View {
+		Rectangle()
+			.frame(width: 5.0)
+			.foregroundColor(Color.green)
+	}
+}
+
+struct MezzoLine: View {
+	var body: some View {
+		Rectangle()
+			.frame(width: 3.0)
+			.foregroundColor(Color.red)
+	}
+}
+
+struct MicroLine: View {
+	var body: some View {
+		Rectangle()
+			.frame(width: 1.0)
+			.foregroundColor(Color.blue)
+	}
+}
+
+struct NanoLine: View {
+	var body: some View {
+		Rectangle()
+			.frame(width: 1.0)
+			.foregroundColor(Color.purple)
+	}
+}
