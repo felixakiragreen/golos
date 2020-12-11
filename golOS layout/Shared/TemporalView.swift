@@ -400,6 +400,8 @@ enum TimeUnit: Int {
 	case day = 1440
 }
 
+// TODO: add week, month, year, pentad, decade, quarter cent, half cent, cent
+
 struct ZoomingUnits {
 	// TODO: insert guards requiring nano < micro < mezzo < major
 	var space: TimeUnit
