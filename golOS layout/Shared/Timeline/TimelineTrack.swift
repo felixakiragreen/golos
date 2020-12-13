@@ -27,15 +27,17 @@ struct TimelineTrack: View {
 				let whichLine = renderWhichLine(zoom: zoom, index: idx, intervalUnit: zoom.space.rawValue)
 
 				// line
-				if whichLine == .major {
-					MajorLine()
-				} else if whichLine == .mezzo {
-					MezzoLine()
-				} else if whichLine == .micro {
-					MicroLine()
-				} else if whichLine == .nano {
-					NanoLine()
-				}
+				Group {
+					if whichLine == .major {
+						MajorLine()
+					} else if whichLine == .mezzo {
+						MezzoLine()
+					} else if whichLine == .micro {
+						MicroLine()
+					} else if whichLine == .nano {
+						NanoLine()
+					}
+				}.opacity(0.5)
 
 				// space
 
@@ -148,6 +150,8 @@ func renderWhichLine(
 	}
 	return .none
 }
+
+// MARK: - SUBVIEWS
 
 struct MajorLine: View {
 	var body: some View {

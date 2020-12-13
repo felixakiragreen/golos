@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import Shapes
+import Sliders
 
 struct TemporalView: View {
 	// MARK: - PROPERTIES
@@ -27,6 +27,11 @@ struct TemporalView: View {
 	
 	@State var zoomRadius = 1.0
 	@State var zoomLevel = 1.0
+	
+	@State var value = 0.5
+	@State var range = 10.0...50.0
+	@State var x = 0.5
+	@State var y = 0.5
 	
 	// MARK: - BODY
 	var body: some View {
@@ -106,26 +111,39 @@ struct TemporalView: View {
 					.frame(height: 13)
 					*/
 					
-					HStack {
+					VStack {
+						HStack {
 
-						// zoom "RADIUS"
-						Slider(value: $zoomRadius, in: 0 ... 6, step: 0.5) {
-							Text("zoomRadius \(zoomRadius, specifier: "%.2f")")
+							// zoom "RADIUS"
+							Slider(value: $zoomRadius, in: 0 ... 6, step: 0.5) {
+								Text("zoomRadius \(zoomRadius, specifier: "%.2f")")
+							}
+							.frame(width: 300)
+							
+							// zoom "LEVEL"
+							Slider(value: $zoomLevel, in: 0 ... 4, step: 1) {
+								Text("zoomLevel \(zoomLevel, specifier: "%.2f")")
+							}
+							.frame(width: 200)
+							// TODO: remove
+							
+							Spacer()
+							
+							
+							
 						}
-						.frame(width: 300)
-						
-						Slider(value: $zoomLevel, in: 0 ... 4, step: 1) {
-							Text("zoomLevel \(zoomLevel, specifier: "%.2f")")
+						Group {
+							Text("value \(value, specifier: "%.2f")")
+							Text("range.lower \(range.lowerBound, specifier: "%.2f") range.upper \(range.upperBound, specifier: "%.2f")")
+							Text("x \(x, specifier: "%.2f")")
+							Text("y \(y, specifier: "%.2f")")
 						}
-						.frame(width: 200)
-						// TODO: remove
-						
-						Spacer()
-						
-						// zoom "LEVEL"
+//						ValueSlider(value: $value)
+//						RangeSlider(range: $range, in: pentaminutes, step: 1.0, onEditingChanged: () -> {})
+//						PointSlider(x: $x, y: $y)
 					}
 					
-					ScrollView(.horizontal) {
+					HStack {
 						
 						VStack(alignment: .leading) {
 							
@@ -168,6 +186,15 @@ struct TemporalView: View {
 						}//: VSTACK - Scaling wrapper
 						.frame(maxWidth: .infinity)
 						.animation(.easeInOut)
+						.gesture(
+							DragGesture()
+								.onChanged { gestureValue in
+									print(gestureValue)
+								}
+								.onEnded { gestureValue in
+									print(gestureValue)
+								}
+						)
 						// .drawingGroup()
 
 					}//: SCROLLVIEW
@@ -186,7 +213,7 @@ struct TemporalView: View {
 			
 		}//: VSTACK - ALL
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
-//		.padding()
+		.padding()
 	}
 }
 

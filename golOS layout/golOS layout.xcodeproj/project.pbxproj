@@ -19,6 +19,10 @@
 		1D38A35F257EC6D4003B52E3 /* Shapes in Frameworks */ = {isa = PBXBuildFile; productRef = 1D38A35E257EC6D4003B52E3 /* Shapes */; };
 		1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D3E2586813800C92DFB /* TimelineTrack.swift */; };
 		1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D3E2586813800C92DFB /* TimelineTrack.swift */; };
+		1DF81D4C25868B7800C92DFB /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 1DF81D4B25868B7800C92DFB /* Sliders */; };
+		1DF81D5025868B8300C92DFB /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 1DF81D4F25868B8300C92DFB /* Sliders */; };
+		1DF81D572586C26E00C92DFB /* TimelineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D562586C26E00C92DFB /* TimelineBlock.swift */; };
+		1DF81D582586C26E00C92DFB /* TimelineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D562586C26E00C92DFB /* TimelineBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +36,7 @@
 		1D38A319257EAC24003B52E3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		1D38A353257EC20D003B52E3 /* TemporalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalView.swift; sourceTree = "<group>"; };
 		1DF81D3E2586813800C92DFB /* TimelineTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTrack.swift; sourceTree = "<group>"; };
+		1DF81D562586C26E00C92DFB /* TimelineBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A35F257EC6D4003B52E3 /* Shapes in Frameworks */,
+				1DF81D5025868B8300C92DFB /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A35A257EC69F003B52E3 /* Shapes in Frameworks */,
+				1DF81D4C25868B7800C92DFB /* Sliders in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +79,7 @@
 				1D38A308257EAC22003B52E3 /* ContentView.swift */,
 				1D38A309257EAC24003B52E3 /* Assets.xcassets */,
 				1D38A353257EC20D003B52E3 /* TemporalView.swift */,
-				1DF81D3E2586813800C92DFB /* TimelineTrack.swift */,
+				1DF81D532586C21500C92DFB /* Timeline */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -110,6 +117,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1DF81D532586C21500C92DFB /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				1DF81D3E2586813800C92DFB /* TimelineTrack.swift */,
+				1DF81D562586C26E00C92DFB /* TimelineBlock.swift */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -128,6 +144,7 @@
 			name = "golOS layout (iOS)";
 			packageProductDependencies = (
 				1D38A35E257EC6D4003B52E3 /* Shapes */,
+				1DF81D4F25868B8300C92DFB /* Sliders */,
 			);
 			productName = "golOS layout (iOS)";
 			productReference = 1D38A30E257EAC24003B52E3 /* golOS layout.app */;
@@ -148,6 +165,7 @@
 			name = "golOS layout (macOS)";
 			packageProductDependencies = (
 				1D38A359257EC69F003B52E3 /* Shapes */,
+				1DF81D4B25868B7800C92DFB /* Sliders */,
 			);
 			productName = "golOS layout (macOS)";
 			productReference = 1D38A316257EAC24003B52E3 /* golOS layout.app */;
@@ -181,6 +199,7 @@
 			mainGroup = 1D38A301257EAC22003B52E3;
 			packageReferences = (
 				1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */,
+				1DF81D4A25868B7800C92DFB /* XCRemoteSwiftPackageReference "swiftui-sliders" */,
 			);
 			productRefGroup = 1D38A30F257EAC24003B52E3 /* Products */;
 			projectDirPath = "";
@@ -217,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A31C257EAC24003B52E3 /* ContentView.swift in Sources */,
+				1DF81D572586C26E00C92DFB /* TimelineBlock.swift in Sources */,
 				1D38A31A257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
 				1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */,
@@ -228,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */,
+				1DF81D582586C26E00C92DFB /* TimelineBlock.swift in Sources */,
 				1D38A31B257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
 				1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */,
@@ -482,6 +503,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		1DF81D4A25868B7800C92DFB /* XCRemoteSwiftPackageReference "swiftui-sliders" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:spacenation/swiftui-sliders.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -494,6 +523,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1D38A358257EC69F003B52E3 /* XCRemoteSwiftPackageReference "swiftui-shapes" */;
 			productName = Shapes;
+		};
+		1DF81D4B25868B7800C92DFB /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DF81D4A25868B7800C92DFB /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
+		};
+		1DF81D4F25868B8300C92DFB /* Sliders */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1DF81D4A25868B7800C92DFB /* XCRemoteSwiftPackageReference "swiftui-sliders" */;
+			productName = Sliders;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
