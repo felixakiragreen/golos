@@ -17,6 +17,8 @@
 		1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D38A353257EC20D003B52E3 /* TemporalView.swift */; };
 		1D38A35A257EC69F003B52E3 /* Shapes in Frameworks */ = {isa = PBXBuildFile; productRef = 1D38A359257EC69F003B52E3 /* Shapes */; };
 		1D38A35F257EC6D4003B52E3 /* Shapes in Frameworks */ = {isa = PBXBuildFile; productRef = 1D38A35E257EC6D4003B52E3 /* Shapes */; };
+		1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D3E2586813800C92DFB /* TimelineTrack.swift */; };
+		1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D3E2586813800C92DFB /* TimelineTrack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,7 @@
 		1D38A318257EAC24003B52E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D38A319257EAC24003B52E3 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		1D38A353257EC20D003B52E3 /* TemporalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalView.swift; sourceTree = "<group>"; };
+		1DF81D3E2586813800C92DFB /* TimelineTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTrack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 				1D38A308257EAC22003B52E3 /* ContentView.swift */,
 				1D38A309257EAC24003B52E3 /* Assets.xcassets */,
 				1D38A353257EC20D003B52E3 /* TemporalView.swift */,
+				1DF81D3E2586813800C92DFB /* TimelineTrack.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -214,6 +218,7 @@
 			files = (
 				1D38A31C257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1D38A31A257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -224,6 +229,7 @@
 			files = (
 				1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1D38A31B257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
