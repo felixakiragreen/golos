@@ -169,12 +169,19 @@ struct TemporalView: View {
 									ZoomingUnits(
 										space: .hour,
 										nano: .halfday,
-										major: .day
+										micro: .day
 									),
 									ZoomingUnits(
 										space: .quarterhour,
 										nano: .hour,
 										micro: .hexahour,
+										mezzo: .day
+									),
+									ZoomingUnits(
+										space: .pentaminute,
+										nano: .quarterhour,
+										micro: .hour,
+										mezzo: .hexahour,
 										major: .day
 									),
 									ZoomingUnits(
@@ -184,7 +191,6 @@ struct TemporalView: View {
 										mezzo: .hexahour,
 										major: .day
 									),
-									
 								],
 								interval: IntervalConfig(
 									unit: .pentaminute,
