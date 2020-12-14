@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct TimelineBlock: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	var body: some View {
+		Rectangle()
+			.frame(width: 100, height: 100, alignment: .center)
+			.foregroundColor(Color.orange)
+	}
 }
 
 struct TimelineBlock_Previews: PreviewProvider {
-    static var previews: some View {
-        TimelineBlock()
-    }
+	static var previews: some View {
+		TimelineBlock()
+	}
 }
