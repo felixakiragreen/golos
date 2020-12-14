@@ -23,6 +23,10 @@
 		1DF81D5025868B8300C92DFB /* Sliders in Frameworks */ = {isa = PBXBuildFile; productRef = 1DF81D4F25868B8300C92DFB /* Sliders */; };
 		1DF81D572586C26E00C92DFB /* TimelineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D562586C26E00C92DFB /* TimelineBlock.swift */; };
 		1DF81D582586C26E00C92DFB /* TimelineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D562586C26E00C92DFB /* TimelineBlock.swift */; };
+		1DF81D5C2586E32C00C92DFB /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */; };
+		1DF81D5D2586E32C00C92DFB /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */; };
+		1DF81D632586E34800C92DFB /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D622586E34800C92DFB /* ConfigurationView.swift */; };
+		1DF81D642586E34800C92DFB /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D622586E34800C92DFB /* ConfigurationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +41,8 @@
 		1D38A353257EC20D003B52E3 /* TemporalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalView.swift; sourceTree = "<group>"; };
 		1DF81D3E2586813800C92DFB /* TimelineTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineTrack.swift; sourceTree = "<group>"; };
 		1DF81D562586C26E00C92DFB /* TimelineBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineBlock.swift; sourceTree = "<group>"; };
+		1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesView.swift; sourceTree = "<group>"; };
+		1DF81D622586E34800C92DFB /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,8 @@
 			children = (
 				1DF81D3E2586813800C92DFB /* TimelineTrack.swift */,
 				1DF81D562586C26E00C92DFB /* TimelineBlock.swift */,
+				1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */,
+				1DF81D622586E34800C92DFB /* ConfigurationView.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -236,8 +244,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A31C257EAC24003B52E3 /* ContentView.swift in Sources */,
+				1DF81D632586E34800C92DFB /* ConfigurationView.swift in Sources */,
 				1DF81D572586C26E00C92DFB /* TimelineBlock.swift in Sources */,
 				1D38A31A257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1DF81D5C2586E32C00C92DFB /* CoordinatesView.swift in Sources */,
 				1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
@@ -248,8 +258,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */,
+				1DF81D642586E34800C92DFB /* ConfigurationView.swift in Sources */,
 				1DF81D582586C26E00C92DFB /* TimelineBlock.swift in Sources */,
 				1D38A31B257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
+				1DF81D5D2586E32C00C92DFB /* CoordinatesView.swift in Sources */,
 				1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */,
 			);
