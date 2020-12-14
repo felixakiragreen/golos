@@ -25,7 +25,7 @@ struct TemporalView: View {
 		("12:00","+24h"),
 	]
 	
-	@State var zoomRadius = 1.0
+	@State var zoomRadius = 2.0
 	@State var zoomLevel = 1.0
 	
 	@State var value = 0.5
@@ -112,6 +112,7 @@ struct TemporalView: View {
 					*/
 					
 					VStack {
+						// TODO: move this to TimelineConfigurationView
 						HStack {
 
 							// zoom "RADIUS"
@@ -145,7 +146,7 @@ struct TemporalView: View {
 					
 					HStack {
 						
-						VStack(alignment: .leading) {
+						ZStack {
 							
 							TimelineTrack(
 								zoomLevel: zoomLevel,
@@ -183,18 +184,27 @@ struct TemporalView: View {
 								)
 							)
 //							.frame(height: 40)
-						}//: VSTACK - Scaling wrapper
-						.frame(maxWidth: .infinity)
-						.animation(.easeInOut)
-						.gesture(
-							DragGesture()
-								.onChanged { gestureValue in
-									print(gestureValue)
-								}
-								.onEnded { gestureValue in
-									print(gestureValue)
-								}
-						)
+							
+							TimelineBlock()
+							
+						}//: ZSTACK - Scaling wrapper
+//						.frame(maxWidth: .infinity)
+//						.animation(.easeInOut)
+//						.gesture(
+//							DragGesture()
+//								.onChanged { gestureValue in
+//									print(gestureValue)
+//								}
+//								.onEnded { gestureValue in
+//									print(gestureValue)
+//								}
+//						)
+//						.gesture(
+//							Hover
+//						)
+//						.onHover(perform: { hovering in
+//							/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+//						})
 						// .drawingGroup()
 
 					}//: SCROLLVIEW
@@ -202,7 +212,7 @@ struct TemporalView: View {
 
 				}//: DAYS
 				.padding()
-				.frame(maxWidth: .infinity)
+//				.frame(maxWidth: .infinity)
 				.background(
 					RoundedRectangle(cornerRadius: 8, style: .circular)
 						.foregroundColor(Color.gray.opacity(0.1))
