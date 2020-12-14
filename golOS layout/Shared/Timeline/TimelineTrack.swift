@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TimelineTrack: View {
+	// TODO: extract this logic into some higher level abstraction
 	let zoomLevel: Double // 0.0 - 4.0
 	let zoomUnits: [ZoomingUnits] // zoom configuration
 	let interval: IntervalConfig
@@ -45,10 +46,10 @@ struct TimelineTrack: View {
 				Rectangle()
 					.frame(width: interval.radius * 3)
 					.foregroundColor(Color.gray.opacity(0.1))
-				//					.overlay(
-				//						Text("\(idx)")
-				//							.font(.caption)
-				//					)
+					.overlay(
+						Text("\(idx)")
+							.font(.caption)
+					)
 //				}
 			}
 		}
@@ -76,43 +77,6 @@ struct TimelineTrack_Previews: PreviewProvider {
 			)
 		)
 	}
-}
-
-// MARK: - UNITS
-
-enum TimeUnit: Int {
-	case pentaminute = 5
-	case decaminute = 10
-	case quarterhour = 15
-	case icosaminute = 20
-	case halfhour = 30
-	case hour = 60
-	case dihour = 120
-	case tetrahour = 240
-	case hexahour = 360
-	case octahour = 480
-	case halfday = 720
-	case day = 1440
-}
-
-// TODO: add week, month, year, pentad, decade, quarter cent, half cent, cent
-
-struct ZoomingUnits {
-	// TODO: insert guards requiring nano < micro < mezzo < major
-	var space: TimeUnit
-	var nano: TimeUnit?
-	var micro: TimeUnit?
-	var mezzo: TimeUnit?
-	var major: TimeUnit?
-	
-//	init(
-}
-
-struct IntervalConfig {
-	var unit: TimeUnit // smallest unit of precision
-	var count: Int // number of units
-	var radius: CGFloat // width of the smallest unit
-	var spacing: CGFloat? = 0
 }
 
 enum LineType {
