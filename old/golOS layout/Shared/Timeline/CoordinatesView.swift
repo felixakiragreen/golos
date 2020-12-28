@@ -7,27 +7,44 @@
 
 import SwiftUI
 
-
 /*
-TODO
-- take some "bounds"
-- map it horizontally
-
-*/
+ TODO:
+ - take some "bounds"
+ - map it horizontally
+ - show right now
+ */
 
 struct TimelineCoordinatesView: View {
 	// MARK: - PROPS
 
-	
-	
-	
+	let startDate = Calendar.current.date(
+		byAdding: DateComponents(calendar: Calendar.current, day: -1), to: Date()
+	)
+	let endDate = Calendar.current.date(
+		byAdding: DateComponents(calendar: Calendar.current, day: 1), to: Date()
+	)
+
+	var bounds: DateInterval {
+		return DateInterval(start: startDate ?? Date(), end: endDate ?? Date())
+	}
+
 	// MARK: - BODY
+
 	var body: some View {
-		Text("Hello, World!")
+		VStack {
+			HStack {
+				Text("hey")
+			}
+			HStack {
+				
+			} //: HSTACK
+			.frame(maxWidth: .infinity, maxHeight: .infinity)
+		} //: VSTACK
 	}
 }
 
 // MARK: - PREVIEW
+
 struct TimelineCoordinatesView_Previews: PreviewProvider {
 	static var previews: some View {
 		TimelineCoordinatesView()
@@ -55,13 +72,12 @@ enum TimeUnit: Int {
 
 // TODO: this might get refactored/abstracted out
 struct ZoomingUnits {
-	
 	var space: TimeUnit
 	var nano: TimeUnit?
 	var micro: TimeUnit?
 	var mezzo: TimeUnit?
 	var major: TimeUnit?
-	
+
 	//	init(
 	// TODO: insert guards requiring nano < micro < mezzo < major
 }
@@ -72,4 +88,3 @@ struct IntervalConfig {
 	var radius: CGFloat // width of the smallest unit
 	var spacing: CGFloat? = 0
 }
-

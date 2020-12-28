@@ -27,6 +27,10 @@
 		1DF81D5D2586E32C00C92DFB /* CoordinatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */; };
 		1DF81D632586E34800C92DFB /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D622586E34800C92DFB /* ConfigurationView.swift */; };
 		1DF81D642586E34800C92DFB /* ConfigurationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D622586E34800C92DFB /* ConfigurationView.swift */; };
+		1DF81D682586EABE00C92DFB /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D672586EABE00C92DFB /* Calendar.swift */; };
+		1DF81D692586EABE00C92DFB /* Calendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D672586EABE00C92DFB /* Calendar.swift */; };
+		1DF81D6D2586EC7500C92DFB /* Calendar2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D6C2586EC7500C92DFB /* Calendar2.swift */; };
+		1DF81D6E2586EC7500C92DFB /* Calendar2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF81D6C2586EC7500C92DFB /* Calendar2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,8 @@
 		1DF81D562586C26E00C92DFB /* TimelineBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineBlock.swift; sourceTree = "<group>"; };
 		1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatesView.swift; sourceTree = "<group>"; };
 		1DF81D622586E34800C92DFB /* ConfigurationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationView.swift; sourceTree = "<group>"; };
+		1DF81D672586EABE00C92DFB /* Calendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.swift; sourceTree = "<group>"; };
+		1DF81D6C2586EC7500C92DFB /* Calendar2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,8 @@
 				1DF81D562586C26E00C92DFB /* TimelineBlock.swift */,
 				1DF81D5B2586E32C00C92DFB /* CoordinatesView.swift */,
 				1DF81D622586E34800C92DFB /* ConfigurationView.swift */,
+				1DF81D672586EABE00C92DFB /* Calendar.swift */,
+				1DF81D6C2586EC7500C92DFB /* Calendar2.swift */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -246,10 +254,12 @@
 				1D38A31C257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1DF81D632586E34800C92DFB /* ConfigurationView.swift in Sources */,
 				1DF81D572586C26E00C92DFB /* TimelineBlock.swift in Sources */,
+				1DF81D682586EABE00C92DFB /* Calendar.swift in Sources */,
 				1D38A31A257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
 				1DF81D5C2586E32C00C92DFB /* CoordinatesView.swift in Sources */,
 				1DF81D3F2586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A354257EC20D003B52E3 /* TemporalView.swift in Sources */,
+				1DF81D6D2586EC7500C92DFB /* Calendar2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,10 +270,12 @@
 				1D38A31D257EAC24003B52E3 /* ContentView.swift in Sources */,
 				1DF81D642586E34800C92DFB /* ConfigurationView.swift in Sources */,
 				1DF81D582586C26E00C92DFB /* TimelineBlock.swift in Sources */,
+				1DF81D692586EABE00C92DFB /* Calendar.swift in Sources */,
 				1D38A31B257EAC24003B52E3 /* golOS_layoutApp.swift in Sources */,
 				1DF81D5D2586E32C00C92DFB /* CoordinatesView.swift in Sources */,
 				1DF81D402586813800C92DFB /* TimelineTrack.swift in Sources */,
 				1D38A355257EC20D003B52E3 /* TemporalView.swift in Sources */,
+				1DF81D6E2586EC7500C92DFB /* Calendar2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

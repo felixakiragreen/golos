@@ -8,6 +8,15 @@
 import SwiftUI
 import Sliders
 
+private extension DateFormatter {
+	static var dayOfMonth: DateFormatter {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "d"
+		return formatter
+	}
+}
+
+
 struct TemporalView: View {
 	// MARK: - PROPERTIES
 	
@@ -32,6 +41,8 @@ struct TemporalView: View {
 	@State var range = 10.0...50.0
 	@State var x = 0.5
 	@State var y = 0.5
+	
+	
 	
 	// MARK: - BODY
 	var body: some View {
@@ -144,7 +155,7 @@ struct TemporalView: View {
 //						PointSlider(x: $x, y: $y)
 					}
 					
-					HStack {
+					VStack {
 						
 						ZStack {
 							
@@ -206,8 +217,14 @@ struct TemporalView: View {
 //							/*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
 //						})
 						// .drawingGroup()
+						CalendarView(interval: Calendar.current.dateInterval(of: .month, for: Date())!) { date in
+							Text(DateFormatter.dayOfMonth.string(from: date))
+								.padding(8)
+								.background(Color.blue)
+								.cornerRadius(8)
+						}
 
-					}//: SCROLLVIEW
+					}//: HSTACK - SCROLLVIEW
 					
 
 				}//: DAYS
