@@ -13,6 +13,12 @@
 		1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6500A259AD07800D9A1EE /* ContentView.swift */; };
 		1DC65020259AD07A00D9A1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6500B259AD07A00D9A1EE /* Assets.xcassets */; };
 		1DC65021259AD07A00D9A1EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DC6500B259AD07A00D9A1EE /* Assets.xcassets */; };
+		1DC65030259B7C8500D9A1EE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6502F259B7C8500D9A1EE /* Colors.swift */; };
+		1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6502F259B7C8500D9A1EE /* Colors.swift */; };
+		1DC65038259B832800D9A1EE /* Hexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65037259B832800D9A1EE /* Hexagonal.swift */; };
+		1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65037259B832800D9A1EE /* Hexagonal.swift */; };
+		1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
+		1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +30,9 @@
 		1DC65018259AD07A00D9A1EE /* golOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = golOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DC6501A259AD07A00D9A1EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DC6501B259AD07A00D9A1EE /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		1DC6502F259B7C8500D9A1EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1DC65037259B832800D9A1EE /* Hexagonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagonal.swift; sourceTree = "<group>"; };
+		1DC65048259BF08600D9A1EE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +69,9 @@
 				1DC65009259AD07800D9A1EE /* golOSApp.swift */,
 				1DC6500A259AD07800D9A1EE /* ContentView.swift */,
 				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
+				1DC65034259B7C8C00D9A1EE /* Model */,
+				1DC6503D259B833300D9A1EE /* Items */,
+				1DC65048259BF08600D9A1EE /* DetailView.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -88,6 +100,22 @@
 				1DC6501B259AD07A00D9A1EE /* macOS.entitlements */,
 			);
 			path = macOS;
+			sourceTree = "<group>";
+		};
+		1DC65034259B7C8C00D9A1EE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1DC6502F259B7C8500D9A1EE /* Colors.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1DC6503D259B833300D9A1EE /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1DC65037259B832800D9A1EE /* Hexagonal.swift */,
+			);
+			path = Items;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +216,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */,
+				1DC65030259B7C8500D9A1EE /* Colors.swift in Sources */,
+				1DC65038259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,6 +228,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */,
+				1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */,
+				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
