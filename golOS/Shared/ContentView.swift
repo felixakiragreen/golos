@@ -13,7 +13,7 @@ struct ContentView_Previews: PreviewProvider {
 		NavigationView {
 			ContentView()
 		}
-//		.preferredColorScheme(.dark)
+//		.preferredColorScheme(.dark)←
 	}
 }
 
@@ -34,37 +34,70 @@ struct ContentView: View {
 				Spacer()
 				VStack(spacing: 16) {
 					GroupAnnotationDimension(colorHue: .red) {
-						VStack {
-							HStack {
-								ButtonAnnotationType(
-									colorHue: .purple,
-									title: "sleep",
-									icon: "bed.double.fill",
-									trailing: true) {
-									isPresented = true
-								}
-								ButtonAnnotationType(
-									colorHue: .blue,
-									title: "social",
-									icon: "person.3.fill") {
-									isPresented = true
-								}
+						Group {
+						LazyVGrid(columns: [
+							GridItem.init(.flexible(), alignment: .trailing),
+							GridItem.init(.flexible(), alignment: .leading)
+						]) {
+							ButtonAnnotationType(
+								colorHue: .purple,
+								title: "sleep",
+								icon: "bed.double.fill",
+								trailing: true) {
+								isPresented = true
 							}
-							HStack {
-								ButtonAnnotationType(
-									colorHue: .red,
-									title: "fitness",
-									icon: "figure.walk",
-									trailing: true) {
-									isPresented = true
-								}
-								ButtonAnnotationType(
-									colorHue: .green,
-									title: "diet",
-									icon: "mouth.fill") {
-									isPresented = true
-								}
+							ButtonAnnotationType(
+								colorHue: .blue,
+								title: "social",
+								icon: "person.3.fill") {
+								isPresented = true
 							}
+							ButtonAnnotationType(
+								colorHue: .red,
+								title: "fitness",
+								icon: "figure.walk",
+								trailing: true) {
+								isPresented = true
+							}
+							ButtonAnnotationType(
+								colorHue: .green,
+								title: "diet",
+								icon: "mouth.fill") {
+								isPresented = true
+							}
+						}
+//						VStack {
+//							HStack {
+//								ButtonAnnotationType(
+//									colorHue: .purple,
+//									title: "sleep",
+//									icon: "bed.double.fill",
+//									trailing: true) {
+//									isPresented = true
+//								}
+//								ButtonAnnotationType(
+//									colorHue: .blue,
+//									title: "social",
+//									icon: "person.3.fill") {
+//									isPresented = true
+//								}
+//							}
+//							HStack {
+//								ButtonAnnotationType(
+//									colorHue: .red,
+//									title: "fitness",
+//									icon: "figure.walk",
+//									trailing: true) {
+//									isPresented = true
+//								}
+//								ButtonAnnotationType(
+//									colorHue: .green,
+//									title: "diet",
+//									icon: "mouth.fill") {
+//									isPresented = true
+//								}
+//							}
+//						}
 						}
 					}
 
@@ -127,15 +160,18 @@ struct GroupAnnotationDimension<Content: View>: View {
 	var body: some View {
 		VStack(spacing: 8) {
 			
-			HStack(alignment: .firstTextBaseline) {
-				Spacer()
-				Text("critical")
-					.foregroundColor(ColorPreset(hue: colorHue, lum: .nearBlack).getColor())
-					.font(Font.system(.title2, design: .rounded))
-					.bold()
-				Text("survive")
-					.foregroundColor(ColorPreset(hue: colorHue, lum: .dark).getColor())
-				Spacer()
+			HStack {
+				LazyVGrid(columns: [
+					GridItem.init(.flexible(), alignment: .trailing),
+					GridItem.init(.flexible(), alignment: .leading)
+				]) {
+					Text("critical")
+						.foregroundColor(ColorPreset(hue: colorHue, lum: .nearBlack).getColor())
+						.font(Font.system(.title2, design: .rounded))
+						.bold()
+					Text("survive")
+						.foregroundColor(ColorPreset(hue: colorHue, lum: .dark).getColor())
+				}
 			}//: LABEL
 			.padding(.horizontal, 12)
 			
@@ -154,11 +190,20 @@ struct GroupAnnotationDimension<Content: View>: View {
 					
 					FlatHexagonalShape(body: .infinity)
 						.inset(by: 3)
-						.fill(ColorPreset(hue: .grey, lum: .extraLight).getColor())
+//						.fill(ColorPreset(hue: .grey, lum: .extraLight).getColor())
+						.fill(
+							LinearGradient(gradient:Gradient.init(colors: [
+								ColorPreset(hue: .grey, lum: .extraLight).getColor(),
+								ColorPreset(hue: .grey, lum: .nearWhite).getColor(),
+								ColorPreset(hue: .grey, lum: .extraLight).getColor()
+							]),
+							startPoint: .leading, endPoint: .trailing
+							)
+						)
 
 					FlatHexagonalShape(body: .infinity)
 						.strokeBorder(
-							LinearGradient(gradient: Gradient.init(colors: [
+							LinearGradient(gradient:Gradient.init(colors: [
 								ColorPreset(hue: .red, lum: .normal).getColor(),
 								ColorPreset(hue: .red, lum: .nearWhite).getColor(),
 								ColorPreset(hue: .red, lum: .normal).getColor()
