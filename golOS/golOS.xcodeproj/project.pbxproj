@@ -19,6 +19,8 @@
 		1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65037259B832800D9A1EE /* Hexagonal.swift */; };
 		1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
 		1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
+		1DC6504E259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */; };
+		1DC6504F259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,7 @@
 		1DC6502F259B7C8500D9A1EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1DC65037259B832800D9A1EE /* Hexagonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagonal.swift; sourceTree = "<group>"; };
 		1DC65048259BF08600D9A1EE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,10 +71,10 @@
 			children = (
 				1DC65009259AD07800D9A1EE /* golOSApp.swift */,
 				1DC6500A259AD07800D9A1EE /* ContentView.swift */,
-				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
+				1DC65048259BF08600D9A1EE /* DetailView.swift */,
 				1DC65034259B7C8C00D9A1EE /* Model */,
 				1DC6503D259B833300D9A1EE /* Items */,
-				1DC65048259BF08600D9A1EE /* DetailView.swift */,
+				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -106,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC6502F259B7C8500D9A1EE /* Colors.swift */,
+				1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +224,7 @@
 				1DC65038259B832800D9A1EE /* Hexagonal.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */,
+				1DC6504E259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +237,7 @@
 				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
 				1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */,
+				1DC6504F259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
