@@ -7,14 +7,21 @@
 
 import SwiftUI
 
-struct DetailView: View {
-	var body: some View {
-		Text("Hello, World!")
-	}
-}
-
+// MARK: - PREVIEW
 struct DetailView_Previews: PreviewProvider {
 	static var previews: some View {
 		DetailView()
 	}
 }
+
+
+struct DetailView: View {
+	// MARK: - PROPS
+	
+	
+	// MARK: - BODY
+	var body: some View {
+		Text("Hello, World!")
+	}
+}
+
