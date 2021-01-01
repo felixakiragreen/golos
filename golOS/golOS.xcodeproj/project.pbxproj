@@ -19,8 +19,12 @@
 		1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65037259B832800D9A1EE /* Hexagonal.swift */; };
 		1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
 		1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65048259BF08600D9A1EE /* DetailView.swift */; };
-		1DC6504E259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */; };
-		1DC6504F259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */; };
+		1DC6504E259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */; };
+		1DC6504F259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */; };
+		1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65056259D1F1C00D9A1EE /* Environment.swift */; };
+		1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65056259D1F1C00D9A1EE /* Environment.swift */; };
+		1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
+		1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +39,9 @@
 		1DC6502F259B7C8500D9A1EE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1DC65037259B832800D9A1EE /* Hexagonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hexagonal.swift; sourceTree = "<group>"; };
 		1DC65048259BF08600D9A1EE /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeAnnotation.swift; sourceTree = "<group>"; };
+		1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalAnnotation.swift; sourceTree = "<group>"; };
+		1DC65056259D1F1C00D9A1EE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFocusTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				1DC6502F259B7C8500D9A1EE /* Colors.swift */,
-				1DC6504D259BF2CB00D9A1EE /* TimeAnnotation.swift */,
+				1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */,
+				1DC65056259D1F1C00D9A1EE /* Environment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC65037259B832800D9A1EE /* Hexagonal.swift */,
+				1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -222,9 +230,11 @@
 				1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65030259B7C8500D9A1EE /* Colors.swift in Sources */,
 				1DC65038259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
+				1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
 				1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */,
-				1DC6504E259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */,
+				1DC6504E259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,9 +245,11 @@
 				1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */,
 				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */,
+				1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
 				1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */,
-				1DC6504F259BF2CB00D9A1EE /* TimeAnnotation.swift in Sources */,
+				1DC6504F259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
