@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - PREVIEW
+
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationView {
@@ -17,122 +18,174 @@ struct ContentView_Previews: PreviewProvider {
 	}
 }
 
-
 struct ContentView: View {
 	// MARK: - PROPS
-	@State private var isPresented = false
+
+	@State var isPresented = false
+	@State var data: TemporalAnnotation.EditData = TemporalAnnotation.EditData()
 
 	// MARK: - BODY
+
 	var body: some View {
 		ZStack {
 			Color("grey.sys.100").edgesIgnoringSafeArea(.all)
 			VStack {
 				HStack {
-//					Text("Hello, world!")
-//						.padding()
+					Text("All hexagonal icons in a day visualization")
+						.padding()
 				}
 				Spacer()
-				VStack(spacing: 16) {
-					GroupAnnotationDimension(colorHue: .red) {
+				HStack {
+					Text("TODO: day night visualization cycle")
+						.padding()
+				}
+				Spacer()
+				VStack(spacing: 12) {
+					GroupAnnotationDimension(title: "critical", notes: "survive") {
 						Group {
-						LazyVGrid(columns: [
-							GridItem.init(.flexible(), alignment: .trailing),
-							GridItem.init(.flexible(), alignment: .leading)
-						]) {
-							ButtonAnnotationType(
-								colorHue: .purple,
-								title: "sleep",
-								icon: "bed.double.fill",
-								trailing: true) {
-								isPresented = true
-							}
-							ButtonAnnotationType(
-								colorHue: .blue,
-								title: "social",
-								icon: "person.3.fill") {
-								isPresented = true
-							}
-							ButtonAnnotationType(
-								colorHue: .red,
-								title: "fitness",
-								icon: "figure.walk",
-								trailing: true) {
-								isPresented = true
-							}
-							ButtonAnnotationType(
-								colorHue: .green,
-								title: "diet",
-								icon: "mouth.fill") {
-								isPresented = true
+							LazyVGrid(columns: [
+								GridItem(.flexible(), alignment: .trailing),
+								GridItem(.flexible(), alignment: .leading)
+							]) {
+								ButtonAnnotationType(
+									hue1: .purple,
+									title: "sleep",
+									trailing: true
+								) {
+									// selectedGroup = "sleep"
+									isPresented = true
+									data.group = "sleep"
+								}
+								ButtonAnnotationType(
+									hue1: .blue,
+									title: "social"
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .red,
+									title: "fitness",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .green,
+									title: "diet"
+								) {
+									isPresented = true
+								}
 							}
 						}
-//						VStack {
-//							HStack {
-//								ButtonAnnotationType(
-//									colorHue: .purple,
-//									title: "sleep",
-//									icon: "bed.double.fill",
-//									trailing: true) {
-//									isPresented = true
-//								}
-//								ButtonAnnotationType(
-//									colorHue: .blue,
-//									title: "social",
-//									icon: "person.3.fill") {
-//									isPresented = true
-//								}
-//							}
-//							HStack {
-//								ButtonAnnotationType(
-//									colorHue: .red,
-//									title: "fitness",
-//									icon: "figure.walk",
-//									trailing: true) {
-//									isPresented = true
-//								}
-//								ButtonAnnotationType(
-//									colorHue: .green,
-//									title: "diet",
-//									icon: "mouth.fill") {
-//									isPresented = true
-//								}
-//							}
-//						}
+					}
+					.parentHueStyle(.red)
+
+					GroupAnnotationDimension(title: "productive", notes: "strive") {
+						Group {
+							LazyVGrid(columns: [
+								GridItem(.flexible(), alignment: .trailing),
+								GridItem(.flexible(), alignment: .leading)
+							]) {
+								ButtonAnnotationType(
+									hue1: .red,
+									title: "work",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .purple,
+									title: "network"
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .orange,
+									title: "clean",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .blue,
+									title: "mental"
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .yellow,
+									title: "learn",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .green,
+									title: "habit"
+								) {
+									isPresented = true
+								}
+							}
 						}
 					}
-
-					HStack(alignment: .firstTextBaseline) {
-						Spacer()
-						Text("productive")
-							.foregroundColor(Color("green.sys.900"))
-							.font(Font.system(.title2, design: .rounded))
-							.bold()
-						Text("strive")
-							.foregroundColor(Color("green.sys.700"))
-						Spacer()
+					.parentHueStyle(.green)
+					
+					GroupAnnotationDimension(title: "nonproductive", notes: "thrive") {
+						Group {
+							LazyVGrid(columns: [
+								GridItem(.flexible(), alignment: .trailing),
+								GridItem(.flexible(), alignment: .leading)
+							]) {
+								ButtonAnnotationType(
+									hue1: .red,
+									title: "chill",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .purple,
+									title: "play"
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .orange,
+									title: "media",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .blue,
+									title: "hobby"
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .yellow,
+									title: "internet",
+									trailing: true
+								) {
+									isPresented = true
+								}
+								ButtonAnnotationType(
+									hue1: .green,
+									title: "positive"
+								) {
+									isPresented = true
+								}
+							}
+						}
 					}
-					.frame(minHeight: 100)
-					.background(Color("green.sys.300"))
-
-					HStack(alignment: .firstTextBaseline) {
-						Spacer()
-						Text("non-productive")
-							.foregroundColor(Color("blue.sys.900"))
-							.font(Font.system(.title2, design: .rounded))
-							.bold()
-						Text("thrive")
-							.foregroundColor(Color("blue.sys.700"))
-						Spacer()
-					}
-					.frame(minHeight: 100)
-					.background(Color("blue.sys.300"))
+					.parentHueStyle(.blue)
 				}
 			}
 		}
 //		.navigationTitle("Daily")
 		.sheet(isPresented: $isPresented) {
 			NavigationView {
-				DetailView()
+				DetailView(editData: $data)
 					.navigationBarItems(leading: Button("Dismiss") {
 						isPresented = false
 					}
@@ -150,85 +203,101 @@ struct ContentView: View {
 	}
 }
 
-
 // MARK: - SUBVIEWS
 
 struct GroupAnnotationDimension<Content: View>: View {
-	var colorHue: ColorHue
-	var content: () -> Content
+	@Environment(\.parentHue) var parentHue
 	
+	var title: String
+	var notes: String
+	var content: () -> Content
+
 	var body: some View {
-		VStack(spacing: 8) {
-			
-			HStack {
-				LazyVGrid(columns: [
-					GridItem.init(.flexible(), alignment: .trailing),
-					GridItem.init(.flexible(), alignment: .leading)
-				]) {
-					Text("critical")
-						.foregroundColor(ColorPreset(hue: colorHue, lum: .nearBlack).getColor())
-						.font(Font.system(.title2, design: .rounded))
-						.bold()
-					Text("survive")
-						.foregroundColor(ColorPreset(hue: colorHue, lum: .dark).getColor())
-				}
-			}//: LABEL
-			.padding(.horizontal, 12)
-			
+		VStack(spacing: 0) {
+//			header
+
 			HStack {
 				content()
-			}//: CONTENT
-			.padding()
+			} //: CONTENT
+			.padding(.vertical, 6)
 			.frame(maxWidth: .infinity)
 			.background(
 				ZStack {
-					ColorPreset(hue: colorHue, lum: .extraLight).getColor()
-					
+					ColorPreset(hue: parentHue, lum: .extraLight).getColor()
+						.padding(.vertical, 6)
+
 					FlatHexagonalShape(body: .infinity)
 						.inset(by: -6)
 						.fill(ColorPreset(hue: .grey, lum: .nearWhite).getColor())
-					
+//						.padding(6)
+
 					FlatHexagonalShape(body: .infinity)
 						.inset(by: 3)
 //						.fill(ColorPreset(hue: .grey, lum: .extraLight).getColor())
 						.fill(
-							LinearGradient(gradient:Gradient.init(colors: [
-								ColorPreset(hue: .grey, lum: .extraLight).getColor(),
+							LinearGradient(gradient: Gradient(colors: [
+								ColorPreset(hue: .grey, lum: .light).getColor(),
 								ColorPreset(hue: .grey, lum: .nearWhite).getColor(),
-								ColorPreset(hue: .grey, lum: .extraLight).getColor()
+								ColorPreset(hue: .grey, lum: .light).getColor()
 							]),
-							startPoint: .leading, endPoint: .trailing
-							)
+							startPoint: .leading, endPoint: .trailing)
 						)
 
 					FlatHexagonalShape(body: .infinity)
 						.strokeBorder(
-							LinearGradient(gradient:Gradient.init(colors: [
-								ColorPreset(hue: .red, lum: .normal).getColor(),
-								ColorPreset(hue: .red, lum: .nearWhite).getColor(),
-								ColorPreset(hue: .red, lum: .normal).getColor()
+							LinearGradient(gradient: Gradient(colors: [
+								ColorPreset(hue: parentHue, lum: .medium).getColor(),
+								ColorPreset(hue: parentHue, lum: .nearWhite).getColor(),
+								ColorPreset(hue: parentHue, lum: .medium).getColor()
 							]),
-							startPoint: .leading, endPoint: .trailing
-							),
+							startPoint: .leading, endPoint: .trailing),
 							lineWidth: 1
 						)
 				}
 			)
 		}
-		
+	}
+
+	var header: some View {
+		HStack(alignment: .firstTextBaseline) {
+			Spacer()
+			Text(title)
+				.foregroundColor(ColorPreset(hue: parentHue, lum: .nearBlack).getColor())
+				.font(Font.system(.headline, design: .rounded))
+//				.bold()
+			Text(notes)
+				.foregroundColor(ColorPreset(hue: parentHue, lum: .dark).getColor())
+			Spacer()
+		} //: LABEL
+//		.padding(.horizontal, 12)
+//		.background(
+//			Rectangle()
+//				.fill(ColorPreset(hue: hue, lum: .extraLight).getColor())
+//				.mask(
+//					FlatHexagonalShape(body: .infinity)
+//						.frame(height: 110)
+//						.padding(.horizontal, 40)
+//						.offset(x: 0, y: 40)
+//				)
+//		)
 	}
 }
 
+
+// TODO: pick up RED from mini environment variable
+// TODO: bind presented/selectedGroup in order
+// TODO: maybe it shouldn't be a modal like this
 struct ButtonAnnotationType: View {
-	var colorHue: ColorHue
+	@Environment(\.parentHue) var parentHue
+	
+	var hue1: ColorHue
 	var title: String
-	var icon: String
 	var trailing: Bool = false
 	var action: () -> Void
-	
+
 	var body: some View {
 		Button(action: action) {
-			HStack(spacing: 12) {
+			HStack(spacing: 9) {
 				if trailing {
 					bodyText
 					bodyIcon
@@ -237,42 +306,66 @@ struct ButtonAnnotationType: View {
 					bodyText
 				}
 			}
-			.foregroundColor(ColorPreset(hue: colorHue, lum: .extraDark).getColor())
-			.padding(6)
-			.padding(.horizontal, 12)
+			.foregroundColor(ColorPreset(hue: hue1, lum: .extraDark).getColor())
+			.padding(9)
+			.padding(.horizontal, 6)
 //			.padding(.leading, trailing ? 18 : 12)
 //			.padding(.trailing, trailing ? 12 : 18)
 			.background(
-				FlatHexagon(
-					fill: ColorPreset(hue: colorHue, lum: .extraLight).getColor(),
-					length: .infinity
-				)
+				FlatHexagonalShape(body: .infinity)
+					.fill(ColorPreset(hue: hue1, lum: .extraLight).getColor())
+					.overlay(
+						FlatHexagonalShape(body: .infinity)
+							.inset(by: -2)
+							.strokeBorder(
+								LinearGradient(gradient: Gradient(colors: [
+									ColorPreset(hue: parentHue, lum: .medium).getColor(),
+									ColorPreset(hue: parentHue, lum: .nearWhite).getColor(),
+									ColorPreset(hue: parentHue, lum: .medium).getColor()
+								]),
+								startPoint: .leading, endPoint: .trailing),
+								lineWidth: 1
+							)
+					)
 			)
 		}
 	}
-	
+
 	var bodyIcon: some View {
 		ZStack {
 			PointyHexagonalShape()
-				.fill(ColorPreset(hue: colorHue, lum: .dark).getColor())
-				.hexagonalFrame(height: 12)
+				.fill(ColorPreset(hue: hue1, lum: .medium).getColor())
+				.hexagonalFrame(height: 16)
 				.overlay(
 					PointyHexagonalShape()
-						.inset(by: -6)
-						.strokeBorder(ColorPreset(hue: .red, lum: .medium).getColor(), lineWidth: 3)
+						.inset(by: -3)
+						.strokeBorder(ColorPreset(hue: parentHue, lum: .dark).getColor(), lineWidth: 1)
 				)
 //			Image(systemName: "\(icon)")
 		}.padding(.horizontal, 6)
 	}
-	
+
+	var bodyIcon2: some View {
+		ZStack {
+			PointyHexagonalShape()
+				.fill(ColorPreset(hue: parentHue, lum: .light).getColor())
+				.hexagonalFrame(height: 16)
+				.overlay(
+					PointyHexagonalShape()
+						.inset(by: -4)
+						.strokeBorder(ColorPreset(hue: hue1, lum: .medium).getColor(), lineWidth: 2)
+				)
+//			Image(systemName: "\(icon)")
+		}.padding(.horizontal, 6)
+	}
+
 	var bodyText: some View {
 		HStack(spacing: 0) {
 			Text("~")
 				.font(Font.system(.body, design: .monospaced))
-				.foregroundColor(ColorPreset(hue: .red, lum: .dark).getColor())
+				.foregroundColor(ColorPreset(hue: parentHue, lum: .dark).getColor())
 			Text(title)
-				.font(Font.system(.headline, design: .monospaced))
-			
+//				.font(Font.system(.headline, design: .monospaced))
 		}
 	}
 }
