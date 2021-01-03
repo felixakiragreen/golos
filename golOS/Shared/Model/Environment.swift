@@ -22,4 +22,36 @@ extension View {
 	func parentHueStyle(_ hue: ColorHue) -> some View {
 		environment(\.parentHue, hue)
 	}
+	
+	func parentHueStyle(hue: ColorHue) -> some View {
+		environment(\.parentHue, hue)
+	}
+}
+
+struct AllHueEnvironmentKey: EnvironmentKey {
+	static var defaultValue: ColorHue = .green
+}
+struct AllSizeEnvironmentKey: EnvironmentKey {
+	static var defaultValue: CGFloat = 12
+}
+
+extension EnvironmentValues {
+	var allHue: ColorHue {
+		get { self[AllHueEnvironmentKey.self] }
+		set { self[AllHueEnvironmentKey.self] = newValue }
+	}
+	var allSize: CGFloat {
+		get { self[AllSizeEnvironmentKey.self] }
+		set { self[AllSizeEnvironmentKey.self] = newValue }
+	}
+}
+
+extension View {
+	func allStyle(_ hue: ColorHue) -> some View {
+		environment(\.allHue, hue)
+	}
+	
+	func allStyle(_ size: CGFloat) -> some View {
+		environment(\.allSize, size)
+	}
 }
