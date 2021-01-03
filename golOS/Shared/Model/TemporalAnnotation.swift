@@ -272,10 +272,6 @@ extension DatumValueType {
 
  */
 
-func minutes(_ min: Double) -> TimeInterval {
-	return 60 * min
-}
-
 extension TemporalAnnotation {
 	struct EditData {
 		var group: String = ""
@@ -307,24 +303,5 @@ extension TemporalAnnotation {
 	
 	var editData: EditData {
 		return EditData(group: editGroup, start: editStart, end: editEnd)
-	}
-}
-
-extension Date {
-	func round(precision: TimeInterval) -> Date {
-		return round(precision: precision, rule: .toNearestOrAwayFromZero)
-	}
-
-	func ceil(precision: TimeInterval) -> Date {
-		return round(precision: precision, rule: .up)
-	}
-
-	func floor(precision: TimeInterval) -> Date {
-		return round(precision: precision, rule: .down)
-	}
-
-	private func round(precision: TimeInterval, rule: FloatingPointRoundingRule) -> Date {
-		let seconds = (timeIntervalSinceReferenceDate / precision).rounded(rule) * precision
-		return Date(timeIntervalSinceReferenceDate: seconds)
 	}
 }
