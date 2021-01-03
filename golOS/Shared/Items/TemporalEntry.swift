@@ -9,12 +9,7 @@ import SwiftUI
 
 /**
 TODO:
-- add Major, Mezzo, Minor, Micro, Origin lines (offseting them from origin, using ZStack)
-- add haptics: heavy for major, medium mezzo, light for minor & micro
-		make them lighter like the native timer picker
-
-- FIX BUG WITH negative time (lower left quadrant)
-- major, mezzo, minor, micro colors?
+- make Haptics lighter like the native timer picker
 
 COMPLETELY ALTERNATE IDEA
 
@@ -30,7 +25,8 @@ so you just start dragging the little time clock thing
 		would be fun if the grid got blasted away when you double-tap to be done
 	boom, done
 
-
+// NEW GRID SHOULD USE LAZYHSTACK, &c.
+https://developer.apple.com/documentation/swiftui/creating-performant-scrollable-stacks
 
 */
 
@@ -48,7 +44,7 @@ struct TemporalEntry: View {
 	@Environment(\.colorScheme) var colorScheme: ColorScheme
 	
 	@State private var dragOffset: CGSize = .zero
-//	@State private var dragSnap: CGSize = .zero
+	@State private var isDragging: Bool = false
 	
 	@State private var selectedTime: Date = Date().round(precision: minutes(5))
 	
@@ -72,49 +68,58 @@ struct TemporalEntry: View {
 			grid2
 
 			Text("x:\(dragOffset.width, specifier: "%.1f") y:\(dragOffset.height, specifier: "%.1f")")
-//				.offset(x: 0, y: 0)
 			Text("x:\(dragSnap.width, specifier: "%g") y:\(dragSnap.height, specifier: "%g")")
 				.offset(x: 0, y: -40)
 			
 			Rectangle()
-				.stroke(Color("orange.400"), lineWidth: 4)
+				.stroke(Color("orange.400"), lineWidth: isDragging ? 4 : 1)
 				.frame(width: snapIncrement * 2, height: snapIncrement * 2)
 				.offset(dragSnap)
 				.zIndex(2)
 				.opacity(0.5)
-			Circle()
+			Hexagon()
+				.hexagonalFrame(height: snapIncrement * 2)
 				.frame(width: snapIncrement * 2, height: snapIncrement * 2)
 				.foregroundColor(Color("green.400"))
+				.opacity(isDragging ? 1 : 0.5)
 				.offset(dragOffset)
 				.gesture(
 					DragGesture()
 						.onChanged { gesture in
-//							print(gesture)
 							self.dragOffset = gesture.translation
+							self.isDragging = true
 						}
 						.onEnded { _ in
 							withAnimation(.spring()) {
 								self.selectedTime = self.previewTime
 								self.dragOffset = .zero
+								self.isDragging = false
 							}
 						}
 				)
 			
 			ZStack(alignment: .top) {
 				VStack {
-					Text("\(previewTime, formatter: Self.timeFormatter)")
-						.font(.largeTitle)
 					HStack {
-						let minutes = calculateTimeInterval(selectedTime) / 60
+						Text("\(calculateTimeInterval(selectedTime) == 0 ? "selected" : "new" ) time")
+							.foregroundColor(.secondary)
+						Text("\(previewTime, formatter: Self.timeFormatter)")
+							.font(.largeTitle)
+					}
+					HStack {
+						let m = calculateTimeInterval(selectedTime)
+						let minutes = abs(m / 60)
 						let hours = floor(minutes / 60)
 						let minutesRemaining = minutes.truncatingRemainder(dividingBy: 60)
 						
-						if abs(minutes) > 0 {
+						if minutes > 0 {
+							Text(m.sign == .minus ? "subtracting" : "adding")
+								.foregroundColor(.secondary)
 							Text("\(minutes, specifier: "%g")min")
 						}
 						
-						if abs(hours) > 0 {
-							Text(" or ")
+						if hours > 0 {
+							Text(" or ").foregroundColor(.secondary)
 							Text("\(hours, specifier: "%g")h")
 							if abs(minutesRemaining) > 0 {
 								Text("\(abs(minutesRemaining), specifier: "%g")m")
@@ -128,11 +133,8 @@ struct TemporalEntry: View {
 		}//: ZStack
 		.frame(maxWidth: .infinity, maxHeight: .infinity)
 		.onChange(of: dragSnap) { [dragSnap] newValue in
-			print("old", dragSnap)
-			print("new", newValue)
-//			if let update = self.onChange {
-//				update(opt)
-//			}
+			// print("old", dragSnap)
+			// print("new", newValue)
 		
 			if newValue.height != dragSnap.height {
 				if abs(newValue.height.truncatingRemainder(dividingBy: snapIncrement * 2)) == 0 {
@@ -151,7 +153,6 @@ struct TemporalEntry: View {
 			// let impactMed = UIImpactFeedbackGenerator(style: .medium)
 			//	impactMed.impactOccurred()
 			//.medium with .soft, .light, .heavy, or .rigid
-		
 		}
 	}
 	
@@ -242,12 +243,7 @@ struct TemporalEntry: View {
 		let x = dragSnap.width / snapIncrement
 		let y = dragSnap.height / snapIncrement
 		
-//		print(x)
-//		print(y)
-		
 		let timeToAdd = (Double(x) * xTimeIncrement) + (Double(y) * yTimeIncrement * -1)
-		
-//		print(timeToAdd)
 		
 		return timeToAdd
 	}
@@ -258,10 +254,6 @@ struct TemporalEntry: View {
 		return formatter
 	}()
 }
-
-
-// NEW GRID SHOULD USE LAZYHSTACK, &c.
-
 
 // MARK: - SUBVIEWS
 
