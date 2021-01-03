@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+// MARK: - PREVIEW
 struct Hexagonal_Previews: PreviewProvider {
 	static var previews: some View {
 		Hexagonal()
@@ -16,13 +16,27 @@ struct Hexagonal_Previews: PreviewProvider {
 }
 
 struct Hexagonal: View {
+	// MARK: - BODY
 	var body: some View {
 		VStack(spacing: 16.0) {
+			HStack {
+				Hexagon()
+					.fill(Color.orange)
+					.hexagonalFrame(width: 50)
+				Hexagon(.flat, offset: CGPoint(x: 0, y: 10))
+					.fill(Color.orange)
+					.hexagonalFrame(height: 50, orientation: .flat)
+					.clipped()
+			}
 			HStack {
 				PointyHexagon()
 					.hexagonalFrame(width: 50)
 				PointyHexagon()
 					.hexagonalFrame(height: 50)
+				FlatHexagon()
+					.hexagonalFrame(width: 50, orientation: .flat)
+				FlatHexagon()
+					.hexagonalFrame(height: 50, orientation: .flat)
 			}
 			HStack {
 				PointyHexagonalShape()
@@ -61,10 +75,7 @@ struct Hexagonal: View {
 					.frame(height: 200)
 			}
 			HStack {
-				FlatHexagon()
-					.hexagonalFrame(width: 50, orientation: .flat)
-				FlatHexagon()
-					.hexagonalFrame(height: 50, orientation: .flat)
+				
 			}
 //			FlatHexagon(length: .infinity)
 //				.frame(height: 100)
@@ -74,17 +85,37 @@ struct Hexagonal: View {
 	}
 }
 
-
-// MARK: - CONSTRUCTIONS
+// MARK: - HELPERS
 
 /// Math for drawing hexagonal angles
 let α = CGFloat(Double.pi / 3)
 
-/// Shape ⬢
+enum HexagonalOrientation {
+	case pointy, flat
+}
+
+extension View {
+	func hexagonalFrame(width: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
+		self
+			.frame(
+				width: width,
+				height: orientation == .pointy ? width / sin(α) : width * sin(α),
+				alignment: .center
+			)
+	}
+	func hexagonalFrame(height: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
+		self
+			.frame(
+				width: orientation == .pointy ? height * sin(α) : height / sin(α),
+				height: height,
+				alignment: .center
+			)
+	}
+}
+
+// MARK: - Shape ⬢
 struct PointyHexagonalShape: InsettableShape {
-	let offset: CGPoint = .zero
-//	let center: CGFloat /// Midline, on X axis for vertical hexagons
-	
+	var offset: CGPoint = .zero
 	var inset: CGFloat = 0
 
 	var head: Bool = true
@@ -161,11 +192,9 @@ struct PointyHexagonalShape: InsettableShape {
 	}
 }
 
-/// Shape ⬣
+// MARK: - Shape ⬣
 struct FlatHexagonalShape: InsettableShape {
-	let offset: CGPoint = .zero
-	// let center: CGFloat /// Midline, on X axis for vertical hexagons
-
+	var offset: CGPoint = .zero
 	var inset: CGFloat = 0
 	
 	var head: Bool = true
@@ -241,106 +270,41 @@ struct FlatHexagonalShape: InsettableShape {
 }
 
 
-//struct HexagonalShape: InsettableShape {
-//	let offset: CGPoint = .zero
-////	let center: CGFloat /// Midline, on X axis for vertical hexagons
-//
-//	var inset: CGFloat = 0
-//
-//	var head: Bool = true
-//	var body: CGFloat? /// Regularly the length of a side, but specificying 0 makes a diamond
-//	var tail: Bool = true
-//	var full: Bool = false /// Extend to edge IF tips (head/tail) are turned off
-//
-//	func path(in rect: CGRect) -> Path {
-//		var p = Path()
-//		let trunk = body ?? center / sin(α)
-//		let tip = center / sin(α) / 2
-//
-//		/// Calculate top positions
-//		let topOffset = full ? 0 : tip
-//		let topTip = head ? tip : topOffset
-//		let topPoint = head ? 0 : topOffset
-//
-//		/// Calculate bottom positions
-//		let botOffset = full ? tip : 0
-//		let botTip = tail ? tip : tip + botOffset
-//		let botPoint = tail ? tip * 2 : botTip
-//
-//		/// Calculate inset offsets
-//		let insetW = inset / sin(α)
-//		let insetX = insetW * sin(α)
-//		let insetY = insetW * cos(α)
-//
-//		p.addLines([
-//			/// top
-//
-//			CGPoint(
-//				x: offset.x + insetX,
-//				y: offset.y + insetY + topTip
-//			), /// top left
-//			CGPoint(
-//				x: offset.x + center,
-//				y: offset.y + insetW + topPoint
-//			), /// top
-//			CGPoint(
-//				x: offset.x - insetX + center * 2,
-//				y: offset.y + insetY + topTip
-//			), /// top right
-//
-//			/// bottom
-//
-//			CGPoint(
-//				x: offset.x - insetX + center * 2,
-//				y: offset.y - insetY + trunk + botTip
-//			), /// bot right
-//			CGPoint(
-//				x: offset.x + center,
-//				y: offset.y - insetW + trunk + botPoint
-//			), /// bot
-//			CGPoint(
-//				x: offset.x + insetX,
-//				y: offset.y - insetY + trunk + botTip
-//			) /// bot left
-//
-//		])
-//
-//		p.closeSubpath()
-//
-//		return p
-//	}
-//
-//	func inset(by amount: CGFloat) -> some InsettableShape {
-//		 var hex = self
-//		 hex.inset += amount
-//		 return hex
-//	}
-//}
+// MARK: - HexagonShape
+struct Hexagon: InsettableShape {
+	var orientation: HexagonalOrientation = .pointy
+	var offset: CGPoint = .zero
+	var inset: CGFloat = 0
 
+	var head: Bool = true
+	var body: CGFloat? /// Regularly the length of a side, but specificying 0 makes a diamond
+	var tail: Bool = true
+	var full: Bool = false /// Extend to edge IF tips (head/tail) are turned off
 
-enum HexagonalOrientation {
-	case pointy, flat
-}
-
-extension View {
-	func hexagonalFrame(width: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
-		self
-			.frame(
-				width: width,
-				height: orientation == .pointy ? width / sin(α) : width * sin(α),
-				alignment: .center
-			)
+	init(_ orientation: HexagonalOrientation = .pointy, offset: CGPoint = .zero, inset: CGFloat = 0, head: Bool = true, body: CGFloat? = nil, tail: Bool = true, full: Bool = false) {
+		self.orientation = orientation
+		self.offset = offset
+		self.inset = inset
+		self.head = head
+		self.body = body
+		self.tail = tail
+		self.full = full
 	}
-	func hexagonalFrame(height: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
-		self
-			.frame(
-				width: orientation == .pointy ? height * sin(α) : height / sin(α),
-				height: height,
-				alignment: .center
-			)
+	
+	func path(in rect: CGRect) -> Path {
+		if orientation == .pointy {
+			return PointyHexagonalShape(offset: offset, inset: inset, head: head, body: body, tail: tail, full: full).path(in: rect)
+		} else {
+			return FlatHexagonalShape(offset: offset, inset: inset, head: head, body: body, tail: tail, full: full).path(in: rect)
+		}
+	}
+
+	func inset(by amount: CGFloat) -> some InsettableShape {
+		 var hex = self
+		 hex.inset += amount
+		 return hex
 	}
 }
-
 
 
 // MARK: - SUBVIEWS
@@ -355,10 +319,7 @@ struct PointyHexagon: View {
 			let side = center / sin(α)
 			let trunk = length == .infinity ? geometry.size.height - side : length
 			
-			PointyHexagonalShape(
-//				center: center,
-				body: trunk
-			)
+			PointyHexagonalShape(body: trunk)
 			.fill(fill)
 		}
 	}
@@ -374,9 +335,7 @@ struct FlatHexagon: View {
 			let side = center / sin(α)
 			let trunk = length == .infinity ? geometry.size.width - side : length
 
-			FlatHexagonalShape(
-				body: trunk
-			)
+			FlatHexagonalShape(body: trunk)
 			.fill(fill)
 		}
 	}
