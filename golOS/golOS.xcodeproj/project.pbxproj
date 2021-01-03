@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D852CCA25A1197A00401C6C /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CC925A1197A00401C6C /* ExperienceView.swift */; };
+		1D852CCB25A1197A00401C6C /* ExperienceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CC925A1197A00401C6C /* ExperienceView.swift */; };
+		1D852CD125A16F1E00401C6C /* CircadianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CD025A16F1E00401C6C /* CircadianView.swift */; };
+		1D852CD225A16F1E00401C6C /* CircadianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CD025A16F1E00401C6C /* CircadianView.swift */; };
+		1D852CD825A2172D00401C6C /* TemporalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CD725A2172D00401C6C /* TemporalEntry.swift */; };
+		1D852CD925A2172D00401C6C /* TemporalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D852CD725A2172D00401C6C /* TemporalEntry.swift */; };
+		1D86DAD725A1058900C7611E /* WIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86DAD625A1058900C7611E /* WIP.swift */; };
+		1D86DAD825A1058900C7611E /* WIP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D86DAD625A1058900C7611E /* WIP.swift */; };
 		1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65009259AD07800D9A1EE /* golOSApp.swift */; };
 		1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65009259AD07800D9A1EE /* golOSApp.swift */; };
 		1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6500A259AD07800D9A1EE /* ContentView.swift */; };
@@ -28,6 +36,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D852CC925A1197A00401C6C /* ExperienceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperienceView.swift; sourceTree = "<group>"; };
+		1D852CD025A16F1E00401C6C /* CircadianView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircadianView.swift; sourceTree = "<group>"; };
+		1D852CD725A2172D00401C6C /* TemporalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalEntry.swift; sourceTree = "<group>"; };
+		1D86DAD625A1058900C7611E /* WIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIP.swift; sourceTree = "<group>"; };
 		1DC65009259AD07800D9A1EE /* golOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golOSApp.swift; sourceTree = "<group>"; };
 		1DC6500A259AD07800D9A1EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1DC6500B259AD07A00D9A1EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +90,8 @@
 				1DC65009259AD07800D9A1EE /* golOSApp.swift */,
 				1DC6500A259AD07800D9A1EE /* ContentView.swift */,
 				1DC65048259BF08600D9A1EE /* DetailView.swift */,
+				1D852CC925A1197A00401C6C /* ExperienceView.swift */,
+				1D852CD025A16F1E00401C6C /* CircadianView.swift */,
 				1DC65034259B7C8C00D9A1EE /* Model */,
 				1DC6503D259B833300D9A1EE /* Items */,
 				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
@@ -126,6 +140,8 @@
 			children = (
 				1DC65037259B832800D9A1EE /* Hexagonal.swift */,
 				1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */,
+				1D86DAD625A1058900C7611E /* WIP.swift */,
+				1D852CD725A2172D00401C6C /* TemporalEntry.swift */,
 			);
 			path = Items;
 			sourceTree = "<group>";
@@ -229,11 +245,15 @@
 			files = (
 				1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65030259B7C8500D9A1EE /* Colors.swift in Sources */,
+				1D852CD125A16F1E00401C6C /* CircadianView.swift in Sources */,
 				1DC65038259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1D852CD825A2172D00401C6C /* TemporalEntry.swift in Sources */,
 				1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
 				1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */,
+				1D86DAD725A1058900C7611E /* WIP.swift in Sources */,
+				1D852CCA25A1197A00401C6C /* ExperienceView.swift in Sources */,
 				1DC6504E259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,11 +264,15 @@
 			files = (
 				1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */,
+				1D852CD225A16F1E00401C6C /* CircadianView.swift in Sources */,
 				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
+				1D852CD925A2172D00401C6C /* TemporalEntry.swift in Sources */,
 				1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
 				1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */,
+				1D86DAD825A1058900C7611E /* WIP.swift in Sources */,
+				1D852CCB25A1197A00401C6C /* ExperienceView.swift in Sources */,
 				1DC6504F259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

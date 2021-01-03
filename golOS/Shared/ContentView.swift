@@ -11,9 +11,9 @@ import SwiftUI
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		NavigationView {
+//		NavigationView {
 			ContentView()
-		}
+//		}
 //		.preferredColorScheme(.dark)←
 	}
 }
@@ -31,15 +31,17 @@ struct ContentView: View {
 			Color("grey.sys.100").edgesIgnoringSafeArea(.all)
 			VStack {
 				HStack {
-					Text("All hexagonal icons in a day visualization")
+					WIP(label: "visualization → ALL logged items in a day as hexagonal icons")
 						.padding()
 				}
-				Spacer()
+//				.frame(minHeight: 80)
+//				Spacer()
 				HStack {
-					Text("TODO: day night visualization cycle")
+					WIP(label: "visualization → day/night cycle, circadian rhythm")
 						.padding()
 				}
-				Spacer()
+//				.frame(minHeight: 80)
+//				Spacer()
 				VStack(spacing: 12) {
 					GroupAnnotationDimension(title: "critical", notes: "survive") {
 						Group {
@@ -214,7 +216,8 @@ struct GroupAnnotationDimension<Content: View>: View {
 
 	var body: some View {
 		VStack(spacing: 0) {
-//			header
+			header
+				.padding(.bottom, 4)
 
 			HStack {
 				content()
@@ -269,17 +272,18 @@ struct GroupAnnotationDimension<Content: View>: View {
 				.foregroundColor(ColorPreset(hue: parentHue, lum: .dark).getColor())
 			Spacer()
 		} //: LABEL
-//		.padding(.horizontal, 12)
-//		.background(
-//			Rectangle()
-//				.fill(ColorPreset(hue: hue, lum: .extraLight).getColor())
-//				.mask(
-//					FlatHexagonalShape(body: .infinity)
-//						.frame(height: 110)
-//						.padding(.horizontal, 40)
-//						.offset(x: 0, y: 40)
-//				)
-//		)
+		.padding(.horizontal, 12)
+		.padding(.vertical, 8)
+		.background(
+			Rectangle()
+				.fill(ColorPreset(hue: parentHue, lum: .extraLight).getColor())
+				.mask(
+					FlatHexagonalShape(body: .infinity)
+						.frame(height: 110)
+						.padding(.horizontal, 40)
+						.offset(x: 0, y: 40)
+				)
+		)
 	}
 }
 
