@@ -13,12 +13,12 @@ TODO:
 
 COMPLETELY ALTERNATE IDEA
 
-you're not dragging the ball, YOU'RE DRAGGING THE GRID BEHIND THE BALL
+you're not dragging the target/cursor, YOU'RE DRAGGING THE GRID BEHIND THE TARGET
 
 It would allow for inertia to be a much more realistic component
 
-so you just start dragging the little time clock thing
-	then the grid appears, with the selected time (+h:m)
+so you just start dragging the little time clock target/cursor
+	then the grid appears w/ blurview over bg + the selected time (+h:m)
 	then you can drag anywhere on the grid
 	then you double tap (anywhere, the grid) to "be done"
 	grid disappears, new time is selected
