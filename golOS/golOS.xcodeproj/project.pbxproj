@@ -55,6 +55,7 @@
 		1D86DAD625A1058900C7611E /* WIP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WIP.swift; sourceTree = "<group>"; };
 		1D8DB8B625A2B68E00D1C44D /* DateFormatter+formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+formatter.swift"; sourceTree = "<group>"; };
 		1D8DB8BF25A2C01A00D1C44D /* Collection+optional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+optional.swift"; sourceTree = "<group>"; };
+		1D8DB8C425A4C83200D1C44D /* Experiments.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Experiments.playground; path = Shared/Experiments.playground; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1DB479D025A2A7D50001394E /* DailyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAnnotation.swift; sourceTree = "<group>"; };
 		1DB479D525A2AED20001394E /* DailyFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFlow.swift; sourceTree = "<group>"; };
 		1DB479DA25A2AFD40001394E /* TemporalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalData.swift; sourceTree = "<group>"; };
@@ -114,6 +115,7 @@
 				1DC65034259B7C8C00D9A1EE /* Model */,
 				1DC6503D259B833300D9A1EE /* Items */,
 				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
+				1D8DB8C425A4C83200D1C44D /* Experiments.playground */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
