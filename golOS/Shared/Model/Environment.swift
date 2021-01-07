@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+/**
+TODO:
+- consolidate parentHue
+- add hexagonal rounding
+
+
+*/
+
 struct ParentHueEnvironmentKey: EnvironmentKey {
 	static var defaultValue: ColorHue = .grey
 }

@@ -114,6 +114,7 @@ extension View {
 
 // MARK: - Shape ⬢
 
+/// TODO: add regular - irregular
 struct PointyHexagonalShape: InsettableShape {
 	var offset: CGPoint = .zero
 	var inset: CGFloat = 0
