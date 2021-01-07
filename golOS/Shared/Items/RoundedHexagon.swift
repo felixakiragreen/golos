@@ -60,6 +60,13 @@ struct RoundedHexagonView: View {
 
 // MARK: - Rounded ⬢
 
+/**
+TODO:
+
+- make insettable
+- flat
+- make stretchable
+*/
 struct RoundedPointyHexagon: Shape {
 	let cornerRadius: CGFloat
 
