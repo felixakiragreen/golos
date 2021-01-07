@@ -14,7 +14,7 @@ struct ContentView_Previews: PreviewProvider {
 //		NavigationView {
 			ContentView()
 //		}
-//		.preferredColorScheme(.dark)←
+		.preferredColorScheme(.dark)
 	}
 }
 
