@@ -12,6 +12,7 @@ import SwiftUI
 struct RoundedHexagonView_Previews: PreviewProvider {
 	static var previews: some View {
 		RoundedHexagonView()
+			.preferredColorScheme(.dark)
 	}
 }
 
@@ -31,10 +32,10 @@ struct RoundedHexagonView: View {
 								.strokeBorder(Color("blue.200"), lineWidth: 2)
 							PointyRoundedHexagon(cornerRadius: 8)
 								.inset(by: -4)
-								.strokeBorder(Color("blue.600"), lineWidth: 2)
+								.strokeBorder(Color("blue.500"), lineWidth: 2)
 							PointyRoundedHexagon(cornerRadius: 8)
 								.inset(by: -8)
-								.strokeBorder(Color("blue.800"), lineWidth: 2)
+								.strokeBorder(Color("blue.600"), lineWidth: 2)
 						}
 					)
 				FlatRoundedHexagon(cornerRadius: 8)
@@ -47,47 +48,81 @@ struct RoundedHexagonView: View {
 								.strokeBorder(Color("blue.200"), lineWidth: 2)
 							FlatRoundedHexagon(cornerRadius: 8)
 								.inset(by: -4)
-								.strokeBorder(Color("blue.600"), lineWidth: 2)
+								.strokeBorder(Color("blue.500"), lineWidth: 2)
 							FlatRoundedHexagon(cornerRadius: 8)
 								.inset(by: -8)
-								.strokeBorder(Color("blue.800"), lineWidth: 2)
+								.strokeBorder(Color("blue.600"), lineWidth: 2)
 						}
 					)
 			}
 			HStack(spacing: 20) {
 				RoundedRectangle(cornerRadius: 8)
 					.frame(width: s*2, height: s)
-					.foregroundColor(Color("blue.400"))
+					.foregroundColor(Color("purple.400"))
 					.overlay(
 						ZStack {
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: 2)
-								.strokeBorder(Color("blue.200"), lineWidth: 2)
+								.strokeBorder(Color("purple.200"), lineWidth: 2)
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: -4)
-								.strokeBorder(Color("blue.600"), lineWidth: 2)
+								.strokeBorder(Color("purple.500"), lineWidth: 2)
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: -8)
-								.strokeBorder(Color("blue.800"), lineWidth: 2)
+								.strokeBorder(Color("purple.600"), lineWidth: 2)
 						}
 					)
 				RoundedRectangle(cornerRadius: 8)
 					.frame(width: s, height: s*2)
-					.foregroundColor(Color("blue.400"))
+					.foregroundColor(Color("purple.400"))
 					.overlay(
 						ZStack {
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: 2)
-								.strokeBorder(Color("blue.200"), lineWidth: 2)
+								.strokeBorder(Color("purple.200"), lineWidth: 2)
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: -4)
-								.strokeBorder(Color("blue.600"), lineWidth: 2)
+								.strokeBorder(Color("purple.500"), lineWidth: 2)
 							RoundedRectangle(cornerRadius: 8)
 								.inset(by: -8)
-								.strokeBorder(Color("blue.800"), lineWidth: 2)
+								.strokeBorder(Color("purple.600"), lineWidth: 2)
 						}
 					)
 				
+			}
+			HStack(spacing: 20) {
+				RoundedHexagon(cornerRadius: 12)
+					.frame(width: s, height: s*2)
+					.foregroundColor(Color("green.400"))
+					.overlay(
+						ZStack {
+							RoundedHexagon(cornerRadius: 12)
+								.inset(by: 2)
+								.strokeBorder(Color("green.200"), lineWidth: 2)
+							RoundedHexagon(cornerRadius: 12)
+								.inset(by: -4)
+								.strokeBorder(Color("green.500"), lineWidth: 2)
+							RoundedHexagon(cornerRadius: 12)
+								.inset(by: -8)
+								.strokeBorder(Color("green.600"), lineWidth: 2)
+						}
+					)
+				RoundedHexagon(cornerRadius: 6)
+					.frame(width: s*2, height: s)
+					.foregroundColor(Color("green.400"))
+					.overlay(
+						ZStack {
+							RoundedHexagon(cornerRadius: 6)
+								.inset(by: 2)
+								.strokeBorder(Color("green.200"), lineWidth: 2)
+							RoundedHexagon(cornerRadius: 6)
+								.inset(by: -4)
+								.strokeBorder(Color("green.500"), lineWidth: 2)
+							RoundedHexagon(cornerRadius: 6)
+								.inset(by: -8)
+								.strokeBorder(Color("green.600"), lineWidth: 2)
+						}
+					)
 			}
 		}
 	}
@@ -323,4 +358,44 @@ struct FlatRoundedHexagon: InsettableShape {
 
 // MARK: - Rounded Hexagon
 
+struct RoundedHexagon: InsettableShape {
+	let cornerRadius: CGFloat
+	var inset: CGFloat = 0
+	var regular: Bool = false
+	var orientation: HexagonalOrientation?
+	
+	func inset(by amount: CGFloat) -> some InsettableShape {
+		var hex = self
+		hex.inset += amount
+		return hex
+	}
 
+	func path(in rect: CGRect) -> Path {
+		/// step 0 → orientation
+		var o: HexagonalOrientation {
+			if let orientation = orientation {
+				return orientation
+			}
+			else if rect.size.width > rect.size.height {
+				return .flat
+			} else {
+				return .pointy
+			}
+		}
+		
+		/// step 1 → profit
+		if o == .pointy {
+			return PointyRoundedHexagon(
+				cornerRadius: cornerRadius,
+				inset: inset,
+				regular: regular
+			).path(in: rect)
+		} else {
+			return FlatRoundedHexagon(
+				cornerRadius: cornerRadius,
+				inset: inset,
+				regular: regular
+			).path(in: rect)
+		}
+	}
+}
