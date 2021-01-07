@@ -21,25 +21,25 @@ struct Hexagonal: View {
 
 	var body: some View {
 		VStack(spacing: 16.0) {
-			HStack {
-				Hexagon()
-					.fill(Color.orange)
-					.hexagonalFrame(width: 50)
-				Hexagon(.flat, offset: CGPoint(x: 0, y: 10))
-					.fill(Color.orange)
-					.hexagonalFrame(height: 50, orientation: .flat)
-					.clipped()
-			}
-			HStack {
-				PointyHexagon()
-					.hexagonalFrame(width: 50)
-				PointyHexagon()
-					.hexagonalFrame(height: 50)
-				FlatHexagon()
-					.hexagonalFrame(width: 50, orientation: .flat)
-				FlatHexagon()
-					.hexagonalFrame(height: 50, orientation: .flat)
-			}
+//			HStack {
+//				Hexagon()
+//					.fill(Color.orange)
+//					.hexagonalFrame(width: 50)
+//				Hexagon(.flat, offset: CGPoint(x: 0, y: 10))
+//					.fill(Color.orange)
+//					.hexagonalFrame(height: 50, orientation: .flat)
+//					.clipped()
+//			}
+//			HStack {
+//				PointyHexagon()
+//					.hexagonalFrame(width: 50)
+//				PointyHexagon()
+//					.hexagonalFrame(height: 50)
+//				FlatHexagon()
+//					.hexagonalFrame(width: 50, orientation: .flat)
+//				FlatHexagon()
+//					.hexagonalFrame(height: 50, orientation: .flat)
+//			}
 			HStack {
 				PointyHexagonalShape()
 					.fill(Color("red.500"))
@@ -280,40 +280,5 @@ struct Hexagon: InsettableShape {
 		var hex = self
 		hex.inset += amount
 		return hex
-	}
-}
-
-// MARK: - SUBVIEWS
-// TODO: rm
-struct PointyHexagon: View {
-	var fill = Color("green.felix")
-	var length: CGFloat?
-
-	var body: some View {
-		GeometryReader { geometry in
-			let center = min(geometry.size.width, geometry.size.height) / 2
-			let side = center / sin(α)
-			let trunk = length == .infinity ? geometry.size.height - side : length
-
-			PointyHexagonalShape(body: trunk)
-				.fill(fill)
-		}
-	}
-}
-
-// TODO: rm
-struct FlatHexagon: View {
-	var fill = Color("green.felix")
-	var length: CGFloat?
-
-	var body: some View {
-		GeometryReader { geometry in
-			let center = min(geometry.size.width, geometry.size.height) / 2
-			let side = center / sin(α)
-			let trunk = length == .infinity ? geometry.size.width - side : length
-
-			FlatHexagonalShape(body: trunk)
-				.fill(fill)
-		}
 	}
 }
