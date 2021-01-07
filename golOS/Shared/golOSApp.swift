@@ -16,9 +16,10 @@ struct golOSApp: App {
 			NavigationView {
 //				ContentView()
 //				TemporalEntry()
-				DailyFlow(dailyAnnotations: $data.daily) {
-					data.save()
-				}
+//				DailyFlow(dailyAnnotations: $data.daily) {
+//					data.save()
+//				}
+				SolarView()
 			}
 			.onAppear {
 				data.load()
