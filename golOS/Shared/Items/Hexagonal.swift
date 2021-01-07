@@ -85,33 +85,6 @@ struct Hexagonal: View {
 	}
 }
 
-// MARK: - HELPERS
-
-/// Math for drawing hexagonal angles
-let α = CGFloat(Double.pi / 3)
-
-enum HexagonalOrientation {
-	case pointy, flat
-}
-
-extension View {
-	func hexagonalFrame(width: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
-		frame(
-			width: width,
-			height: orientation == .pointy ? width / sin(α) : width * sin(α),
-			alignment: .center
-		)
-	}
-
-	func hexagonalFrame(height: CGFloat, orientation: HexagonalOrientation = .pointy) -> some View {
-		frame(
-			width: orientation == .pointy ? height * sin(α) : height / sin(α),
-			height: height,
-			alignment: .center
-		)
-	}
-}
-
 // MARK: - Shape ⬢
 
 /// TODO: add regular - irregular
@@ -231,6 +204,7 @@ struct FlatHexagonalShape: InsettableShape {
 
 		p.addLines([
 			/// left
+
 			CGPoint(
 				x: offset.x + insetX + leftTip,
 				y: offset.y - insetY + center * 2
@@ -245,6 +219,7 @@ struct FlatHexagonalShape: InsettableShape {
 			), /// left top
 
 			/// right
+
 			CGPoint(
 				x: offset.x - insetX + trunk + rightTip,
 				y: offset.y + insetY
@@ -309,7 +284,7 @@ struct Hexagon: InsettableShape {
 }
 
 // MARK: - SUBVIEWS
-
+// TODO: rm
 struct PointyHexagon: View {
 	var fill = Color("green.felix")
 	var length: CGFloat?
@@ -326,6 +301,7 @@ struct PointyHexagon: View {
 	}
 }
 
+// TODO: rm
 struct FlatHexagon: View {
 	var fill = Color("green.felix")
 	var length: CGFloat?
