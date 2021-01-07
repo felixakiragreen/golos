@@ -20,26 +20,22 @@ struct HexagonView: View {
 
 	var body: some View {
 		let s: CGFloat = 80
-		
+
 		VStack {
 			HStack {
-				PointyHexagon(regular: true)
-					.inset(by: 0)
-//					.hexagonalFrame(width: 100)
-					.frame(width: s, height: s*2)
+				HexagonShape()
+					.hexagonalFrame(height: s)
 					.foregroundColor(Color("blue.400"))
 			}
 		}
 	}
 }
 
-
-// MARK: - Shape ⬢
-
-struct PointyHexagon: InsettableShape {
+struct HexagonShape: InsettableShape {
 	var inset: CGFloat = 0
 	var regular: Bool = false
-	
+	var orientation: HexagonalOrientation?
+
 	func inset(by amount: CGFloat) -> some InsettableShape {
 		var hex = self
 		hex.inset += amount
@@ -47,30 +43,36 @@ struct PointyHexagon: InsettableShape {
 	}
 
 	func path(in rect: CGRect) -> Path {
-		let h = HexagonalConstruction(
+		var o: HexagonalOrientation {
+			if let orientation = orientation {
+				return orientation
+			} else if rect.size.width > rect.size.height {
+				return .flat
+			} else {
+				return .pointy
+			}
+		}
+
+		return HexagonalConstruction(
 			rect: rect,
 			inset: inset,
 			regular: regular,
-			orientation: .pointy
-		)
-		
-		return Path	{ path in
-			path.addLines([
-				h.c1,
-				h.c2,
-				h.c3,
-				h.c4,
-				h.c5,
-				h.c6
-			])
-
-			path.closeSubpath()
-		}
+			orientation: o
+		).path()
 	}
 }
 
+// MARK: - CONSTRUCTION
+
+/**
+ Wondering if maybe I should have a Hexagonal Construction that's more split up
+ then have Hexagonal + Inset
+ then have Hexagonal + Rounded
+ */
 
 struct HexagonalConstruction {
+	
+	// MARK: - 0. Params
 	
 	var rect: CGRect
 	var inset: CGFloat = 0
@@ -78,19 +80,17 @@ struct HexagonalConstruction {
 	var orientation: HexagonalOrientation
 	var pointy: Bool { orientation == .pointy }
 
-	
-	// MARK: - 1. dimensions
+	// MARK: - 1. Dimensions
 
 	var midX: CGFloat { rect.size.width / 2 } /// midpoint X
 	var midY: CGFloat { rect.size.height / 2 } /// midpoint Y
 	var half: CGFloat { min(midX, midY) } /// take smaller dimension for fitting a regular hexagon inside
 	var side: CGFloat { half / sin(α) } /// the length of a side of a regular hexagon (equivalent to the half height)
-	
-	// MARK: - 2. lines
-	
-	/// center lines, tip, for regular / irregular
+
+	// MARK: - 2. Lines
+
+	/// where the vertical center is for drawing the points & width (vertical becase it's across X)
 	var mX: CGFloat {
-		/// where the vertical center is for drawing the points & width (vertical becase it's across X)
 		switch (pointy, regular) {
 		case (true, true):
 			/// pointy + regular
@@ -131,10 +131,9 @@ struct HexagonalConstruction {
 			return side / 2
 		}
 	}
-//	var tip: CGFloat = 10
-	
-	// MARK: - 3. inset
-	
+
+	// MARK: - 3. Inset
+
 	/// {Flat is FLIPPED Pointy}
 	var i: CGFloat { inset / sin(α) }
 	/// In a 30,60,90 right angle triangle
@@ -144,9 +143,10 @@ struct HexagonalConstruction {
 	var iX: CGFloat { pointy ? inset : i * cos(α) }
 	var iY: CGFloat { pointy ? i * cos(α) : inset }
 	/// FYI: don't need to calculate sin() since `inset = i * sin(α)`
+
 	
 	// MARK: - 4. Corners
-	
+
 	/// step 4 → corners (the six vertices) {Flat is FLIPPED Pointy}
 	var c1: CGPoint { pointy
 		? CGPoint(x: iX, y: tip + iY) /// topLeading
@@ -172,12 +172,11 @@ struct HexagonalConstruction {
 		? CGPoint(x: iX, y: mY * 2 - tip - iY) /// bottomLeading
 		: CGPoint(x: mX * 2 - tip - iX, y: mY * 2 - iY) /// bottomTrailing
 	}
-	
-	
-}
 
-/**
-Wondering if maybe I should have a hexagonal construction
-then a Hexagonal + Inset
-then a Hexagonal + Rounded
-*/
+	func path() -> Path {
+		Path { path in
+			path.addLines([c1, c2, c3, c4, c5, c6])
+			path.closeSubpath()
+		}
+	}
+}
