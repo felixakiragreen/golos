@@ -29,6 +29,10 @@
 		1DB479D725A2AED20001394E /* DailyFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479D525A2AED20001394E /* DailyFlow.swift */; };
 		1DB479DB25A2AFD40001394E /* TemporalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479DA25A2AFD40001394E /* TemporalData.swift */; };
 		1DB479DC25A2AFD40001394E /* TemporalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479DA25A2AFD40001394E /* TemporalData.swift */; };
+		1DB8BD2B25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */; };
+		1DB8BD2C25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */; };
+		1DB8BD3225A7A8A90057E079 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */; };
+		1DB8BD3325A7A8A90057E079 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */; };
 		1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65009259AD07800D9A1EE /* golOSApp.swift */; };
 		1DC6501D259AD07A00D9A1EE /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65009259AD07800D9A1EE /* golOSApp.swift */; };
 		1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6500A259AD07800D9A1EE /* ContentView.swift */; };
@@ -47,8 +51,8 @@
 		1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65056259D1F1C00D9A1EE /* Environment.swift */; };
 		1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
 		1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
-		1DF77F9B25A61BD600D1C4A1 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagon.swift */; };
-		1DF77F9C25A61BD600D1C4A1 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagon.swift */; };
+		1DF77F9B25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */; };
+		1DF77F9C25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +69,8 @@
 		1DB479D525A2AED20001394E /* DailyFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFlow.swift; sourceTree = "<group>"; };
 		1DB479DA25A2AFD40001394E /* TemporalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalData.swift; sourceTree = "<group>"; };
 		1DB8BD2825A791D00057E079 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hexagonalFrame.swift"; sourceTree = "<group>"; };
+		1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedHexagon.swift; sourceTree = "<group>"; };
 		1DC65009259AD07800D9A1EE /* golOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golOSApp.swift; sourceTree = "<group>"; };
 		1DC6500A259AD07800D9A1EE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1DC6500B259AD07A00D9A1EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +85,7 @@
 		1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalAnnotation.swift; sourceTree = "<group>"; };
 		1DC65056259D1F1C00D9A1EE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFocusTextField.swift; sourceTree = "<group>"; };
-		1DF77F9A25A61BD600D1C4A1 /* RoundedHexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedHexagon.swift; sourceTree = "<group>"; };
+		1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedHexagonal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1DB8BD2925A7A8190057E079 /* Hexagonal */ = {
+			isa = PBXGroup;
+			children = (
+				1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */,
+				1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */,
+			);
+			path = Hexagonal;
+			sourceTree = "<group>";
+		};
 		1DC65003259AD07800D9A1EE = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +137,7 @@
 				1D8DB92C25A5584700D1C44D /* SolarView.swift */,
 				1DC65034259B7C8C00D9A1EE /* Model */,
 				1DC6503D259B833300D9A1EE /* Items */,
+				1DB8BD2925A7A8190057E079 /* Hexagonal */,
 				1D8DB92825A5583800D1C44D /* SunCalc.swift */,
 				1DC6500B259AD07A00D9A1EE /* Assets.xcassets */,
 				1DB8BD2825A791D00057E079 /* README.md */,
@@ -174,7 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				1DC65037259B832800D9A1EE /* Hexagonal.swift */,
-				1DF77F9A25A61BD600D1C4A1 /* RoundedHexagon.swift */,
+				1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */,
 				1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */,
 				1D86DAD625A1058900C7611E /* WIP.swift */,
 				1D852CD725A2172D00401C6C /* TemporalEntry.swift */,
@@ -290,13 +306,15 @@
 				1D8DB8C025A2C01A00D1C44D /* Collection+optional.swift in Sources */,
 				1DB479D625A2AED20001394E /* DailyFlow.swift in Sources */,
 				1D8DB92D25A5584700D1C44D /* SolarView.swift in Sources */,
-				1DF77F9B25A61BD600D1C4A1 /* RoundedHexagon.swift in Sources */,
+				1DF77F9B25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */,
 				1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
+				1DB8BD3225A7A8A90057E079 /* RoundedHexagon.swift in Sources */,
 				1DC6501C259AD07A00D9A1EE /* golOSApp.swift in Sources */,
 				1D852CDD25A2289D00401C6C /* Date+round.swift in Sources */,
 				1D86DAD725A1058900C7611E /* WIP.swift in Sources */,
+				1DB8BD2B25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */,
 				1D852CCA25A1197A00401C6C /* ExperienceView.swift in Sources */,
 				1DC6504E259BF2CB00D9A1EE /* TemporalAnnotation.swift in Sources */,
 				1DB479D125A2A7D50001394E /* DailyAnnotation.swift in Sources */,
@@ -309,14 +327,16 @@
 			files = (
 				1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */,
-				1DF77F9C25A61BD600D1C4A1 /* RoundedHexagon.swift in Sources */,
+				1DF77F9C25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */,
 				1DB479DC25A2AFD40001394E /* TemporalData.swift in Sources */,
+				1DB8BD2C25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */,
 				1D852CD225A16F1E00401C6C /* CircadianView.swift in Sources */,
 				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
 				1D8DB8B825A2B68E00D1C44D /* DateFormatter+formatter.swift in Sources */,
 				1D852CD925A2172D00401C6C /* TemporalEntry.swift in Sources */,
 				1D8DB8C125A2C01A00D1C44D /* Collection+optional.swift in Sources */,
 				1DB479D725A2AED20001394E /* DailyFlow.swift in Sources */,
+				1DB8BD3325A7A8A90057E079 /* RoundedHexagon.swift in Sources */,
 				1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC6504A259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,

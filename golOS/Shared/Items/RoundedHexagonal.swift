@@ -9,14 +9,14 @@ import SwiftUI
 
 // MARK: - PREVIEW
 
-struct RoundedHexagonView_Previews: PreviewProvider {
+struct RoundedHexagonalView_Previews: PreviewProvider {
 	static var previews: some View {
-		RoundedHexagonView()
+		RoundedHexagonalView()
 			.preferredColorScheme(.dark)
 	}
 }
 
-struct RoundedHexagonView: View {
+struct RoundedHexagonalView: View {
 	// MARK: - PROPS
 
 	// MARK: - BODY
