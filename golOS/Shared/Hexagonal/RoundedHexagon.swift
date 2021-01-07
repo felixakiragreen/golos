@@ -172,7 +172,6 @@ struct RoundedHexagon: InsettableShape {
 	}
 }
 
-
 // MARK: - Rounded ⬢
 
 struct PointyRoundedHexagon: InsettableShape {

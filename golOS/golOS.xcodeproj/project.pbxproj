@@ -51,8 +51,6 @@
 		1DC65058259D1F1C00D9A1EE /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC65056259D1F1C00D9A1EE /* Environment.swift */; };
 		1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
 		1DC6505F259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */; };
-		1DF77F9B25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */; };
-		1DF77F9C25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,7 +83,6 @@
 		1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalAnnotation.swift; sourceTree = "<group>"; };
 		1DC65056259D1F1C00D9A1EE /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFocusTextField.swift; sourceTree = "<group>"; };
-		1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedHexagonal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				1DC65037259B832800D9A1EE /* Hexagonal.swift */,
-				1DF77F9A25A61BD600D1C4A1 /* RoundedHexagonal.swift */,
 				1DC6505D259D7E3E00D9A1EE /* AutoFocusTextField.swift */,
 				1D86DAD625A1058900C7611E /* WIP.swift */,
 				1D852CD725A2172D00401C6C /* TemporalEntry.swift */,
@@ -306,7 +302,6 @@
 				1D8DB8C025A2C01A00D1C44D /* Collection+optional.swift in Sources */,
 				1DB479D625A2AED20001394E /* DailyFlow.swift in Sources */,
 				1D8DB92D25A5584700D1C44D /* SolarView.swift in Sources */,
-				1DF77F9B25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */,
 				1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
 				1DC6505E259D7E3E00D9A1EE /* AutoFocusTextField.swift in Sources */,
@@ -327,7 +322,6 @@
 			files = (
 				1DC6501F259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65031259B7C8500D9A1EE /* Colors.swift in Sources */,
-				1DF77F9C25A61BD600D1C4A1 /* RoundedHexagonal.swift in Sources */,
 				1DB479DC25A2AFD40001394E /* TemporalData.swift in Sources */,
 				1DB8BD2C25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */,
 				1D852CD225A16F1E00401C6C /* CircadianView.swift in Sources */,
