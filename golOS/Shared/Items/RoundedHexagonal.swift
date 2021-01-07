@@ -396,27 +396,6 @@ struct RoundedInsettablePointyHexagon: InsettableShape {
 	}
 }
 
-// MARK: - Rounded ⬣
-
-//struct RoundedFlatHexagon: Shape {
-//	let cornerRadius: CGFloat
-//
-//	func path(in rect: CGRect) -> Path {
-////		let half = min(rect.size.width, rect.size.height) / 2
-//
-//		return RoundedPointyHexagon(cornerRadius: cornerRadius)
-//			.rotation(Angle.init(degrees: 90), anchor: .bottom)
-//			.path(in: rect)
-////			.path(in: rect)
-////			.applying(
-//////				CGAffineTransform(scaleX: 2, y: 1)
-//////				CGAffineTransform(rotationAngle: CGFloat(Angle.init(degrees: 90).radians))
-////				CGAffineTransform().rotated(by: 90)
-////			)
-//
-//	}
-//}
-
 
 /**
  Recreation of RoundedRect(style: .continuous)
