@@ -128,6 +128,50 @@ struct RoundedHexagonView: View {
 	}
 }
 
+// MARK: - RoundedHexagon
+
+struct RoundedHexagon: InsettableShape {
+	let cornerRadius: CGFloat
+	var inset: CGFloat = 0
+	var regular: Bool = false
+	var orientation: HexagonalOrientation?
+	
+	func inset(by amount: CGFloat) -> some InsettableShape {
+		var hex = self
+		hex.inset += amount
+		return hex
+	}
+
+	func path(in rect: CGRect) -> Path {
+		/// step 0 → orientation
+		var o: HexagonalOrientation {
+			if let orientation = orientation {
+				return orientation
+			}
+			else if rect.size.width > rect.size.height {
+				return .flat
+			} else {
+				return .pointy
+			}
+		}
+		
+		/// step 1 → profit
+		if o == .pointy {
+			return PointyRoundedHexagon(
+				cornerRadius: cornerRadius,
+				inset: inset,
+				regular: regular
+			).path(in: rect)
+		} else {
+			return FlatRoundedHexagon(
+				cornerRadius: cornerRadius,
+				inset: inset,
+				regular: regular
+			).path(in: rect)
+		}
+	}
+}
+
 
 // MARK: - Rounded ⬢
 
@@ -352,50 +396,6 @@ struct FlatRoundedHexagon: InsettableShape {
 			path.addQuadCurve(to: c61, control: c6)
 			
 			path.closeSubpath()
-		}
-	}
-}
-
-// MARK: - Rounded Hexagon
-
-struct RoundedHexagon: InsettableShape {
-	let cornerRadius: CGFloat
-	var inset: CGFloat = 0
-	var regular: Bool = false
-	var orientation: HexagonalOrientation?
-	
-	func inset(by amount: CGFloat) -> some InsettableShape {
-		var hex = self
-		hex.inset += amount
-		return hex
-	}
-
-	func path(in rect: CGRect) -> Path {
-		/// step 0 → orientation
-		var o: HexagonalOrientation {
-			if let orientation = orientation {
-				return orientation
-			}
-			else if rect.size.width > rect.size.height {
-				return .flat
-			} else {
-				return .pointy
-			}
-		}
-		
-		/// step 1 → profit
-		if o == .pointy {
-			return PointyRoundedHexagon(
-				cornerRadius: cornerRadius,
-				inset: inset,
-				regular: regular
-			).path(in: rect)
-		} else {
-			return FlatRoundedHexagon(
-				cornerRadius: cornerRadius,
-				inset: inset,
-				regular: regular
-			).path(in: rect)
 		}
 	}
 }
