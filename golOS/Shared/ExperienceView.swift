@@ -58,19 +58,19 @@ struct ExperienceView: View {
 	
 	var bar1: some View {
 		ZStack {
-			Hexagon(.flat, body: .infinity)
+			HexagonShape(.flat, body: .infinity)
 				.fill(Color("grey.sys.300"))
 				.frame(height: 16)
 				.overlay(
-					Hexagon(.flat, body: .infinity)
+					HexagonShape(.flat, body: .infinity)
 						.strokeBorder(Color("grey.sys.500"))
 				)
-			Hexagon(.flat, body: 200)
+			HexagonShape(.flat, body: 200)
 				.inset(by: 2)
 				.fill(Color("red.sys.500"))
 				.frame(height: 16)
 				.overlay(
-					Hexagon(.flat, body: 200)
+					HexagonShape(.flat, body: 200)
 						.inset(by: 2)
 						.strokeBorder(Color("red.sys.700"))
 				)
@@ -79,20 +79,20 @@ struct ExperienceView: View {
 	
 	var bar2: some View {
 		ZStack {
-			Hexagon(.flat, body: .infinity)
+			HexagonShape(.flat, body: .infinity)
 				.fill(Color("grey.sys.300"))
 				.frame(height: 16)
 				.overlay(
-					Hexagon(.flat, body: .infinity)
+					HexagonShape(.flat, body: .infinity)
 						.inset(by: -2)
 						.strokeBorder(Color("grey.sys.500"))
 				)
-			Hexagon(.flat, body: 220)
+			HexagonShape(.flat, body: 220)
 				.inset(by: 2)
 				.fill(Color("red.sys.600"))
 				.frame(height: 16)
 				.overlay(
-					Hexagon(.flat, body: 220)
+					HexagonShape(.flat, body: 220)
 						.inset(by: 5)
 						.fill(Color("red.sys.700"))
 				)
@@ -234,12 +234,12 @@ struct HexBar: View {
 	
 	var body: some View {
 		ZStack {
-			Hexagon(.flat, body: length)
+			HexagonShape(.flat, body: length)
 				.inset(by: bar.inset)
 				.fill(ColorPreset(hue: hue, lum: bar.lum).getColor())
 				.frame(height: size)
 				.overlay(
-					Hexagon(.flat, body: length)
+					HexagonShape(.flat, body: length)
 						.inset(by: border.inset)
 						.strokeBorder(ColorPreset(hue: hue, lum: border.lum).getColor())
 				)
@@ -275,12 +275,12 @@ struct HexGradientBar: View {
 											  startPoint: border.start,
 											  endPoint: border.stop)
 
-		Hexagon(.flat, body: length)
+		HexagonShape(.flat, body: length)
 			.inset(by: bar.inset)
 			.fill(barFill)
 			.frame(height: size)
 			.overlay(
-				Hexagon(.flat, body: length)
+				HexagonShape(.flat, body: length)
 					.inset(by: border.inset)
 					.strokeBorder(borderFill)
 			)

@@ -248,7 +248,7 @@ struct FlatHexagonalShape: InsettableShape {
 
 // MARK: - HexagonShape
 
-struct Hexagon: InsettableShape {
+struct HexagonShape: InsettableShape {
 	var orientation: HexagonalOrientation = .pointy
 	var offset: CGPoint = .zero
 	var inset: CGFloat = 0

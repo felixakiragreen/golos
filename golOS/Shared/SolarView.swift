@@ -26,7 +26,7 @@ struct SolarView: View {
 			.foregroundColor(.primary)
 			.padding()
 			.background(
-				Hexagon(.flat, body: .infinity)
+				HexagonShape(.flat, body: .infinity)
 //					.frame(maxWidth: .infinity)
 					.foregroundColor(.secondary)
 			)

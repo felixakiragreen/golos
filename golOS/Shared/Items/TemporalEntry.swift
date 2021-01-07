@@ -77,7 +77,7 @@ struct TemporalEntry: View {
 				.offset(dragSnap)
 				.zIndex(2)
 				.opacity(0.5)
-			Hexagon()
+			HexagonShape()
 				.hexagonalFrame(height: snapIncrement * 2)
 				.frame(width: snapIncrement * 2, height: snapIncrement * 2)
 				.foregroundColor(Color("green.400"))

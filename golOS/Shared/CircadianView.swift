@@ -88,7 +88,7 @@ struct CircadianView: View {
 			
 			ZStack {
 				HStack(spacing: 0) {
-					Hexagon(.flat, head: false, body: .infinity, full: true)
+					HexagonShape(.flat, head: false, body: .infinity, full: true)
 						.fill(ColorPreset(hue: .blue, lum: .normal).getColor())
 						.frame(width: width * 0.2)
 //					Hexagon(.flat, head: false, body: 0, full: true)
@@ -98,7 +98,7 @@ struct CircadianView: View {
 						.fill(Color.clear)
 //						.foregroundColor(ColorPreset(hue: .green, lum: .normal).getColor())
 						.frame(width: width * 0)
-					Hexagon(.flat, body: .infinity)
+					HexagonShape(.flat, body: .infinity)
 						.fill(ColorPreset(hue: .yellow, lum: .normal).getColor())
 //					Rectangle()
 //						.foregroundColor(ColorPreset(hue: .yellow, lum: .normal).getColor())
