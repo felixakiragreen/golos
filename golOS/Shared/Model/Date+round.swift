@@ -5,7 +5,7 @@
 //  Created by Felix Akira Green on 1/3/21.
 //
 
-import SwiftUI
+import Foundation
 
 extension Date {
 	func round(precision: TimeInterval) -> Date {
@@ -28,4 +28,12 @@ extension Date {
 
 func minutes(_ min: Double) -> TimeInterval {
 	return 60 * min
+}
+
+func hours(_ hrs: Double) -> TimeInterval {
+	return hrs * minutes(60)
+}
+
+func days(_ dys: Double) -> TimeInterval {
+	return dys * hours(24) * minutes(60)
 }
