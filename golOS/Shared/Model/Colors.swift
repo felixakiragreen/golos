@@ -54,6 +54,24 @@ struct ColorPreset: Equatable {
 		self.lum = lum
 	}
 	
+	init(hue: ColorHue, lum: ColorLuminance, sys: Bool) {
+//		self.id = ColorPreset.toString((hue, luminance))
+		self.hue = hue
+		self.lum = lum
+		self.sys = sys
+	}
+	
+//	var accessibleFontColor: Color {
+//		if sys {
+//			
+//		}
+////		 var red: CGFloat = 0
+////		 var green: CGFloat = 0
+////		 var blue: CGFloat = 0
+////		 UIColor(self).getRed(&red, green: &green, blue: &blue, alpha: nil)
+////		 return isLightColor(red: red, green: green, blue: blue) ? .black : .white
+//	}
+	
 	/// Initialization from just a string → ("grey.100")
 //	init(_ from: String) {
 //		guard let (primary, luminance) = ColorPreset.stringToColorComponents(from) else {
