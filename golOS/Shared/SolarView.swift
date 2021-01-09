@@ -151,7 +151,8 @@ struct SolarView: View {
 						
 //							.offset
 						}
-					}.frame(maxWidth: width, maxHeight: .infinity, alignment: .top)
+					}//: ZStack
+					.frame(maxWidth: width, maxHeight: .infinity, alignment: .top)
 				}
 				
 				VStack(spacing: 0) {
