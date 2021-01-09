@@ -11,12 +11,15 @@ import SwiftUI
 
 struct RoundedHexagonView_Previews: PreviewProvider {
 	static var previews: some View {
-		RoundedHexagonView()
-			.preferredColorScheme(.dark)
+		Group {
+			RoundedHexagonView()
+				.preferredColorScheme(.dark)
+		}
 	}
 }
 
 struct RoundedHexagonView: View {
+	// MARK: - BODY
 	var body: some View {
 		let s: CGFloat = 80
 		
@@ -55,58 +58,44 @@ struct RoundedHexagonView: View {
 						}
 					)
 			}
+//			HStack(spacing: 20) {
+//				RoundedRectangle(cornerRadius: 8)
+//					.frame(width: s*2, height: s)
+//					.foregroundColor(Color("purple.400"))
+//					.overlay(
+//						ZStack {
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: 2)
+//								.strokeBorder(Color("purple.200"), lineWidth: 2)
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: -4)
+//								.strokeBorder(Color("purple.500"), lineWidth: 2)
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: -8)
+//								.strokeBorder(Color("purple.600"), lineWidth: 2)
+//						}
+//					)
+//				RoundedRectangle(cornerRadius: 8)
+//					.frame(width: s, height: s*2)
+//					.foregroundColor(Color("purple.400"))
+//					.overlay(
+//						ZStack {
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: 2)
+//								.strokeBorder(Color("purple.200"), lineWidth: 2)
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: -4)
+//								.strokeBorder(Color("purple.500"), lineWidth: 2)
+//							RoundedRectangle(cornerRadius: 8)
+//								.inset(by: -8)
+//								.strokeBorder(Color("purple.600"), lineWidth: 2)
+//						}
+//					)
+//
+//			}
+			let c: CGFloat = 0
 			HStack(spacing: 20) {
-				RoundedRectangle(cornerRadius: 8)
-					.frame(width: s*2, height: s)
-					.foregroundColor(Color("purple.400"))
-					.overlay(
-						ZStack {
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: 2)
-								.strokeBorder(Color("purple.200"), lineWidth: 2)
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: -4)
-								.strokeBorder(Color("purple.500"), lineWidth: 2)
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: -8)
-								.strokeBorder(Color("purple.600"), lineWidth: 2)
-						}
-					)
-				RoundedRectangle(cornerRadius: 8)
-					.frame(width: s, height: s*2)
-					.foregroundColor(Color("purple.400"))
-					.overlay(
-						ZStack {
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: 2)
-								.strokeBorder(Color("purple.200"), lineWidth: 2)
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: -4)
-								.strokeBorder(Color("purple.500"), lineWidth: 2)
-							RoundedRectangle(cornerRadius: 8)
-								.inset(by: -8)
-								.strokeBorder(Color("purple.600"), lineWidth: 2)
-						}
-					)
 				
-			}
-			HStack(spacing: 20) {
-				RoundedHexagon(cornerRadius: 12)
-					.frame(width: s, height: s*2)
-					.foregroundColor(Color("green.400"))
-					.overlay(
-						ZStack {
-							RoundedHexagon(cornerRadius: 12)
-								.inset(by: 2)
-								.strokeBorder(Color("green.200"), lineWidth: 2)
-							RoundedHexagon(cornerRadius: 12)
-								.inset(by: -4)
-								.strokeBorder(Color("green.500"), lineWidth: 2)
-							RoundedHexagon(cornerRadius: 12)
-								.inset(by: -8)
-								.strokeBorder(Color("green.600"), lineWidth: 2)
-						}
-					)
 				RoundedHexagon(cornerRadius: 6)
 					.frame(width: s*2, height: s)
 					.foregroundColor(Color("green.400"))
@@ -119,6 +108,29 @@ struct RoundedHexagonView: View {
 								.inset(by: -4)
 								.strokeBorder(Color("green.500"), lineWidth: 2)
 							RoundedHexagon(cornerRadius: 6)
+								.inset(by: -8)
+								.strokeBorder(Color("green.600"), lineWidth: 2)
+						}
+					)
+				RoundedHexagon(cornerRadius: c)
+					.fill(
+						LinearGradient(gradient:
+							Gradient(colors: [ Color("green.400"), Color("green.600") ]),
+											startPoint: .top,
+											endPoint: .bottom
+							)
+					)
+//					.hexagonalFrame(width: s)
+					.frame(width: s, height: s*2)
+					.overlay(
+						ZStack {
+							RoundedHexagon(cornerRadius: 2)
+								.inset(by: 2)
+								.strokeBorder(Color("green.200").opacity(0.5), lineWidth: 2)
+							RoundedHexagon(cornerRadius: c)
+								.inset(by: -4)
+								.strokeBorder(Color("green.500"), lineWidth: 2)
+							RoundedHexagon(cornerRadius: c)
 								.inset(by: -8)
 								.strokeBorder(Color("green.600"), lineWidth: 2)
 						}
@@ -193,10 +205,8 @@ struct PointyRoundedHexagon: InsettableShape {
 		let side = half / sin(α) /// the length of a side of a regular hexagon (equivalent to the half height)
 
 		/// step 1b → regular / irregular
-		var mX: CGFloat { /// where the vertical center is for drawing the points & width (vertical becase it's across X)
-			if regular { return half }
-			else { return midX }
-		}
+		/// where the vertical center is for drawing the points & width (vertical becase it's across X)
+		var mX: CGFloat { regular ? half : midX }
 		var mY: CGFloat { /// where the horizontal center is for drawing the height (horizontal because it's across Y)
 			if regular { return side }
 			else { return midY }
