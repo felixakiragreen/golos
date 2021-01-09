@@ -23,7 +23,7 @@ struct HexagonView: View {
 
 		VStack {
 			HStack {
-				HexagonShape()
+				Hexagon()
 					.hexagonalFrame(height: s)
 					.foregroundColor(Color("blue.400"))
 			}
@@ -31,7 +31,7 @@ struct HexagonView: View {
 	}
 }
 
-struct HexagonShape: InsettableShape {
+struct Hexagon: InsettableShape {
 	var inset: CGFloat = 0
 	var regular: Bool = false
 	var orientation: HexagonalOrientation?

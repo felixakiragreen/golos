@@ -29,6 +29,10 @@
 		1DB479D725A2AED20001394E /* DailyFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479D525A2AED20001394E /* DailyFlow.swift */; };
 		1DB479DB25A2AFD40001394E /* TemporalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479DA25A2AFD40001394E /* TemporalData.swift */; };
 		1DB479DC25A2AFD40001394E /* TemporalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB479DA25A2AFD40001394E /* TemporalData.swift */; };
+		1DB76A5E25A8C2AB0004C84A /* Calendar+generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB76A5D25A8C2AB0004C84A /* Calendar+generate.swift */; };
+		1DB76A5F25A8C2AB0004C84A /* Calendar+generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB76A5D25A8C2AB0004C84A /* Calendar+generate.swift */; };
+		1DB76AF225A908140004C84A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB76AF125A908140004C84A /* MapView.swift */; };
+		1DB76AF325A908140004C84A /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB76AF125A908140004C84A /* MapView.swift */; };
 		1DB8BD2B25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */; };
 		1DB8BD2C25A7A8470057E079 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */; };
 		1DB8BD3225A7A8A90057E079 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */; };
@@ -68,6 +72,8 @@
 		1DB479D025A2A7D50001394E /* DailyAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyAnnotation.swift; sourceTree = "<group>"; };
 		1DB479D525A2AED20001394E /* DailyFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyFlow.swift; sourceTree = "<group>"; };
 		1DB479DA25A2AFD40001394E /* TemporalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporalData.swift; sourceTree = "<group>"; };
+		1DB76A5D25A8C2AB0004C84A /* Calendar+generate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+generate.swift"; sourceTree = "<group>"; };
+		1DB76AF125A908140004C84A /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		1DB8BD2825A791D00057E079 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1DB8BD2A25A7A8470057E079 /* View+hexagonalFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+hexagonalFrame.swift"; sourceTree = "<group>"; };
 		1DB8BD3125A7A8A90057E079 /* RoundedHexagon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedHexagon.swift; sourceTree = "<group>"; };
@@ -136,6 +142,7 @@
 				1D852CD025A16F1E00401C6C /* CircadianView.swift */,
 				1DB479D525A2AED20001394E /* DailyFlow.swift */,
 				1D8DB92C25A5584700D1C44D /* SolarView.swift */,
+				1DB76AF125A908140004C84A /* MapView.swift */,
 				1DC65034259B7C8C00D9A1EE /* Model */,
 				1DC6503D259B833300D9A1EE /* Items */,
 				1DB8BD2925A7A8190057E079 /* Hexagonal */,
@@ -181,6 +188,7 @@
 				1DC6504D259BF2CB00D9A1EE /* TemporalAnnotation.swift */,
 				1DC6502F259B7C8500D9A1EE /* Colors.swift */,
 				1D852CDC25A2289D00401C6C /* Date+round.swift */,
+				1DB76A5D25A8C2AB0004C84A /* Calendar+generate.swift */,
 				1D8DB8B625A2B68E00D1C44D /* DateFormatter+formatter.swift */,
 				1D8DB8BF25A2C01A00D1C44D /* Collection+optional.swift */,
 			);
@@ -297,6 +305,7 @@
 			files = (
 				1DC6501E259AD07A00D9A1EE /* ContentView.swift in Sources */,
 				1DC65030259B7C8500D9A1EE /* Colors.swift in Sources */,
+				1DB76A5E25A8C2AB0004C84A /* Calendar+generate.swift in Sources */,
 				1D8DB92925A5583800D1C44D /* SunCalc.swift in Sources */,
 				1DB479DB25A2AFD40001394E /* TemporalData.swift in Sources */,
 				1D852CD125A16F1E00401C6C /* CircadianView.swift in Sources */,
@@ -306,6 +315,7 @@
 				1DB8BD3925A7B7780057E079 /* Hexagon.swift in Sources */,
 				1D8DB8C025A2C01A00D1C44D /* Collection+optional.swift in Sources */,
 				1DB479D625A2AED20001394E /* DailyFlow.swift in Sources */,
+				1DB76AF225A908140004C84A /* MapView.swift in Sources */,
 				1D8DB92D25A5584700D1C44D /* SolarView.swift in Sources */,
 				1DC65057259D1F1C00D9A1EE /* Environment.swift in Sources */,
 				1DC65049259BF08600D9A1EE /* DetailView.swift in Sources */,
@@ -333,6 +343,8 @@
 				1DC65039259B832800D9A1EE /* Hexagonal.swift in Sources */,
 				1D8DB8B825A2B68E00D1C44D /* DateFormatter+formatter.swift in Sources */,
 				1D852CD925A2172D00401C6C /* TemporalEntry.swift in Sources */,
+				1DB76A5F25A8C2AB0004C84A /* Calendar+generate.swift in Sources */,
+				1DB76AF325A908140004C84A /* MapView.swift in Sources */,
 				1D8DB8C125A2C01A00D1C44D /* Collection+optional.swift in Sources */,
 				1DB479D725A2AED20001394E /* DailyFlow.swift in Sources */,
 				1DB8BD3325A7A8A90057E079 /* RoundedHexagon.swift in Sources */,
