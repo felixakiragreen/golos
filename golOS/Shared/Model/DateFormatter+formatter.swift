@@ -7,6 +7,8 @@
 
 import Foundation
 
+// TODO: rework
+
 extension DateFormatter {
 	static let mediumDateFormatter: DateFormatter = {
 		let df = DateFormatter()
@@ -23,6 +25,26 @@ extension DateFormatter {
 
 		return df
 	}()
+
+	static let hourFormatter: DateFormatter = {
+		let df = DateFormatter()
+		df.dateFormat = "HH"
+
+		return df
+	}()
+	
+	static let timeFormatter: DateFormatter = {
+		let df = DateFormatter()
+		df.dateFormat = "HH:mm"
+
+		return df
+	}()
+
+//	func hourString(from date: Date) -> String {
+//		return hourFormatter.string(from: date)
+//	}
+
+//	Text("\(previewTime, formatter: Self.timeFormatter)")
 
 	static let mediumDateTimeFormatter: DateFormatter = {
 		let df = DateFormatter()
