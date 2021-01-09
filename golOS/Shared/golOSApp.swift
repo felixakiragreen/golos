@@ -19,7 +19,7 @@ struct golOSApp: App {
 //				DailyFlow(dailyAnnotations: $data.daily) {
 //					data.save()
 //				}
-				SolarView()
+				MapView()
 			}
 			.onAppear {
 				data.load()
