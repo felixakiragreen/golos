@@ -4,6 +4,7 @@
 //
 //  Created by Felix Akira Green on 1/10/21.
 //
+// Adapted from: https://github.com/zntfdr/FiveStarsCodeSamples/blob/main/ScrollView-Offset/ScrollViewOffset.swift
 
 import SwiftUI
 

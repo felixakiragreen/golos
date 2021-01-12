@@ -20,6 +20,8 @@ struct golOSApp: App {
 //					data.save()
 //				}
 				MapView()
+//				ScrollableStack()
+//				ScrollViewOffsetView()
 			}
 			.onAppear {
 				data.load()

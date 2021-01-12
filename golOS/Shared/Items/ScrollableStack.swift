@@ -5,6 +5,9 @@
 //  Created by Felix Akira Green on 1/10/21.
 //
 
+// Adapted from: https://levelup.gitconnected.com/snap-to-item-scrolling-debccdcbb22f
+// REMOVE
+
 import SwiftUI
 
 // MARK: - PREVIEW
