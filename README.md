@@ -1,5 +1,7 @@
 # The Game of Life Operating System
 
+_To Visualize all of Life's Most Meaninful Data_
+
 We don't know why the brain be like it do. 🧠
 
 Were you ever assigned a book to read for homework that was like... the hardest thing ever to get through? Only to then rediscover how good it actually was years later? 🤯
