@@ -1,6 +1,6 @@
 # The Game of Life Operating System
 
-_To Visualize all of Life's Most Meaninful Data_
+_To Visualize All of Life's Most Meaningful Data_
 
 We don't know why the brain be like it do. 🧠
 
