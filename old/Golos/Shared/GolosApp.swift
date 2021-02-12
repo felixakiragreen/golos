@@ -1,20 +1,31 @@
 //
-//  GolosApp.swift
+//  golOSApp.swift
 //  Shared
 //
-//  Created by Felix Akira Green on 11/1/20.
+//  Created by Felix Akira Green on 12/28/20.
 //
 
 import SwiftUI
 
 @main
-struct GolosApp: App {
-	let persistenceController = PersistenceController.shared
+struct golOSApp: App {
+	@ObservedObject private var data = TemporalData()
 
 	var body: some Scene {
 		WindowGroup {
-			ContentView()
-				.environment(\.managedObjectContext, persistenceController.container.viewContext)
+			NavigationView {
+//				ContentView()
+//				TemporalEntry()
+//				DailyFlow(dailyAnnotations: $data.daily) {
+//					data.save()
+//				}
+				MapView()
+//				ScrollableStack()
+//				ScrollViewOffsetView()
+			}
+			.onAppear {
+				data.load()
+			}
 		}
 	}
 }
