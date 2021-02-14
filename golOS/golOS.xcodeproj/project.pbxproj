@@ -7,6 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D5EE0D525D9BA2E00142534 /* Calendar+generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CA25D9BA2E00142534 /* Calendar+generate.swift */; };
+		1D5EE0D625D9BA2E00142534 /* Calendar+generate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CA25D9BA2E00142534 /* Calendar+generate.swift */; };
+		1D5EE0D725D9BA2E00142534 /* Collection+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CB25D9BA2E00142534 /* Collection+optional.swift */; };
+		1D5EE0D825D9BA2E00142534 /* Collection+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CB25D9BA2E00142534 /* Collection+optional.swift */; };
+		1D5EE0D925D9BA2E00142534 /* Color+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */; };
+		1D5EE0DA25D9BA2E00142534 /* Color+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */; };
+		1D5EE0DB25D9BA2E00142534 /* View+trackingMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CD25D9BA2E00142534 /* View+trackingMouse.swift */; };
+		1D5EE0DC25D9BA2E00142534 /* View+trackingMouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CD25D9BA2E00142534 /* View+trackingMouse.swift */; };
+		1D5EE0DD25D9BA2E00142534 /* Calendar+numberOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CE25D9BA2E00142534 /* Calendar+numberOf.swift */; };
+		1D5EE0DE25D9BA2E00142534 /* Calendar+numberOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CE25D9BA2E00142534 /* Calendar+numberOf.swift */; };
+		1D5EE0DF25D9BA2E00142534 /* Date+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CF25D9BA2E00142534 /* Date+round.swift */; };
+		1D5EE0E025D9BA2E00142534 /* Date+round.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0CF25D9BA2E00142534 /* Date+round.swift */; };
+		1D5EE0E125D9BA2E00142534 /* Comparable+clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D025D9BA2E00142534 /* Comparable+clamp.swift */; };
+		1D5EE0E225D9BA2E00142534 /* Comparable+clamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D025D9BA2E00142534 /* Comparable+clamp.swift */; };
+		1D5EE0E325D9BA2E00142534 /* DateFormatter+future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D125D9BA2E00142534 /* DateFormatter+future.swift */; };
+		1D5EE0E425D9BA2E00142534 /* DateFormatter+future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D125D9BA2E00142534 /* DateFormatter+future.swift */; };
+		1D5EE0E525D9BA2E00142534 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D225D9BA2E00142534 /* Colors.swift */; };
+		1D5EE0E625D9BA2E00142534 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D225D9BA2E00142534 /* Colors.swift */; };
+		1D5EE0E725D9BA2E00142534 /* Dictionary+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D325D9BA2E00142534 /* Dictionary+optional.swift */; };
+		1D5EE0E825D9BA2E00142534 /* Dictionary+optional.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D325D9BA2E00142534 /* Dictionary+optional.swift */; };
+		1D5EE0E925D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D425D9BA2E00142534 /* View+hexagonalFrame.swift */; };
+		1D5EE0EA25D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0D425D9BA2E00142534 /* View+hexagonalFrame.swift */; };
+		1D5EE0EC25D9BB9F00142534 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0EB25D9BB9F00142534 /* SunCalc.swift */; };
+		1D5EE0ED25D9BB9F00142534 /* SunCalc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0EB25D9BB9F00142534 /* SunCalc.swift */; };
+		1D5EE0F325D9BE4300142534 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */; };
+		1D5EE0F425D9BE4300142534 /* RoundedHexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */; };
+		1D5EE0F525D9BE4300142534 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */; };
+		1D5EE0F625D9BE4300142534 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */; };
+		1D5EE0F725D9BE4300142534 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F125D9BE4300142534 /* Hexagon.swift */; };
+		1D5EE0F825D9BE4300142534 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F125D9BE4300142534 /* Hexagon.swift */; };
+		1D5EE0F925D9BE4300142534 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F225D9BE4300142534 /* ButtonStyles.swift */; };
+		1D5EE0FA25D9BE4300142534 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F225D9BE4300142534 /* ButtonStyles.swift */; };
 		1D751A7425D72ACE00860A62 /* golOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A5E25D72ACC00860A62 /* golOS.xcdatamodeld */; };
 		1D751A7525D72ACE00860A62 /* golOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A5E25D72ACC00860A62 /* golOS.xcdatamodeld */; };
 		1D751A7625D72ACE00860A62 /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A6025D72ACC00860A62 /* golOSApp.swift */; };
@@ -17,9 +49,29 @@
 		1D751A7B25D72ACE00860A62 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A6225D72ACC00860A62 /* Persistence.swift */; };
 		1D751A7C25D72ACE00860A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D751A6325D72ACE00860A62 /* Assets.xcassets */; };
 		1D751A7D25D72ACE00860A62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D751A6325D72ACE00860A62 /* Assets.xcassets */; };
+		1D9E4ED525D9870F00350E01 /* SolarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED425D9870F00350E01 /* SolarView.swift */; };
+		1D9E4ED625D9870F00350E01 /* SolarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED425D9870F00350E01 /* SolarView.swift */; };
+		1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
+		1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D5EE0CA25D9BA2E00142534 /* Calendar+generate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Calendar+generate.swift"; sourceTree = "<group>"; };
+		1D5EE0CB25D9BA2E00142534 /* Collection+optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collection+optional.swift"; sourceTree = "<group>"; };
+		1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+hex.swift"; sourceTree = "<group>"; };
+		1D5EE0CD25D9BA2E00142534 /* View+trackingMouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+trackingMouse.swift"; sourceTree = "<group>"; };
+		1D5EE0CE25D9BA2E00142534 /* Calendar+numberOf.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Calendar+numberOf.swift"; sourceTree = "<group>"; };
+		1D5EE0CF25D9BA2E00142534 /* Date+round.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+round.swift"; sourceTree = "<group>"; };
+		1D5EE0D025D9BA2E00142534 /* Comparable+clamp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Comparable+clamp.swift"; sourceTree = "<group>"; };
+		1D5EE0D125D9BA2E00142534 /* DateFormatter+future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+future.swift"; sourceTree = "<group>"; };
+		1D5EE0D225D9BA2E00142534 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		1D5EE0D325D9BA2E00142534 /* Dictionary+optional.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+optional.swift"; sourceTree = "<group>"; };
+		1D5EE0D425D9BA2E00142534 /* View+hexagonalFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+hexagonalFrame.swift"; sourceTree = "<group>"; };
+		1D5EE0EB25D9BB9F00142534 /* SunCalc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SunCalc.swift; path = ../../../old/golOS/Shared/Model/SunCalc.swift; sourceTree = "<group>"; };
+		1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedHexagon.swift; sourceTree = "<group>"; };
+		1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
+		1D5EE0F125D9BE4300142534 /* Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
+		1D5EE0F225D9BE4300142534 /* ButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		1D751A5F25D72ACC00860A62 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1D751A6025D72ACC00860A62 /* golOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golOSApp.swift; sourceTree = "<group>"; };
 		1D751A6125D72ACC00860A62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -30,6 +82,8 @@
 		1D751A7025D72ACE00860A62 /* golOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = golOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D751A7225D72ACE00860A62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1D751A7325D72ACE00860A62 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		1D9E4ED425D9870F00350E01 /* SolarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarView.swift; sourceTree = "<group>"; };
+		1D9E4ED925D9900000350E01 /* CGSize+operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+operators.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +104,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D5EE0C925D9BA2E00142534 /* Principles */ = {
+			isa = PBXGroup;
+			children = (
+				1D5EE0D225D9BA2E00142534 /* Colors.swift */,
+				1D5EE0EB25D9BB9F00142534 /* SunCalc.swift */,
+				1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */,
+				1D9E4ED925D9900000350E01 /* CGSize+operators.swift */,
+				1D5EE0CA25D9BA2E00142534 /* Calendar+generate.swift */,
+				1D5EE0CE25D9BA2E00142534 /* Calendar+numberOf.swift */,
+				1D5EE0CF25D9BA2E00142534 /* Date+round.swift */,
+				1D5EE0D125D9BA2E00142534 /* DateFormatter+future.swift */,
+				1D5EE0D025D9BA2E00142534 /* Comparable+clamp.swift */,
+				1D5EE0CB25D9BA2E00142534 /* Collection+optional.swift */,
+				1D5EE0D325D9BA2E00142534 /* Dictionary+optional.swift */,
+				1D5EE0D425D9BA2E00142534 /* View+hexagonalFrame.swift */,
+				1D5EE0CD25D9BA2E00142534 /* View+trackingMouse.swift */,
+			);
+			path = Principles;
+			sourceTree = "<group>";
+		};
+		1D5EE0EE25D9BE4300142534 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */,
+				1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */,
+				1D5EE0F125D9BE4300142534 /* Hexagon.swift */,
+				1D5EE0F225D9BE4300142534 /* ButtonStyles.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
 		1D751A5825D72ACC00860A62 = {
 			isa = PBXGroup;
 			children = (
@@ -66,7 +151,10 @@
 			children = (
 				1D751A6025D72ACC00860A62 /* golOSApp.swift */,
 				1D751A6125D72ACC00860A62 /* ContentView.swift */,
+				1D9E4ED425D9870F00350E01 /* SolarView.swift */,
 				1D751A8625D72ADF00860A62 /* Model */,
+				1D5EE0EE25D9BE4300142534 /* Elements */,
+				1D5EE0C925D9BA2E00142534 /* Principles */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -203,10 +291,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9E4ED525D9870F00350E01 /* SolarView.swift in Sources */,
+				1D5EE0E525D9BA2E00142534 /* Colors.swift in Sources */,
+				1D5EE0F325D9BE4300142534 /* RoundedHexagon.swift in Sources */,
+				1D5EE0D725D9BA2E00142534 /* Collection+optional.swift in Sources */,
 				1D751A7625D72ACE00860A62 /* golOSApp.swift in Sources */,
 				1D751A7A25D72ACE00860A62 /* Persistence.swift in Sources */,
+				1D5EE0DF25D9BA2E00142534 /* Date+round.swift in Sources */,
 				1D751A7425D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
+				1D5EE0E925D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
+				1D5EE0D525D9BA2E00142534 /* Calendar+generate.swift in Sources */,
+				1D5EE0E325D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
+				1D5EE0F925D9BE4300142534 /* ButtonStyles.swift in Sources */,
+				1D5EE0F725D9BE4300142534 /* Hexagon.swift in Sources */,
+				1D5EE0D925D9BA2E00142534 /* Color+hex.swift in Sources */,
+				1D5EE0E125D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
+				1D5EE0E725D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
+				1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */,
+				1D5EE0F525D9BE4300142534 /* VisualEffectBlur.swift in Sources */,
+				1D5EE0DD25D9BA2E00142534 /* Calendar+numberOf.swift in Sources */,
+				1D5EE0EC25D9BB9F00142534 /* SunCalc.swift in Sources */,
 				1D751A7825D72ACE00860A62 /* ContentView.swift in Sources */,
+				1D5EE0DB25D9BA2E00142534 /* View+trackingMouse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,10 +320,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D9E4ED625D9870F00350E01 /* SolarView.swift in Sources */,
+				1D5EE0E625D9BA2E00142534 /* Colors.swift in Sources */,
+				1D5EE0F425D9BE4300142534 /* RoundedHexagon.swift in Sources */,
+				1D5EE0D825D9BA2E00142534 /* Collection+optional.swift in Sources */,
 				1D751A7725D72ACE00860A62 /* golOSApp.swift in Sources */,
 				1D751A7B25D72ACE00860A62 /* Persistence.swift in Sources */,
+				1D5EE0E025D9BA2E00142534 /* Date+round.swift in Sources */,
 				1D751A7525D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
+				1D5EE0EA25D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
+				1D5EE0D625D9BA2E00142534 /* Calendar+generate.swift in Sources */,
+				1D5EE0E425D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
+				1D5EE0FA25D9BE4300142534 /* ButtonStyles.swift in Sources */,
+				1D5EE0F825D9BE4300142534 /* Hexagon.swift in Sources */,
+				1D5EE0DA25D9BA2E00142534 /* Color+hex.swift in Sources */,
+				1D5EE0E225D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
+				1D5EE0E825D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
+				1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */,
+				1D5EE0F625D9BE4300142534 /* VisualEffectBlur.swift in Sources */,
+				1D5EE0DE25D9BA2E00142534 /* Calendar+numberOf.swift in Sources */,
+				1D5EE0ED25D9BB9F00142534 /* SunCalc.swift in Sources */,
 				1D751A7925D72ACE00860A62 /* ContentView.swift in Sources */,
+				1D5EE0DC25D9BA2E00142534 /* View+trackingMouse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
