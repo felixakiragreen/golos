@@ -63,7 +63,7 @@ struct SolarView: View {
 								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
-						SunsetView(temporalConfig: temporalConfig)
+						SolarBlockView(temporalConfig: temporalConfig)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -173,7 +173,7 @@ struct SolarView: View {
 	}
 }
 
-struct SunsetView: View {
+struct SolarBlockView: View {
 
 	// MARK: - PROPS
 	
