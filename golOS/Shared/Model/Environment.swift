@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+// MARK: - TEMPORAL
+
 struct TemporalSpec {
 	
 	var contentSize: CGFloat
@@ -35,6 +37,8 @@ extension EnvironmentValues {
 	}
 }
 
+// MARK: - PHYSICAL
+
 struct PhysicalSpec {
 	var lat: Double = 39.856672
 	var lng: Double = -86.132480
@@ -51,7 +55,9 @@ extension EnvironmentValues {
 	}
 }
 
-struct SolarConfig {
+// MARK: - SOLAR
+
+struct SolarSpec {
 	@Environment(\.physicalSpec) var location: PhysicalSpec
 	
 	var sunCalc: SunCalc = SunCalc()
@@ -61,4 +67,14 @@ struct SolarConfig {
 	}
 }
 
+struct SolarSpecEnvKey: EnvironmentKey {
+	static var defaultValue: SolarSpec = SolarSpec()
+}
+
+extension EnvironmentValues {
+	var solarSpec: SolarSpec {
+		get { self[SolarSpecEnvKey.self] }
+		set { self[SolarSpecEnvKey.self] = newValue }
+	}
+}
 

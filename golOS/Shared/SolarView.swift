@@ -170,11 +170,8 @@ struct SunsetView: View {
 	// MARK: - PROPS
 	
 	@Environment(\.temporalSpec) var temporalSpec
+	@Environment(\.solarSpec) var solarSpec
 	var temporalConfig: TemporalConfig
-
-	let Sun = SunCalc()
-	var lat = 39.856672
-	var lng = -86.132480
 
 	// MARK: - BODY
 	
@@ -248,7 +245,7 @@ struct SunsetView: View {
 			let dateValue = Calendar.current.date(
 				byAdding: .day, value: day, to: temporalConfig.currentDay
 			)!
-			let times = Sun.getTimes(date: dateValue, lat: lat, lng: lng)
+			let times = solarSpec.getTimes(date: dateValue)
 			for (name, time) in times {
 				allSolarTimes.append((time, name))
 			}

@@ -34,6 +34,8 @@ struct ContentView: View {
 		GeometryReader { geometry in
 			SolarView()
 				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
+				.environment(\.physicalSpec, PhysicalSpec())
+				.environment(\.solarSpec, SolarSpec())
 		}
 // 		List {
 // //			ForEach(items) { item in
