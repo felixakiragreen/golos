@@ -8,20 +8,14 @@
 import SwiftUI
 
 /*
-# TODO:
-- [x] fix the rubberbanding
-- [x] fix the momentum, slow down...
-- [x] make it interruptible (interactiveSpring() I think?)
-- [x] make the times animate gradually
 
-- [x] add the tick marks
-- [x] make the MapTimeConfig an Env object thingy
+Next steps:
 
-- add the horizon
+- [ ] overlay a new view with colored gradients that changes based on the cursor position
+- [ ] try adding the horizon
 
-- [x] fix the current time / (size before & after correctly?)
-- [x] add in Haptics ;)
-- [x] remove the scrollbar
+- [ ] different scales (8h visible, 12h on either side)
+
 
 */
 
