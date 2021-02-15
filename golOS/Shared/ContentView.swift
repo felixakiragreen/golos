@@ -33,7 +33,7 @@ struct ContentView: View {
 	var body: some View {
 		GeometryReader { geometry in
 			SolarView()
-				.environment(\.temporalViz, TemporalViz(contentSize: geometry.size.height))
+				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
 		}
 // 		List {
 // //			ForEach(items) { item in

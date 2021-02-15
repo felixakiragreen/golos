@@ -18,7 +18,7 @@ struct TickMarks: View {
 	// MARK: - PROPS
 
 	@Environment(\.calendar) var calendar
-	@Environment(\.temporalViz) var temporalViz
+	@Environment(\.temporalSpec) var temporalSpec
 
 	var temporalConfig: TemporalConfig
 
@@ -40,7 +40,7 @@ struct TickMarks: View {
 						MinorTick()
 					}
 				}
-				.frame(height: temporalViz._minuteSize * 60)
+				.frame(height: temporalSpec._minuteSize * 60)
 			}
 		}
 	}

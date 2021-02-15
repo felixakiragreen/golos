@@ -25,7 +25,7 @@ struct SolarView_Previews: PreviewProvider {
 	static var previews: some View {
 		GeometryReader { geometry in
 			SolarView()
-				.environment(\.temporalViz, TemporalViz(contentSize: geometry.size.height))
+				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
 		}
 	}
 }
@@ -35,7 +35,7 @@ struct SolarView: View {
 	// MARK: - PROPS
 
 	@Environment(\.calendar) var calendar
-	@Environment(\.temporalViz) var temporalViz
+	@Environment(\.temporalSpec) var temporalSpec
 	
 	@State private var temporalConfig = TemporalConfig(currentTime: Date())
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
@@ -117,7 +117,7 @@ struct SolarView: View {
 								.fill(Color.blue)
 								.frame(maxWidth: .infinity, maxHeight: 2)
 						}//: ZStack - sun circle
-						.frame(height: temporalViz.contentSize)
+						.frame(height: temporalSpec.contentSize)
 						// will stay fixed because inverse of offset
 						.offset(x: 0, y: -scrollOffset)
 
@@ -141,12 +141,12 @@ struct SolarView: View {
 			to: currentTime
 		).minute ?? 0
 		
-		return CGFloat(numberOfMinutes) * temporalViz._minuteSize
+		return CGFloat(numberOfMinutes) * temporalSpec._minuteSize
 	}
 	
 	var cursorTime: Date {
-		let cursorOffset = temporalViz.contentSize / 2
-		let minutesToAdd = (cursorOffset + scrollOffset * -1) / temporalViz._minuteSize
+		let cursorOffset = temporalSpec.contentSize / 2
+		let minutesToAdd = (cursorOffset + scrollOffset * -1) / temporalSpec._minuteSize
 		
 		return temporalConfig.startTime
 			.advanced(by: minutes(Double(minutesToAdd)))
@@ -169,7 +169,7 @@ struct SunsetView: View {
 
 	// MARK: - PROPS
 	
-	@Environment(\.temporalViz) var temporalViz
+	@Environment(\.temporalSpec) var temporalSpec
 	var temporalConfig: TemporalConfig
 
 	let Sun = SunCalc()
@@ -179,14 +179,14 @@ struct SunsetView: View {
 	// MARK: - BODY
 	
 	var body: some View {
-		let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalViz._minuteSize)
+		let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalSpec._minuteSize)
 		
 		ZStack(alignment: .top) {
 			VStack(spacing: 0) {
 				ForEach(solarBlocks.indices) { index in
 					let block = solarBlocks[index]
-					let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalViz._minuteSize)
-					let height = CGFloat(block.interval.duration) / 60 * temporalViz._minuteSize
+					let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
+					let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
 					let time = DateFormatter.shortFormatter.string(from: block.interval.start)
 
 					Rectangle()
@@ -212,7 +212,7 @@ struct SunsetView: View {
 
 			ForEach(solarPoints.indices) { index in
 				let moment = solarPoints[index]
-				let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: moment.time, minuteHeight: temporalViz._minuteSize)
+				let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: moment.time, minuteHeight: temporalSpec._minuteSize)
 				let time = DateFormatter.shortFormatter.string(from: moment.time)
 					
 				Rectangle()
@@ -230,7 +230,7 @@ struct SunsetView: View {
 					.offset(x: 0, y: offset)
 			}//: ForEach - Points
 		}//: ZStack
-		.frame(height: temporalViz.contentSize * 3, alignment: .top)
+		.frame(height: temporalSpec.contentSize * 3, alignment: .top)
 	}
 
 	// MARK: - COMPUTES
@@ -336,4 +336,61 @@ func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CG
 
 func formatTime(_ date: Date) -> String {
 	DateFormatter.bestTimeFormatter.string(from: date)
+}
+
+// MARK: - MODEL
+
+struct TemporalConfig {
+	@Environment(\.calendar) var calendar
+	
+	var currentTime: Date
+	
+	// start of the day
+	var currentDay: Date {
+		calendar.startOfDay(for: currentTime)
+	}
+	var firstDay: Date {
+		calendar.date(
+			byAdding: .day, value: -1, to: currentDay
+		)!
+	}
+	
+	// rounded to hour
+	var currentHour: Date {
+		currentTime.floor(precision: minutes(60))
+	}
+	
+	var rangeUnit: Calendar.Component = .hour
+	var rangeValue: Int = 36
+	
+	
+	var startTime: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue), to: currentHour
+		)!
+	}
+	
+	// currentHour - rangeInHours → rounded to hour
+	var startHour: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue + 1), to: currentHour
+		)!
+	}
+	// currentHour + rangeInHours → rounded to hour
+	var endHour: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: rangeValue + 1, to: currentHour
+		)!
+	}
+	
+	var hours: [Date] {
+		calendar.generate(
+			inside: DateInterval(start: startHour, end: endHour),
+			matching: DateComponents(minute: 0, second: 0)
+		)
+	}
+	
+	init(currentTime: Date) {
+		self.currentTime = currentTime
+	}
 }
