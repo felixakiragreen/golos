@@ -35,6 +35,8 @@
 		1D5EE0F625D9BE4300142534 /* VisualEffectBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */; };
 		1D5EE0F725D9BE4300142534 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F125D9BE4300142534 /* Hexagon.swift */; };
 		1D5EE0F825D9BE4300142534 /* Hexagon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE0F125D9BE4300142534 /* Hexagon.swift */; };
+		1D5EE10425DA1CA900142534 /* ScrollViewOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */; };
+		1D5EE10525DA1CA900142534 /* ScrollViewOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */; };
 		1D751A7425D72ACE00860A62 /* golOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A5E25D72ACC00860A62 /* golOS.xcdatamodeld */; };
 		1D751A7525D72ACE00860A62 /* golOS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A5E25D72ACC00860A62 /* golOS.xcdatamodeld */; };
 		1D751A7625D72ACE00860A62 /* golOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D751A6025D72ACC00860A62 /* golOSApp.swift */; };
@@ -66,6 +68,7 @@
 		1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundedHexagon.swift; sourceTree = "<group>"; };
 		1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualEffectBlur.swift; sourceTree = "<group>"; };
 		1D5EE0F125D9BE4300142534 /* Hexagon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hexagon.swift; sourceTree = "<group>"; };
+		1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewOffset.swift; sourceTree = "<group>"; };
 		1D751A5F25D72ACC00860A62 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		1D751A6025D72ACC00860A62 /* golOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = golOSApp.swift; sourceTree = "<group>"; };
 		1D751A6125D72ACC00860A62 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 				1D5EE0EF25D9BE4300142534 /* RoundedHexagon.swift */,
 				1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */,
 				1D5EE0F125D9BE4300142534 /* Hexagon.swift */,
+				1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -296,6 +300,7 @@
 				1D5EE0E325D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
 				1D5EE0F725D9BE4300142534 /* Hexagon.swift in Sources */,
 				1D5EE0D925D9BA2E00142534 /* Color+hex.swift in Sources */,
+				1D5EE10425DA1CA900142534 /* ScrollViewOffset.swift in Sources */,
 				1D5EE0E125D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
 				1D5EE0E725D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
 				1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */,
@@ -323,6 +328,7 @@
 				1D5EE0E425D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
 				1D5EE0F825D9BE4300142534 /* Hexagon.swift in Sources */,
 				1D5EE0DA25D9BA2E00142534 /* Color+hex.swift in Sources */,
+				1D5EE10525DA1CA900142534 /* ScrollViewOffset.swift in Sources */,
 				1D5EE0E225D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
 				1D5EE0E825D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
 				1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */,
