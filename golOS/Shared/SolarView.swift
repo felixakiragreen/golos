@@ -19,8 +19,8 @@ import SwiftUI
 
 - add the horizon
 
-- [ ] fix the current time / (size before & after correctly?)
-- [ ] add in Haptics ;)
+- [x] fix the current time / (size before & after correctly?)
+- [x] add in Haptics ;)
 - [ ] remove the scrollbar
 
 */
