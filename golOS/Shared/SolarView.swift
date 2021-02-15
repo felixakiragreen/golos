@@ -9,19 +9,19 @@ import SwiftUI
 
 /*
 # TODO:
+- [x] fix the rubberbanding
+- [x] fix the momentum, slow down...
+- [x] make it interruptible (interactiveSpring() I think?)
+- [x] make the times animate gradually
 
-## Scrollfixes:
-
-- [ ] fix the rubberbanding
-- [ ] fix the momentum, slow down...
-- [ ] make it interruptible (interactiveSpring() I think?)
-- [ ] make the times animate gradually
+- [x] add the tick marks
+- [x] make the MapTimeConfig an Env object thingy
 
 - add the horizon
-- add the tick marks
 
-- need to size the before & after correctly
-OR decide do I do 72 hours or 3 days... HMMM
+- [ ] fix the current time / (size before & after correctly?)
+- [ ] add in Haptics ;)
+- [ ] remove the scrollbar
 
 */
 
@@ -39,7 +39,7 @@ struct SolarView_Previews: PreviewProvider {
 struct SolarView: View {
 	
 	// MARK: - PROPS
-
+	@Environment(\.calendar) var calendar
 	@Environment(\.temporalViz) var temporalViz
 	
 	@State private var temporalConfig = TemporalConfig(currentTime: Date())
@@ -48,7 +48,13 @@ struct SolarView: View {
 	// @GestureState private var translation: CGSize = .zero
 	// @State private var offset: CGSize = .zero
 
-	@State private var scrollviewOffset: CGFloat = .zero
+	@State private var scrollOffset: CGFloat = .zero
+	// var scrollSnap: CGFloat {
+	// 	let snapIncrement =
+	// 	// let snap = CGFloat(round(scrollOffset / snapIncrement) * snapIncrement)
+	// 	//		print(snap)
+	// 	// return snap
+	// }
 	
 	// let screenHeight = UIScreen.main.bounds.height
 
@@ -64,12 +70,21 @@ struct SolarView: View {
 	
 	
 	
-	let today = Calendar.current.startOfDay(for: Date())
-	var yday: Date {
-		Calendar.current.date(
-			byAdding: .day, value: -1, to: today
-		)!
-	}
+	// let today = Calendar.current.startOfDay(for: Date())
+	// var yday: Date {
+	// 	Calendar.current.date(
+	// 		byAdding: .day, value: -1, to: today
+	// 	)!
+	// }
+	// var date: Date = Calendar.current.startOfDay(for: Date())
+	// let dayRange = [
+	// 	-1, 0, 1, 2, 3
+	// ]
+	// var firstDate: Date {
+	// 	Calendar.current.date(
+	// 		byAdding: .day, value: dayRange[0], to: date
+	// 	)!
+	// }
 	
 	// MARK: - BODY
 	var body: some View {
@@ -78,7 +93,7 @@ struct SolarView: View {
 				Color.pink.opacity(0.2).ignoresSafeArea()
 				
 				ScrollViewOffset {
-					scrollviewOffset = $0
+					scrollOffset = $0
 				} content: {
 					
 					ZStack(alignment: .top) {
@@ -89,6 +104,37 @@ struct SolarView: View {
 							}
 							.onReceive(timer) { _ in
 								self.temporalConfig = TemporalConfig(currentTime: Date())
+							}
+							.onChange(of: cursorTimeHour) { [cursorTimeHour] newValue in
+
+								let impact = UIImpactFeedbackGenerator(style: .soft)
+								let generator = UISelectionFeedbackGenerator()
+								
+								
+								if newValue != cursorTimeHour {
+									
+									let newHour = calendar.component(.hour, from: newValue)
+									let oldHour = calendar.component(.hour, from: cursorTimeHour)
+									// show the major tick every 4 hours
+									let isNewMajor = Double(newHour).truncatingRemainder(dividingBy: 4) == 0
+									let isOldMajor = Double(oldHour).truncatingRemainder(dividingBy: 4) == 0
+									
+									print("isNewMajor", isNewMajor, newHour)
+									print("isOldMajor", isOldMajor, oldHour)
+									
+									if (oldHour < newHour && isNewMajor) || (oldHour > newHour && isOldMajor) {
+										impact.impactOccurred()
+									}
+									else {
+										generator.selectionChanged()
+									}
+									
+									// 	// TODO: to make it every 4 hours
+									// 	//								if abs(newValue.truncatingRemainder(dividingBy: snapIncrement * 4)) == 0 {
+									// 	impactMed.impactOccurred()
+									// 	//								}
+								}
+								
 							}
 						
 						
@@ -110,14 +156,15 @@ struct SolarView: View {
 						VStack(spacing: 0) {
 							Rectangle()
 								.fill(Color.red.opacity(0.1))
-								.frame(height: temporalViz.contentSize * 1.5)
+								// .frame(height: temporalViz.contentSize * 1
+								.frame(height: currentTimeOffset)
 							Rectangle()
 								.fill(Color.red)
 								.frame(maxWidth: .infinity, maxHeight: 2)
 								.id("now")
-							Rectangle()
-								.fill(Color.red.opacity(0.1))
-								.frame(height: temporalViz.contentSize * 1.5)
+							// Rectangle()
+							// 	.fill(Color.red.opacity(0.1))
+							// 	.frame(height: temporalViz.contentSize * 1.5)
 								// .offset(x: 0, y: scrollviewOffset + currentTimeOffset)
 						}
 							
@@ -130,8 +177,9 @@ struct SolarView: View {
 								.overlay(
 									VStack {
 										Text(currentTimeString)
-										Text("\(scrollviewOffset, specifier: "%.1f")")
+										Text("\(scrollOffset, specifier: "%.1f")")
 										Text(cursorTimeString)
+										Text(cursorTimeHourString)
 									}
 								)
 								.onTapGesture {
@@ -144,7 +192,7 @@ struct SolarView: View {
 						}
 						.frame(height: temporalViz.contentSize)
 						//Stay fixed because inverse of offset
-						.offset(x: 0, y: -scrollviewOffset)
+						.offset(x: 0, y: -scrollOffset)
 
 					}
 					.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -171,7 +219,7 @@ struct SolarView: View {
 	var currentTimeOffset: CGFloat {
 		let numberOfMinutes = Calendar.current.dateComponents(
 			[.minute],
-			from: yday,
+			from: temporalConfig.startTime,
 			to: currentTime
 		).minute ?? 0
 		
@@ -180,17 +228,23 @@ struct SolarView: View {
 	
 	var cursorTime: Date {
 		let cursorOffset = temporalViz.contentSize / 2
-		// let cursorOffset = height * 0
+		let minutesToAdd = (cursorOffset + scrollOffset * -1) / temporalViz._minuteSize
 		
-		let minutesToAdd = (cursorOffset + scrollviewOffset * -1) / temporalViz._minuteSize
-		
-		return today
+		return temporalConfig.startTime
 			.advanced(by: minutes(Double(minutesToAdd)))
 			.round(precision: minutes(5))
 	}
 	
+	var cursorTimeHour: Date {
+		return cursorTime
+			.floor(precision: hours(1))
+	}
+	
 	var cursorTimeString: String {
 		DateFormatter.bestTimeFormatter.string(from: cursorTime)
+	}
+	var cursorTimeHourString: String {
+		DateFormatter.bestTimeFormatter.string(from: cursorTimeHour)
 	}
 	
 	// scroll to goToNow()
@@ -412,6 +466,7 @@ struct TickMarks: View {
 					}
 				}
 				.frame(height: temporalViz._minuteSize * 60)
+				.overlay(Text("\(hour)"))
 			}
 		}
 	}
@@ -538,6 +593,16 @@ struct TemporalConfig {
 	
 	var currentTime: Date
 	
+	// start of the day
+	var currentDay: Date {
+		calendar.startOfDay(for: currentTime)
+	}
+	var firstDay: Date {
+		calendar.date(
+			byAdding: .day, value: -1, to: currentDay
+		)!
+	}
+	
 	// rounded to hour
 	var currentHour: Date {
 		currentTime.floor(precision: minutes(60))
@@ -546,15 +611,21 @@ struct TemporalConfig {
 	var rangeUnit: Calendar.Component = .hour
 	var rangeValue: Int = 36
 	
-	// currentHour - rangeInHours → rounded to hour
+	
 	var startTime: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue), to: currentHour
+		)!
+	}
+	
+	// currentHour - rangeInHours → rounded to hour
+	var startHour: Date {
 		calendar.date(
 			byAdding: rangeUnit, value: -(rangeValue + 1), to: currentHour
 		)!
 	}
-	
 	// currentHour + rangeInHours → rounded to hour
-	var endTime: Date {
+	var endHour: Date {
 		calendar.date(
 			byAdding: rangeUnit, value: rangeValue + 1, to: currentHour
 		)!
@@ -562,7 +633,7 @@ struct TemporalConfig {
 	
 	var hours: [Date] {
 		calendar.generate(
-			inside: DateInterval(start: startTime, end: endTime),
+			inside: DateInterval(start: startHour, end: endHour),
 			matching: DateComponents(minute: 0, second: 0)
 		)
 	}
