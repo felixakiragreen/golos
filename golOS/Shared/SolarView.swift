@@ -46,7 +46,7 @@ struct SolarView: View {
 	// MARK: - BODY
 	var body: some View {
 		ZStack {
-			Color.red.ignoresSafeArea()
+			Color.white.ignoresSafeArea()
 				.onAppear {
 					scrollToNow()
 				}
@@ -55,17 +55,20 @@ struct SolarView: View {
 				.frame(height: height)
 				.offset(x: 0, y: _scrollOffset)
 			
+			Rectangle()
+				.fill(Color.blue)
+				.frame(maxWidth: .infinity, maxHeight: 2)
+			
 			VStack {
 				Circle()
-					.fill(Color.gray.opacity(0.5))
-					.frame(width: 200, height: 200)
+					.fill(Color.gray.opacity(0.85))
+					.frame(width: 150, height: 150)
 					.shadow(radius: 8)
 					.overlay(
 						VStack {
 							Text(currentTimeString)
 							Text("\(_scrollOffset, specifier: "%.2f")")
 							Text(cursorTimeString)
-							Text("\(_minuteHeight, specifier: "%.2f")")
 						}
 					)
 					.onTapGesture {
@@ -73,9 +76,7 @@ struct SolarView: View {
 					}
 			}
 			
-			Rectangle()
-				.fill(Color.blue)
-				.frame(maxWidth: .infinity, maxHeight: 2)
+			
 			
 			ZStack {
 				Rectangle()
@@ -98,7 +99,7 @@ struct SolarView: View {
 				offset += value.translation
 				withAnimation(.spring()) {
 					offset += value.predictedEndTranslation - value.translation
-					// offset.height = clamp(value: offset.height, lower: -height, upper: height)
+					offset.height = clamp(value: offset.height, lower: -height, upper: height)
 				}
 			}
 	}
@@ -159,21 +160,11 @@ struct SunsetView: View {
 
 	var date: Date = Calendar.current.startOfDay(for: Date())
 	let dayRange = [
-		-1, 0, 1, 2
+		-1, 0, 1, 2, 3
 	]
-	var ystrDate: Date {
+	var firstDate: Date {
 		Calendar.current.date(
-			byAdding: .day, value: -1, to: date
-		)!
-	}
-	var tmrwDate: Date {
-		Calendar.current.date(
-			byAdding: .day, value: 1, to: date
-		)!
-	}
-	var omrwDate: Date {
-		Calendar.current.date(
-			byAdding: .day, value: 2, to: date
+			byAdding: .day, value: dayRange[0], to: date
 		)!
 	}
 
@@ -183,11 +174,13 @@ struct SunsetView: View {
 	var lng = -86.132480
 
 	let acceptedNames = [
-		"night", //"nadir", "nightEnd",
-		"goldenHourEnd"//, "solarNoon", "goldenHour"
+		"night", "nadir", "nightEnd",
+		"goldenHourEnd", "solarNoon", "goldenHour"
 	]
 
-	var solarTimes: [(time: Date, name: String)] {
+	typealias SolarMoment = (time: Date, name: String)
+	
+	var solarTimes: [SolarMoment] {
 		var allSolarTimes: [(time: Date, name: String)] = []
 		
 		for day in dayRange {
@@ -202,7 +195,41 @@ struct SunsetView: View {
 		
 		allSolarTimes.sort { $0.time < $1.time }
 		
-		return allSolarTimes.filter { acceptedNames.contains($0.name) }
+		return allSolarTimes
+	}
+	
+	typealias SolarInterval = (interval: DateInterval, name: String)
+	var solarBlocks: [SolarInterval] {
+		var intervals: [SolarInterval] = []
+		
+		let blockNames = [
+			"night", "nightEnd",
+			"goldenHourEnd", "goldenHour"
+		]
+		
+		let blocks = solarTimes.filter { blockNames.contains($0.name) }
+		
+		for index in blocks.indices {
+			if index + 2 < blocks.count {
+				let thisTime = blocks[index]
+				let nextTime = blocks[index + 1]
+				
+				intervals.append((
+					interval: DateInterval(start: thisTime.time, end: nextTime.time),
+					name: thisTime.name
+				))
+			}
+		}
+		
+		return intervals
+	}
+	
+	var solarPoints: [SolarMoment] {
+		let pointNames = [
+			"nadir", "solarNoon"
+		]
+		
+		return solarTimes.filter { pointNames.contains($0.name) }
 	}
 	
 	var body: some View {
@@ -211,23 +238,59 @@ struct SunsetView: View {
 		// .truncatingRemainder(dividingBy: screenHeight)
 		
 		ZStack(alignment: .top) {
-			LazyVStack(spacing: 0) {
-				DayCycle(label: "yday")
-					.frame(height: height)
-				DayCycle(label: "today")
-					.frame(height: height)
-				DayCycle(label: "tmrw")
-					.frame(height: height)
-			}
-			ForEach(solarTimes.indices) { index in
-				let interval = solarTimes[index]
-				let offset = getOffsetForTime(fromDate: ystrDate, toTime: interval.time, minuteHeight: _minuteHeight)
-				let time = DateFormatter.shortFormatter.string(from: interval.time)
+			// LazyVStack(spacing: 0) {
+			// 	DayCycle(label: "yday")
+			// 		.frame(height: height)
+			// 	DayCycle(label: "today")
+			// 		.frame(height: height)
+			// 	DayCycle(label: "tmrw")
+			// 		.frame(height: height)
+			// }
+			// LazyVStack(spacing: 0) {
+				ForEach(solarBlocks.indices) { index in
+					let block = solarBlocks[index]
+					let offset = getOffsetForTime(fromDate: firstDate, toTime: block.interval.start, minuteHeight: _minuteHeight)
+					let height = CGFloat(block.interval.duration) / 60 * _minuteHeight
+					let time = DateFormatter.shortFormatter.string(from: block.interval.start)
+			//
+					Rectangle()
+						.fill(getSolarColor(block.name).getSecondaryColor())
+						.frame(height: height)
+						.overlay(
+							VStack {
+								HStack {
+									Text("\(getSolarLabel(block.name))")
+									Spacer()
+									Text("\(offset, specifier: "%.1f")")
+									Spacer()
+									Text("\(time)")
+									Spacer()
+									Text("\(block.interval.duration / 60, specifier: "%.0f")min")
+								}
+								Spacer()
+							}
+						)
+						.offset(x: 0, y: offset)
+			//
+				}
+			// }
+			ForEach(solarPoints.indices) { index in
+				let moment = solarPoints[index]
+				let offset = getOffsetForTime(fromDate: firstDate, toTime: moment.time, minuteHeight: _minuteHeight)
+				let time = DateFormatter.shortFormatter.string(from: moment.time)
 					
 				Rectangle()
-					.fill(getSolarColor(name: interval.name))
-					.frame(maxWidth: .infinity, maxHeight: 24)
-					.overlay(Text("\(interval.name) \(offset, specifier: "%.1f") \(time)"))
+					.fill(getSolarColor(moment.name).getColor())
+					.frame(height: 24)
+					.overlay(
+						HStack {
+							Text("\(getSolarLabel(moment.name))")
+							Spacer()
+							Text("\(offset, specifier: "%.1f")")
+							Spacer()
+							Text("\(time)")
+						}
+					)
 					.offset(x: 0, y: offset)
 					
 			}
@@ -265,14 +328,29 @@ struct DayCycle: View {
 }
 
 
-func getSolarColor(name: String) -> Color {
+func getSolarColor(_ name: String) -> ColorPreset {
 	switch name {
-		case "night", "nadir", "nightEnd":
-			return ColorPreset(hue: .purple, lum: .normal).getColor()
-		case "goldenHourEnd", "solarNoon", "goldenHour":
-			return ColorPreset(hue: .yellow, lum: .normal).getColor()
+		case "night", "nadir":
+			return ColorPreset(hue: .purple, lum: .normal)
+		case "nightEnd":
+			return ColorPreset(hue: .red, lum: .normal)
+		case "goldenHourEnd", "solarNoon":
+			return ColorPreset(hue: .yellow, lum: .normal)
+		case "goldenHour":
+			return ColorPreset(hue: .orange, lum: .normal)
 		default:
-			return Color("green.100")
+			return ColorPreset(lum: .normal)
+	}
+}
+
+func getSolarLabel(_ name: String) -> String {
+	switch name {
+		case "night", "nadir": return name
+		case "nightEnd": return "dawn"
+		case "goldenHourEnd": return "day"
+		case "solarNoon": return "noon"
+		case "goldenHour": return "dusk"
+		default: return ""
 	}
 }
 
