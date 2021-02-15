@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+/**
+# TODO:
+
+## Scrollfixes:
+
+- [ ] fix the rubberbanding
+- [ ] fix the momentum, slow down...
+- [ ] make it interruptible (interactiveSpring() I think?)
+- [ ] make the times animate gradually
+
+*/
+
 // MARK: - PREVIEW
 struct SolarView_Previews: PreviewProvider {
 	
