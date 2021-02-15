@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-/**
+/*
 # TODO:
 
 ## Scrollfixes:
@@ -37,14 +37,18 @@ struct SolarView_Previews: PreviewProvider {
 }
 
 struct SolarView: View {
+	
 	// MARK: - PROPS
 
 	@Environment(\.temporalViz) var temporalViz
 	
+	@State private var temporalConfig = TemporalConfig(currentTime: Date())
+	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+	
 	// @GestureState private var translation: CGSize = .zero
 	// @State private var offset: CGSize = .zero
 
-	@State var scrollviewOffset: CGFloat = .zero
+	@State private var scrollviewOffset: CGFloat = .zero
 	
 	// let screenHeight = UIScreen.main.bounds.height
 
@@ -83,6 +87,13 @@ struct SolarView: View {
 							.onAppear {
 								scrollToNow(proxy: scrollProxy)
 							}
+							.onReceive(timer) { _ in
+								self.temporalConfig = TemporalConfig(currentTime: Date())
+							}
+						
+						
+						TickMarks(temporalConfig: temporalConfig)
+						
 						// Color.red.opacity(0.2).ignoresSafeArea()
 						
 						// VStack {
@@ -378,6 +389,64 @@ struct DayCycle: View {
 	}
 }
 
+struct TickMarks: View {
+	
+	@Environment(\.temporalViz) var temporalViz
+	
+	var temporalConfig: TemporalConfig
+	
+	var body: some View {
+		LazyVStack(spacing: 0) {
+			ForEach(temporalConfig.hours.indices) { hourIndex in
+				let hour = temporalConfig.hours[hourIndex]
+				
+				Rectangle()
+					.strokeBorder(Color.black)
+					// .fill(Color.clear)
+					.frame(height: temporalViz._minuteSize * 60)
+					.overlay(
+						//Text("shut up \(DateFormatter.shortFormatter.string(from: hour))")
+						MajorTick()
+					)
+				
+			}
+			// TemporalConfig
+			
+		}
+	}
+}
+
+struct MajorTick: View {
+	var width: CGFloat = 12
+	var height: CGFloat = 2
+	
+	var body: some View {
+		VStack {
+			HStack {
+				Capsule()
+					.frame(width: width, height: height)
+					.offset(x: -height, y: -height/2)
+				Spacer()
+				Capsule()
+					.frame(width: width, height: height)
+					.offset(x: height, y: -height/2)
+			}
+			.foregroundColor(ColorPreset(lum: .normal).getColor())
+			Spacer()
+		}
+	}
+}
+
+// struct MinorTick: View {
+// 	var body: some View {
+// 		Rectangle()
+// 			.frame(width: 2.0)
+// 			.foregroundColor(Color("grey.sys.300"))
+//
+// 	}
+// }
+
+
 // MARK: - HELPER FUNCTIONS
 
 func getSolarColor(_ name: String) -> ColorPreset {
@@ -444,5 +513,44 @@ extension EnvironmentValues {
 	var temporalViz: TemporalViz {
 		get { self[TemporalVizEnvKey.self] }
 		set { self[TemporalVizEnvKey.self] = newValue }
+	}
+}
+
+struct TemporalConfig {
+	@Environment(\.calendar) var calendar
+	
+	var currentTime: Date
+	
+	// rounded to hour
+	var currentHour: Date {
+		currentTime.floor(precision: minutes(60))
+	}
+	
+	var rangeUnit: Calendar.Component = .hour
+	var rangeValue: Int = 36
+	
+	// currentHour - rangeInHours → rounded to hour
+	var startTime: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue + 1), to: currentHour
+		)!
+	}
+	
+	// currentHour + rangeInHours → rounded to hour
+	var endTime: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: rangeValue + 1, to: currentHour
+		)!
+	}
+	
+	var hours: [Date] {
+		calendar.generate(
+			inside: DateInterval(start: startTime, end: endTime),
+			matching: DateComponents(minute: 0, second: 0)
+		)
+	}
+	
+	init(currentTime: Date) {
+		self.currentTime = currentTime
 	}
 }
