@@ -39,53 +39,15 @@ struct SolarView_Previews: PreviewProvider {
 struct SolarView: View {
 	
 	// MARK: - PROPS
+
 	@Environment(\.calendar) var calendar
 	@Environment(\.temporalViz) var temporalViz
 	
 	@State private var temporalConfig = TemporalConfig(currentTime: Date())
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
-	
-	// @GestureState private var translation: CGSize = .zero
-	// @State private var offset: CGSize = .zero
 
 	@State private var scrollOffset: CGFloat = .zero
-	// var scrollSnap: CGFloat {
-	// 	let snapIncrement =
-	// 	// let snap = CGFloat(round(scrollOffset / snapIncrement) * snapIncrement)
-	// 	//		print(snap)
-	// 	// return snap
-	// }
-	
-	// let screenHeight = UIScreen.main.bounds.height
 
-	// let height: CGFloat
-	// let hoursInView: CGFloat = 24
-	// var _minuteHeight: CGFloat {
-	// 	height / hoursInView / 60
-	// }
-	
-	// var _scrollOffset: CGFloat {
-	// 	self.translation.height + self.offset.height
-	// }
-	
-	
-	
-	// let today = Calendar.current.startOfDay(for: Date())
-	// var yday: Date {
-	// 	Calendar.current.date(
-	// 		byAdding: .day, value: -1, to: today
-	// 	)!
-	// }
-	// var date: Date = Calendar.current.startOfDay(for: Date())
-	// let dayRange = [
-	// 	-1, 0, 1, 2, 3
-	// ]
-	// var firstDate: Date {
-	// 	Calendar.current.date(
-	// 		byAdding: .day, value: dayRange[0], to: date
-	// 	)!
-	// }
-	
 	// MARK: - BODY
 	var body: some View {
 		ScrollViewReader { scrollProxy in
@@ -97,7 +59,6 @@ struct SolarView: View {
 				} content: {
 					ZStack(alignment: .top) {
 						Color.clear
-							// .frame(height: 0)
 							.onAppear {
 								scrollToNow(proxy: scrollProxy)
 							}
@@ -108,8 +69,7 @@ struct SolarView: View {
 
 								let impact = UIImpactFeedbackGenerator(style: .soft)
 								let generator = UISelectionFeedbackGenerator()
-								
-								
+
 								if newValue != cursorTimeHour {
 									
 									let newHour = calendar.component(.hour, from: newValue)
@@ -118,25 +78,16 @@ struct SolarView: View {
 									let isNewMajor = Double(newHour).truncatingRemainder(dividingBy: 4) == 0
 									let isOldMajor = Double(oldHour).truncatingRemainder(dividingBy: 4) == 0
 									
-									print("isNewMajor", isNewMajor, newHour)
-									print("isOldMajor", isOldMajor, oldHour)
-									
+									// compare oldHour to newHour because the direction affects the Major
 									if (oldHour < newHour && isNewMajor) || (oldHour > newHour && isOldMajor) {
 										impact.impactOccurred()
 									}
 									else {
 										generator.selectionChanged()
 									}
-									
-									// 	// TODO: to make it every 4 hours
-									// 	//								if abs(newValue.truncatingRemainder(dividingBy: snapIncrement * 4)) == 0 {
-									// 	impactMed.impactOccurred()
-									// 	//								}
 								}
-								
 							}
-						
-						
+
 						TickMarks(temporalConfig: temporalConfig)
 						
 						// Color.red.opacity(0.2).ignoresSafeArea()
@@ -154,20 +105,14 @@ struct SolarView: View {
 						
 						VStack(spacing: 0) {
 							Rectangle()
-								.fill(Color.red.opacity(0.1))
-								// .frame(height: temporalViz.contentSize * 1
+								.fill(Color.clear)
 								.frame(height: currentTimeOffset)
 							Rectangle()
 								.fill(Color.red)
 								.frame(maxWidth: .infinity, maxHeight: 2)
 								.id("now")
-							// Rectangle()
-							// 	.fill(Color.red.opacity(0.1))
-							// 	.frame(height: temporalViz.contentSize * 1.5)
-								// .offset(x: 0, y: scrollviewOffset + currentTimeOffset)
-						}
-							
-						
+						}//: VStack - "now" line
+
 						ZStack {
 							Circle()
 								.fill(Color.gray.opacity(0.85))
@@ -175,10 +120,10 @@ struct SolarView: View {
 								.shadow(radius: 8)
 								.overlay(
 									VStack {
-										Text(currentTimeString)
+										Text(formatTime(currentTime))
 										Text("\(scrollOffset, specifier: "%.1f")")
-										Text(cursorTimeString)
-										Text(cursorTimeHourString)
+										Text(formatTime(cursorTime))
+										Text(formatTime(cursorTimeHour))
 									}
 								)
 								.onTapGesture {
@@ -188,33 +133,24 @@ struct SolarView: View {
 							Rectangle()
 								.fill(Color.blue)
 								.frame(maxWidth: .infinity, maxHeight: 2)
-						}
+						}//: ZStack - sun circle
 						.frame(height: temporalViz.contentSize)
-						//Stay fixed because inverse of offset
+						// will stay fixed because inverse of offset
 						.offset(x: 0, y: -scrollOffset)
 
-					}
+					}//: ZStack
 					.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-					// .frame(height: height, alignment: .top)
-					// .background(Color.orange.opacity(0.2))
-					
-						
-				}
-			}
+				}//: ScrollViewOffset
+			}//: ZStack
 			.background(Color.blue.opacity(0.2))
-		}
-		// .frame(height: height)
-			
-	}
+		}//: ScrollViewReader
+	}//: body
 
+	// MARK: - COMPUTES
+	
 	var currentTime: Date {
 		Date().round(precision: minutes(5))
 	}
-	
-	var currentTimeString: String {
-		DateFormatter.bestTimeFormatter.string(from: currentTime)
-	}
-	
 	var currentTimeOffset: CGFloat {
 		let numberOfMinutes = Calendar.current.dateComponents(
 			[.minute],
@@ -233,31 +169,15 @@ struct SolarView: View {
 			.advanced(by: minutes(Double(minutesToAdd)))
 			.round(precision: minutes(5))
 	}
-	
 	var cursorTimeHour: Date {
-		return cursorTime
-			.floor(precision: hours(1))
+		cursorTime.floor(precision: hours(1))
 	}
 	
-	var cursorTimeString: String {
-		DateFormatter.bestTimeFormatter.string(from: cursorTime)
-	}
-	var cursorTimeHourString: String {
-		DateFormatter.bestTimeFormatter.string(from: cursorTimeHour)
-	}
+	// MARK: - METHODS
 	
-	// scroll to goToNow()
 	func scrollToNow(proxy: ScrollViewProxy) {
-		// let cursorOffset = height / 2
-		// maxWidth: .infinity, maxHeight: .infinity,
-		
-		// let scrollTo = (cursorOffset + _scrollOffset * -1) - currentTimeOffset
-		
 		withAnimation {
-			// proxy.scrollTo("now", anchor: .center)
-			proxy.scrollTo("now", anchor: UnitPoint(x: 0.5, y: 0.5))
-			
-			// self.offset += CGSize(width: 0, height: scrollTo)
+			proxy.scrollTo("now", anchor: .center)
 		}
 	}
 }
@@ -554,6 +474,10 @@ func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CG
 	).minute ?? 0
 	
 	return CGFloat(numberOfMinutes) * minuteHeight
+}
+
+func formatTime(_ date: Date) -> String {
+	DateFormatter.bestTimeFormatter.string(from: date)
 }
 
 
