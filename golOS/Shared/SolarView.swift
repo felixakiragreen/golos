@@ -65,6 +65,8 @@ struct SolarView: View {
 
 						SolarBlockView(temporalConfig: temporalConfig)
 						
+						SunsetView(temporalConfig: temporalConfig)
+						
 						TickMarks(temporalConfig: temporalConfig)
 						
 						VStack(spacing: 0) {
@@ -173,6 +175,8 @@ struct SolarView: View {
 	}
 }
 
+// MARK: - SUBVIEWS
+
 struct SolarBlockView: View {
 
 	// MARK: - PROPS
@@ -244,24 +248,24 @@ struct SolarBlockView: View {
 		-1, 0, 1, 2, 3
 	]
 
-	typealias SolarMoment = (time: Date, name: String)
-
 	var solarTimes: [SolarMoment] {
-		var allSolarTimes: [(time: Date, name: String)] = []
+		solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
 		
-		for day in dayRange {
-			let dateValue = Calendar.current.date(
-				byAdding: .day, value: day, to: temporalConfig.currentDay
-			)!
-			let times = solarSpec.getTimes(date: dateValue)
-			for (name, time) in times {
-				allSolarTimes.append((time, name))
-			}
-		}
-		
-		allSolarTimes.sort { $0.time < $1.time }
-		
-		return allSolarTimes
+		// var allSolarTimes: [(time: Date, name: String)] = []
+		//
+		// for day in dayRange {
+		// 	let dateValue = Calendar.current.date(
+		// 		byAdding: .day, value: day, to: temporalConfig.currentDay
+		// 	)!
+		// 	let times = solarSpec.getTimes(date: dateValue)
+		// 	for (name, time) in times {
+		// 		allSolarTimes.append((time, name))
+		// 	}
+		// }
+		//
+		// allSolarTimes.sort { $0.time < $1.time }
+		//
+		// return allSolarTimes
 	}
 	
 	let pointNames = [
@@ -276,72 +280,53 @@ struct SolarBlockView: View {
 		"night", "nightEnd",
 		"goldenHourEnd", "goldenHour"
 	]
-	
-	typealias SolarInterval = (interval: DateInterval, name: String)
 
 	var solarBlocks: [SolarInterval] {
-		var intervals: [SolarInterval] = []
-		
-		let blocks = solarTimes.filter { blockNames.contains($0.name) }
-		
-		for index in blocks.indices {
-			if index + 2 < blocks.count {
-				let thisTime = blocks[index]
-				let nextTime = blocks[index + 1]
-				
-				intervals.append((
-					interval: DateInterval(start: thisTime.time, end: nextTime.time),
-					name: thisTime.name
-				))
-			}
-		}
-		
-		return intervals
+		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
 	}
 
 }
 
-// MARK: - HELPER FUNCTIONS
-
-func getSolarColor(_ name: String) -> ColorPreset {
-	switch name {
-		case "night", "nadir":
-			return ColorPreset(hue: .purple, lum: .normal)
-		case "nightEnd":
-			return ColorPreset(hue: .red, lum: .normal)
-		case "goldenHourEnd", "solarNoon":
-			return ColorPreset(hue: .yellow, lum: .normal)
-		case "goldenHour":
-			return ColorPreset(hue: .orange, lum: .normal)
-		default:
-			return ColorPreset(lum: .normal)
-	}
-}
-
-func getSolarLabel(_ name: String) -> String {
-	switch name {
-		case "night", "nadir": return name
-		case "nightEnd": return "dawn"
-		case "goldenHourEnd": return "day"
-		case "solarNoon": return "noon"
-		case "goldenHour": return "dusk"
-		default: return ""
-	}
-}
-
-func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CGFloat {
-	let numberOfMinutes = Calendar.current.dateComponents(
-		[.minute],
-		from: fromDate,
-		to: toTime
-	).minute ?? 0
+struct SunsetView: View {
 	
-	return CGFloat(numberOfMinutes) * minuteHeight
+	// MARK: - PROPS
+	
+	@Environment(\.temporalSpec) var temporalSpec
+	@Environment(\.solarSpec) var solarSpec
+	var temporalConfig: TemporalConfig
+	
+	// MARK: - BODY
+	
+	var body: some View {
+		// let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalSpec._minuteSize)
+		
+		ZStack(alignment: .top) {
+			Color.red.ignoresSafeArea()
+		}//: ZStack
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+	}
+	
+	// MARK: - COMPUTES
+	
+	let dayRange = [
+		-1, 0, 1, 2, 3
+	]
+
+	var solarTimes: [SolarMoment] {
+		solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
+	}
+
+	let blockNames = [
+		"night", "nightEnd",
+		"goldenHourEnd", "goldenHour"
+	]
+
+	var solarBlocks: [SolarInterval] {
+		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
+	}
+
 }
 
-func formatTime(_ date: Date) -> String {
-	DateFormatter.bestTimeFormatter.string(from: date)
-}
 
 // MARK: - MODEL
 
@@ -398,4 +383,47 @@ struct TemporalConfig {
 	init(currentTime: Date) {
 		self.currentTime = currentTime
 	}
+}
+
+
+// MARK: - HELPER FUNCTIONS
+
+func getSolarColor(_ name: String) -> ColorPreset {
+	switch name {
+		case "night", "nadir":
+			return ColorPreset(hue: .purple, lum: .normal)
+		case "nightEnd":
+			return ColorPreset(hue: .red, lum: .normal)
+		case "goldenHourEnd", "solarNoon":
+			return ColorPreset(hue: .yellow, lum: .normal)
+		case "goldenHour":
+			return ColorPreset(hue: .orange, lum: .normal)
+		default:
+			return ColorPreset(lum: .normal)
+	}
+}
+
+func getSolarLabel(_ name: String) -> String {
+	switch name {
+		case "night", "nadir": return name
+		case "nightEnd": return "dawn"
+		case "goldenHourEnd": return "day"
+		case "solarNoon": return "noon"
+		case "goldenHour": return "dusk"
+		default: return ""
+	}
+}
+
+func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CGFloat {
+	let numberOfMinutes = Calendar.current.dateComponents(
+		[.minute],
+		from: fromDate,
+		to: toTime
+	).minute ?? 0
+	
+	return CGFloat(numberOfMinutes) * minuteHeight
+}
+
+func formatTime(_ date: Date) -> String {
+	DateFormatter.bestTimeFormatter.string(from: date)
 }

@@ -57,13 +57,57 @@ extension EnvironmentValues {
 
 // MARK: - SOLAR
 
+typealias SolarMoment = (time: Date, name: String)
+
+typealias SolarInterval = (interval: DateInterval, name: String)
+
+
 struct SolarSpec {
+	@Environment(\.calendar) var calendar: Calendar
 	@Environment(\.physicalSpec) var location: PhysicalSpec
 	
 	var sunCalc: SunCalc = SunCalc()
 	
-	func getTimes(date: Date) -> [String: Date] {
+	func getTimesFor(date: Date) -> [String: Date] {
 		return sunCalc.getTimes(date: date, lat: location.lat, lng: location.lng)
+	}
+	
+	func getTimesFor(date: Date, range: [Int]) -> [SolarMoment] {
+		var accTimes: [(time: Date, name: String)] = []
+		
+		for day in range {
+			let dateValue = calendar.date(
+				byAdding: .day, value: day, to: date
+			)!
+			let times = getTimesFor(date: dateValue)
+			for (name, time) in times {
+				accTimes.append((time, name))
+			}
+		}
+		
+		accTimes.sort { $0.time < $1.time }
+		
+		return accTimes
+	}
+	
+	func getIntervalsFor(times: [SolarMoment], names: [String]) -> [SolarInterval] {
+		var accIntervals: [SolarInterval] = []
+		
+		let namedTimes = times.filter { names.contains($0.name) }
+		
+		for index in namedTimes.indices {
+			if index + 2 < namedTimes.count {
+				let thisTime = namedTimes[index]
+				let nextTime = namedTimes[index + 1]
+				
+				accIntervals.append((
+					interval: DateInterval(start: thisTime.time, end: nextTime.time),
+					name: thisTime.name
+				))
+			}
+		}
+		
+		return accIntervals
 	}
 }
 
