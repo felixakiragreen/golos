@@ -17,12 +17,18 @@ import SwiftUI
 - [ ] make it interruptible (interactiveSpring() I think?)
 - [ ] make the times animate gradually
 
+- add the horizon
+- add the tick marks
+
+- need to size the before & after correctly
+OR decide do I do 72 hours or 3 days... HMMM
+
 */
 
 // MARK: - PREVIEW
 struct SolarView_Previews: PreviewProvider {
 	
-	static var height: CGFloat = (UIScreen.main.bounds.height - 66)
+	static var height: CGFloat = (UIScreen.main.bounds.height - 44 - 34)
 	
 	static var previews: some View {
 		SolarView(height: height)
@@ -38,6 +44,8 @@ struct SolarView: View {
 	@GestureState private var translation: CGSize = .zero
 	
 	@State private var offset: CGSize = .zero
+
+	@State var scrollviewOffset: CGFloat = .zero
 	
 	// let screenHeight = UIScreen.main.bounds.height
 
@@ -54,52 +62,92 @@ struct SolarView: View {
 	
 	
 	let today = Calendar.current.startOfDay(for: Date())
+	var yday: Date {
+		Calendar.current.date(
+			byAdding: .day, value: -1, to: today
+		)!
+	}
 	
 	// MARK: - BODY
 	var body: some View {
-		ZStack {
-			Color.white.ignoresSafeArea()
-				.onAppear {
-					scrollToNow()
-				}
-
-			SunsetView(height: height)
-				.frame(height: height)
-				.offset(x: 0, y: _scrollOffset)
-			
-			Rectangle()
-				.fill(Color.blue)
-				.frame(maxWidth: .infinity, maxHeight: 2)
-			
-			VStack {
-				Circle()
-					.fill(Color.gray.opacity(0.85))
-					.frame(width: 150, height: 150)
-					.shadow(radius: 8)
-					.overlay(
-						VStack {
-							Text(currentTimeString)
-							Text("\(_scrollOffset, specifier: "%.2f")")
-							Text(cursorTimeString)
-						}
-					)
-					.onTapGesture {
-						scrollToNow()
-					}
-			}
-			
-			
-			
+		ScrollViewReader { scrollProxy in
 			ZStack {
-				Rectangle()
-					.fill(Color.red)
-					.frame(maxWidth: .infinity, maxHeight: 2)
-					.offset(x: 0, y: _scrollOffset + currentTimeOffset)
+				Color.pink.opacity(0.2).ignoresSafeArea()
+				
+				ScrollViewOffset {
+					scrollviewOffset = $0
+				} content: {
+					
+					ZStack(alignment: .top) {
+						Color.clear
+							// .frame(height: 0)
+							.onAppear {
+								scrollToNow(proxy: scrollProxy)
+							}
+						// Color.red.opacity(0.2).ignoresSafeArea()
+						
+						// VStack {
+							// Spacer()
+							// Color.red
+						// }
+						// .frame(maxWidth: .infinity, maxHeight: .infinity)
+						// SunsetView(height: height)
+						//
+							// .offset(x: 0, y: -currentTimeOffset)
+						// .frame(height: height)
+						// .offset(x: 0, y: _scrollOffset)
+						
+						VStack(spacing: 0) {
+							Rectangle()
+								.fill(Color.red.opacity(0.1))
+								.frame(height: height * 1.5)
+							Rectangle()
+								.fill(Color.red)
+								.frame(maxWidth: .infinity, maxHeight: 2)
+								.id("now")
+							Rectangle()
+								.fill(Color.red.opacity(0.1))
+								.frame(height: height * 1.5)
+								// .offset(x: 0, y: scrollviewOffset + currentTimeOffset)
+						}
+							
+						
+						ZStack {
+							Circle()
+								.fill(Color.gray.opacity(0.85))
+								.frame(width: 150, height: 150)
+								.shadow(radius: 8)
+								.overlay(
+									VStack {
+										Text(currentTimeString)
+										Text("\(scrollviewOffset, specifier: "%.1f")")
+										Text(cursorTimeString)
+									}
+								)
+								.onTapGesture {
+									scrollToNow(proxy: scrollProxy)
+								}
+							
+							Rectangle()
+								.fill(Color.blue)
+								.frame(maxWidth: .infinity, maxHeight: 2)
+						}
+						.frame(height: height)
+						//Stay fixed because inverse of offset
+						.offset(x: 0, y: -scrollviewOffset)
+
+					}
+					.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+					// .frame(height: height, alignment: .top)
+					// .background(Color.orange.opacity(0.2))
+					
+						
+				}
 			}
-			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-			
+			.background(Color.blue.opacity(0.2))
 		}
-		.gesture(drag)
+		// .frame(height: height)
+			
 	}
 
 	var drag: some Gesture {
@@ -109,7 +157,7 @@ struct SolarView: View {
 			}
 			.onEnded { value in
 				offset += value.translation
-				withAnimation(.spring()) {
+				withAnimation(.interactiveSpring(blendDuration: 2)) {
 					offset += value.predictedEndTranslation - value.translation
 					offset.height = clamp(value: offset.height, lower: -height, upper: height)
 				}
@@ -127,7 +175,7 @@ struct SolarView: View {
 	var currentTimeOffset: CGFloat {
 		let numberOfMinutes = Calendar.current.dateComponents(
 			[.minute],
-			from: today,
+			from: yday,
 			to: currentTime
 		).minute ?? 0
 		
@@ -136,8 +184,9 @@ struct SolarView: View {
 	
 	var cursorTime: Date {
 		let cursorOffset = height / 2
+		// let cursorOffset = height * 0
 		
-		let minutesToAdd = (cursorOffset + _scrollOffset * -1) / _minuteHeight
+		let minutesToAdd = (cursorOffset + scrollviewOffset * -1) / _minuteHeight
 		
 		return today
 			.advanced(by: minutes(Double(minutesToAdd)))
@@ -149,14 +198,17 @@ struct SolarView: View {
 	}
 	
 	// scroll to goToNow()
-	func scrollToNow() {
-		let cursorOffset = height / 2
+	func scrollToNow(proxy: ScrollViewProxy) {
+		// let cursorOffset = height / 2
 		// maxWidth: .infinity, maxHeight: .infinity,
 		
-		let scrollTo = (cursorOffset + _scrollOffset * -1) - currentTimeOffset
+		// let scrollTo = (cursorOffset + _scrollOffset * -1) - currentTimeOffset
 		
 		withAnimation {
-			self.offset += CGSize(width: 0, height: scrollTo)
+			// proxy.scrollTo("now", anchor: .center)
+			proxy.scrollTo("now", anchor: UnitPoint(x: 0.5, y: 0.5))
+			
+			// self.offset += CGSize(width: 0, height: scrollTo)
 		}
 	}
 }
@@ -308,10 +360,10 @@ struct SunsetView: View {
 			}
 			Text("asdf: \(solarTimes.count)")
 		}
-		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-		.onAppear {
-			print(solarTimes)
-		}
+		.frame(height: height * 3, alignment: .top)
+		// .onAppear {
+		// 	print(solarTimes)
+		// }
 		// .ignoresSafeArea()
 		// dayCycle
 		// .offset(x: 0, y: offset > 0 ? -screenHeight : screenHeight)
