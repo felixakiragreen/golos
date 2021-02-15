@@ -390,7 +390,7 @@ struct DayCycle: View {
 }
 
 struct TickMarks: View {
-	
+	@Environment(\.calendar) var calendar
 	@Environment(\.temporalViz) var temporalViz
 	
 	var temporalConfig: TemporalConfig
@@ -398,20 +398,28 @@ struct TickMarks: View {
 	var body: some View {
 		LazyVStack(spacing: 0) {
 			ForEach(temporalConfig.hours.indices) { hourIndex in
-				let hour = temporalConfig.hours[hourIndex]
+				let time = temporalConfig.hours[hourIndex]
+				let hour = calendar.component(.hour, from: time)
+				
+				let isMajor = Double(hour).truncatingRemainder(dividingBy: 4) == 0
 				
 				Rectangle()
-					.strokeBorder(Color.black)
-					// .fill(Color.clear)
+					// .strokeBorder(Color.black)
+					.fill(Color.clear)
 					.frame(height: temporalViz._minuteSize * 60)
 					.overlay(
-						//Text("shut up \(DateFormatter.shortFormatter.string(from: hour))")
-						MajorTick()
+						// hour.truncatingRemainder
+						isMajor ? MajorTick() : nil
+					)
+					.overlay(
+						// hour.truncatingRemainder
+						isMajor ? nil : MinorTick()
+					)
+					.overlay(
+						Text("shut up \(hour)")
 					)
 				
 			}
-			// TemporalConfig
-			
 		}
 	}
 }
@@ -421,30 +429,46 @@ struct MajorTick: View {
 	var height: CGFloat = 2
 	
 	var body: some View {
+		Tick(
+			size: CGSize(width: width, height: height),
+			color: ColorPreset(lum: .semiDark).getColor()
+		)
+	}
+}
+
+struct MinorTick: View {
+	var width: CGFloat = 6
+	var height: CGFloat = 2
+	
+	var body: some View {
+		Tick(
+			size: CGSize(width: width, height: height),
+			color: ColorPreset(lum: .normal).getColor()
+		)
+	}
+}
+
+struct Tick: View {
+	var size: CGSize
+	var color: Color
+	
+	var body: some View {
 		VStack {
 			HStack {
 				Capsule()
-					.frame(width: width, height: height)
-					.offset(x: -height, y: -height/2)
+					.frame(width: size.width, height: size.height)
+					.offset(x: -size.height, y: -size.height/2)
 				Spacer()
 				Capsule()
-					.frame(width: width, height: height)
-					.offset(x: height, y: -height/2)
+					.frame(width: size.width, height: size.height)
+					.offset(x: size.height, y: -size.height/2)
 			}
-			.foregroundColor(ColorPreset(lum: .normal).getColor())
+			.foregroundColor(color)
 			Spacer()
 		}
 	}
 }
 
-// struct MinorTick: View {
-// 	var body: some View {
-// 		Rectangle()
-// 			.frame(width: 2.0)
-// 			.foregroundColor(Color("grey.sys.300"))
-//
-// 	}
-// }
 
 
 // MARK: - HELPER FUNCTIONS
