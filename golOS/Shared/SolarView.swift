@@ -60,26 +60,7 @@ struct SolarView: View {
 								self.temporalConfig = TemporalConfig(currentTime: Date())
 							}
 							.onChange(of: cursorTimeHour) { [cursorTimeHour] newValue in
-
-								let impact = UIImpactFeedbackGenerator(style: .soft)
-								let generator = UISelectionFeedbackGenerator()
-
-								if newValue != cursorTimeHour {
-									
-									let newHour = calendar.component(.hour, from: newValue)
-									let oldHour = calendar.component(.hour, from: cursorTimeHour)
-									// show the major tick every 4 hours
-									let isNewMajor = Double(newHour).truncatingRemainder(dividingBy: 4) == 0
-									let isOldMajor = Double(oldHour).truncatingRemainder(dividingBy: 4) == 0
-									
-									// compare oldHour to newHour because the direction affects the Major
-									if (oldHour < newHour && isNewMajor) || (oldHour > newHour && isOldMajor) {
-										impact.impactOccurred()
-									}
-									else {
-										generator.selectionChanged()
-									}
-								}
+								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
 						SunsetView(temporalConfig: temporalConfig)
@@ -161,6 +142,33 @@ struct SolarView: View {
 	func scrollToNow(proxy: ScrollViewProxy) {
 		withAnimation {
 			proxy.scrollTo("now", anchor: .center)
+		}
+	}
+	
+	func scrollImpact(prevTime: Date, nextTime: Date) {
+		let impact = UIImpactFeedbackGenerator(style: .soft)
+		let generator = UISelectionFeedbackGenerator()
+
+		if nextTime != prevTime {
+			
+			let nextHour = calendar.component(.hour, from: nextTime)
+			let prevHour = calendar.component(.hour, from: prevTime)
+
+			// show the major tick every 4 hours
+			let isNextMajor = Double(nextHour).truncatingRemainder(dividingBy: 4) == 0
+			let isPrevMajor = Double(prevHour).truncatingRemainder(dividingBy: 4) == 0
+			
+			// compare prevHour to nextHour because the direction affects the Major
+			if (prevHour < nextHour && isNextMajor) || (prevHour > nextHour && isPrevMajor) {
+				impact.impactOccurred()
+			}
+			// handle the case of 0 & 23
+			else if (prevHour == 23 && isNextMajor) || (nextHour == 23 && isPrevMajor) {
+				impact.impactOccurred()
+			}
+			else {
+				generator.selectionChanged()
+			}
 		}
 	}
 }
