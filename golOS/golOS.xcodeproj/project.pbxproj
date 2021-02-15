@@ -51,6 +51,8 @@
 		1D9E4ED625D9870F00350E01 /* SolarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED425D9870F00350E01 /* SolarView.swift */; };
 		1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
 		1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
+		1DFAFCCA25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
+		1DFAFCCB25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +83,7 @@
 		1D751A7325D72ACE00860A62 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		1D9E4ED425D9870F00350E01 /* SolarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarView.swift; sourceTree = "<group>"; };
 		1D9E4ED925D9900000350E01 /* CGSize+operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+operators.swift"; sourceTree = "<group>"; };
+		1DFAFCC925DB079C0079EBCB /* TickMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickMarks.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,7 @@
 				1D5EE0F025D9BE4300142534 /* VisualEffectBlur.swift */,
 				1D5EE0F125D9BE4300142534 /* Hexagon.swift */,
 				1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */,
+				1DFAFCC925DB079C0079EBCB /* TickMarks.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -290,6 +294,7 @@
 				1D9E4ED525D9870F00350E01 /* SolarView.swift in Sources */,
 				1D5EE0E525D9BA2E00142534 /* Colors.swift in Sources */,
 				1D5EE0F325D9BE4300142534 /* RoundedHexagon.swift in Sources */,
+				1DFAFCCA25DB079C0079EBCB /* TickMarks.swift in Sources */,
 				1D5EE0D725D9BA2E00142534 /* Collection+optional.swift in Sources */,
 				1D751A7625D72ACE00860A62 /* golOSApp.swift in Sources */,
 				1D751A7A25D72ACE00860A62 /* Persistence.swift in Sources */,
@@ -318,6 +323,7 @@
 				1D9E4ED625D9870F00350E01 /* SolarView.swift in Sources */,
 				1D5EE0E625D9BA2E00142534 /* Colors.swift in Sources */,
 				1D5EE0F425D9BE4300142534 /* RoundedHexagon.swift in Sources */,
+				1DFAFCCB25DB079C0079EBCB /* TickMarks.swift in Sources */,
 				1D5EE0D825D9BA2E00142534 /* Collection+optional.swift in Sources */,
 				1D751A7725D72ACE00860A62 /* golOSApp.swift in Sources */,
 				1D751A7B25D72ACE00860A62 /* Persistence.swift in Sources */,
