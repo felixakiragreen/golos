@@ -400,25 +400,18 @@ struct TickMarks: View {
 			ForEach(temporalConfig.hours.indices) { hourIndex in
 				let time = temporalConfig.hours[hourIndex]
 				let hour = calendar.component(.hour, from: time)
-				
+				// show the major tick every 4 hours
 				let isMajor = Double(hour).truncatingRemainder(dividingBy: 4) == 0
 				
-				Rectangle()
-					// .strokeBorder(Color.black)
-					.fill(Color.clear)
-					.frame(height: temporalViz._minuteSize * 60)
-					.overlay(
-						// hour.truncatingRemainder
-						isMajor ? MajorTick() : nil
-					)
-					.overlay(
-						// hour.truncatingRemainder
-						isMajor ? nil : MinorTick()
-					)
-					.overlay(
-						Text("shut up \(hour)")
-					)
-				
+				Group {
+					if isMajor {
+						MajorTick()
+					}
+					else {
+						MinorTick()
+					}
+				}
+				.frame(height: temporalViz._minuteSize * 60)
 			}
 		}
 	}
