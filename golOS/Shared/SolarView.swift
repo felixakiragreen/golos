@@ -27,37 +27,36 @@ OR decide do I do 72 hours or 3 days... HMMM
 
 // MARK: - PREVIEW
 struct SolarView_Previews: PreviewProvider {
-	
-	static var height: CGFloat = (UIScreen.main.bounds.height - 44 - 34)
-	
+
 	static var previews: some View {
-		SolarView(height: height)
+		GeometryReader { geometry in
+			SolarView()
+				.environment(\.temporalViz, TemporalViz(contentSize: geometry.size.height))
+		}
 	}
 }
-
-// let screenWidth = UIScreen.main.bounds.width
-
 
 struct SolarView: View {
 	// MARK: - PROPS
 
-	@GestureState private var translation: CGSize = .zero
+	@Environment(\.temporalViz) var temporalViz
 	
-	@State private var offset: CGSize = .zero
+	// @GestureState private var translation: CGSize = .zero
+	// @State private var offset: CGSize = .zero
 
 	@State var scrollviewOffset: CGFloat = .zero
 	
 	// let screenHeight = UIScreen.main.bounds.height
 
-	let height: CGFloat
-	let hoursInView: CGFloat = 24
-	var _minuteHeight: CGFloat {
-		height / hoursInView / 60
-	}
+	// let height: CGFloat
+	// let hoursInView: CGFloat = 24
+	// var _minuteHeight: CGFloat {
+	// 	height / hoursInView / 60
+	// }
 	
-	var _scrollOffset: CGFloat {
-		self.translation.height + self.offset.height
-	}
+	// var _scrollOffset: CGFloat {
+	// 	self.translation.height + self.offset.height
+	// }
 	
 	
 	
@@ -100,14 +99,14 @@ struct SolarView: View {
 						VStack(spacing: 0) {
 							Rectangle()
 								.fill(Color.red.opacity(0.1))
-								.frame(height: height * 1.5)
+								.frame(height: temporalViz.contentSize * 1.5)
 							Rectangle()
 								.fill(Color.red)
 								.frame(maxWidth: .infinity, maxHeight: 2)
 								.id("now")
 							Rectangle()
 								.fill(Color.red.opacity(0.1))
-								.frame(height: height * 1.5)
+								.frame(height: temporalViz.contentSize * 1.5)
 								// .offset(x: 0, y: scrollviewOffset + currentTimeOffset)
 						}
 							
@@ -132,7 +131,7 @@ struct SolarView: View {
 								.fill(Color.blue)
 								.frame(maxWidth: .infinity, maxHeight: 2)
 						}
-						.frame(height: height)
+						.frame(height: temporalViz.contentSize)
 						//Stay fixed because inverse of offset
 						.offset(x: 0, y: -scrollviewOffset)
 
@@ -150,20 +149,6 @@ struct SolarView: View {
 			
 	}
 
-	var drag: some Gesture {
-		DragGesture()
-			.updating($translation) { value, state, _ in
-				state = value.translation
-			}
-			.onEnded { value in
-				offset += value.translation
-				withAnimation(.interactiveSpring(blendDuration: 2)) {
-					offset += value.predictedEndTranslation - value.translation
-					offset.height = clamp(value: offset.height, lower: -height, upper: height)
-				}
-			}
-	}
-
 	var currentTime: Date {
 		Date().round(precision: minutes(5))
 	}
@@ -179,14 +164,14 @@ struct SolarView: View {
 			to: currentTime
 		).minute ?? 0
 		
-		return CGFloat(numberOfMinutes) * _minuteHeight
+		return CGFloat(numberOfMinutes) * temporalViz._minuteSize
 	}
 	
 	var cursorTime: Date {
-		let cursorOffset = height / 2
+		let cursorOffset = temporalViz.contentSize / 2
 		// let cursorOffset = height * 0
 		
-		let minutesToAdd = (cursorOffset + scrollviewOffset * -1) / _minuteHeight
+		let minutesToAdd = (cursorOffset + scrollviewOffset * -1) / temporalViz._minuteSize
 		
 		return today
 			.advanced(by: minutes(Double(minutesToAdd)))
@@ -215,12 +200,14 @@ struct SolarView: View {
 
 struct SunsetView: View {
 
+	@Environment(\.temporalViz) var temporalViz
+
 	// put into some kind of config??
-	let height: CGFloat
-	let hoursInView: CGFloat = 24
-	var _minuteHeight: CGFloat {
-		height / hoursInView / 60
-	}
+	// let height: CGFloat
+	// let hoursInView: CGFloat = 24
+	// var _minuteHeight: CGFloat {
+	// 	height / hoursInView / 60
+	// }
 
 	var date: Date = Calendar.current.startOfDay(for: Date())
 	let dayRange = [
@@ -313,8 +300,8 @@ struct SunsetView: View {
 			// LazyVStack(spacing: 0) {
 				ForEach(solarBlocks.indices) { index in
 					let block = solarBlocks[index]
-					let offset = getOffsetForTime(fromDate: firstDate, toTime: block.interval.start, minuteHeight: _minuteHeight)
-					let height = CGFloat(block.interval.duration) / 60 * _minuteHeight
+					let offset = getOffsetForTime(fromDate: firstDate, toTime: block.interval.start, minuteHeight: temporalViz._minuteSize)
+					let height = CGFloat(block.interval.duration) / 60 * temporalViz._minuteSize
 					let time = DateFormatter.shortFormatter.string(from: block.interval.start)
 			//
 					Rectangle()
@@ -340,7 +327,7 @@ struct SunsetView: View {
 			// }
 			ForEach(solarPoints.indices) { index in
 				let moment = solarPoints[index]
-				let offset = getOffsetForTime(fromDate: firstDate, toTime: moment.time, minuteHeight: _minuteHeight)
+				let offset = getOffsetForTime(fromDate: firstDate, toTime: moment.time, minuteHeight: temporalViz._minuteSize)
 				let time = DateFormatter.shortFormatter.string(from: moment.time)
 					
 				Rectangle()
@@ -360,7 +347,7 @@ struct SunsetView: View {
 			}
 			Text("asdf: \(solarTimes.count)")
 		}
-		.frame(height: height * 3, alignment: .top)
+		.frame(height: temporalViz.contentSize * 3, alignment: .top)
 		// .onAppear {
 		// 	print(solarTimes)
 		// }
@@ -391,6 +378,7 @@ struct DayCycle: View {
 	}
 }
 
+// MARK: - HELPER FUNCTIONS
 
 func getSolarColor(_ name: String) -> ColorPreset {
 	switch name {
@@ -426,4 +414,35 @@ func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CG
 	).minute ?? 0
 	
 	return CGFloat(numberOfMinutes) * minuteHeight
+}
+
+
+// MARK: - ENVIRONMENT
+
+struct TemporalViz {
+	
+	var contentSize: CGFloat
+	var hoursInView: CGFloat = 24
+	var _minuteSize: CGFloat {
+		contentSize / hoursInView / 60
+	}
+	
+	init() {
+		self.contentSize = UIScreen.main.bounds.height
+	}
+	
+	init(contentSize: CGFloat) {
+		self.contentSize = contentSize
+	}
+}
+
+struct TemporalVizEnvKey: EnvironmentKey {
+	static var defaultValue: TemporalViz = TemporalViz()
+}
+
+extension EnvironmentValues {
+	var temporalViz: TemporalViz {
+		get { self[TemporalVizEnvKey.self] }
+		set { self[TemporalVizEnvKey.self] = newValue }
+	}
 }
