@@ -43,11 +43,10 @@ struct ScrollViewOffset<Content: View>: View {
 	}
 	
 	var body: some View {
-		ScrollView {
+		ScrollView(showsIndicators: false) {
 			VStack(spacing: 0) {
 				offsetReader
 				content()
-					// .padding(.top, -8)
 			}
 		}
 		.coordinateSpace(name: "frameLayer")

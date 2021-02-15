@@ -21,7 +21,7 @@ import SwiftUI
 
 - [x] fix the current time / (size before & after correctly?)
 - [x] add in Haptics ;)
-- [ ] remove the scrollbar
+- [x] remove the scrollbar
 
 */
 
@@ -95,7 +95,6 @@ struct SolarView: View {
 				ScrollViewOffset {
 					scrollOffset = $0
 				} content: {
-					
 					ZStack(alignment: .top) {
 						Color.clear
 							// .frame(height: 0)
