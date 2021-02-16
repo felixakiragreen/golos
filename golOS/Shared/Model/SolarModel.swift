@@ -151,6 +151,8 @@ class SolarModel: ObservableObject {
 		return accPhases
 	}
 	
+	
+	
 	func getPhaseProgressFor(time: Date) -> SolarPhaseProgress? {
 		if let insidePhase = focalPhases.first(where: { $0.interval.contains(time) }) {
 			let timeElapsed = insidePhase.interval.start.distance(to: time)
@@ -158,28 +160,82 @@ class SolarModel: ObservableObject {
 			
 			switch insidePhase.label {
 				case .night:
-					if progress <= 0.5 {
-						return .night(progress * 2)
-					} else {
-						return .night((1 - progress) * 2)
-					}
-				case .astroDawn: return .dawn(progress)
-				case .civieDawn: return .rise(progress)
-				case .goldyDawn: return .shine(progress)
+					// if progress <= 0.5 {
+					// 	return .night(progress * 2)
+					// } else {
+					// 	return .night((1 - progress) * 2)
+					// }
+					
+					// if progress <= transitionCutoff {
+					// 	return .night(progress / transitionCutoff)
+					// } else if progress >= 1 - transitionCutoff {
+					// 	return .night((1 - progress) / transitionCutoff)
+					// } else {
+					// 	return .night(1)
+					// }
+					return .night(fadeInOut(progress))
+					
+				// case .astroDawn: return .dawn(progress)
+				// case .civieDawn: return .rise(progress)
+				// case .goldyDawn: return .shine(progress)
+				case .astroDawn: return .dawn(fadeOut(progress))
+				case .civieDawn: return .rise(fadeHold(progress))
+				case .goldyDawn: return .shine(fadeIn(progress))
 				case .day:
-					if progress <= 0.5 {
-						return .day(progress * 2)
-					} else {
-						return .day((1 - progress) * 2)
-					}
-				case .goldyDusk: return .shine(1 - progress)
-				case .civieDusk: return .set(progress)
-				case .astroDusk: return .dusk(progress)
+					// if progress <= 0.5 {
+					// 	return .day(progress * 2)
+					// } else {
+					// 	return .day((1 - progress) * 2)
+					// }
+				
+					// if progress <= transitionCutoff {
+					// 	return .day(progress / transitionCutoff)
+					// } else if progress >= 1 - transitionCutoff {
+					// 	return .day((1 - progress) / transitionCutoff)
+					// } else {
+					// 	return .day(1)
+					// }
+					return .day(fadeInOut(progress))
+				case .goldyDusk: return .shine(fadeIn(1 - progress))
+				case .civieDusk: return .set(fadeHold(progress))
+				case .astroDusk: return .dusk(fadeOut(progress))
 				default: return nil
 			}
 		}
 		return nil
 	}
+}
+
+let transitionCutoff = 0.25
+
+func fadeInOut(_ progress: TimeInterval) -> Double {
+	if progress <= transitionCutoff {
+		return progress / transitionCutoff
+	} else if progress >= 1 - transitionCutoff {
+		return (1 - progress) / transitionCutoff
+	} else {
+		return 1
+	}
+}
+
+func fadeOut(_ progress: TimeInterval) -> Double {
+	if progress >= 1 - transitionCutoff {
+		return 1 - ((1 - progress) / transitionCutoff)
+	} else {
+		return 0
+	}
+}
+
+func fadeIn(_ progress: TimeInterval) -> Double {
+	if progress <= transitionCutoff {
+		return progress / transitionCutoff
+	} else {
+		return 1
+	}
+}
+
+func fadeHold(_ progress: TimeInterval) -> Double {
+	return 0
 }
 
 enum SolarPhaseProgress {
