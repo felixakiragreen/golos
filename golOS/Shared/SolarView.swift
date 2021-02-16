@@ -78,8 +78,8 @@ struct SolarView: View {
 								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
-						// SolarBlockView(temporalConfig: temporalConfig)
-						// 	.opacity(0.2)
+						SolarBlockView(temporalConfig: temporalConfig)
+							.opacity(0.1)
 						
 						// SolarFocalPointView(temporalConfig: temporalConfig)
 						// 	.opacity(0.5)
@@ -342,30 +342,16 @@ struct SunsetView: View {
 							.modifier(
 								AnimatableGradient(
 									all: gradients,
-									fromIndex: 0,
-									toIndex: 1,
-									pct: CGFloat(1 - progress)
+									fromIndex: 1,
+									toIndex: 0,
+									pct: CGFloat(progress)
 								)
 							)
 						Text("night \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
-				case SolarPhaseProgress.day(let progress):
-					Group {
-						Rectangle()
-							.modifier(
-								AnimatableGradient(
-									all: gradients,
-									fromIndex: 4,
-									toIndex: 3,
-									pct: CGFloat(1 - progress)
-								)
-							)
-						Text("day \(progress, specifier: "%.2f")")
-							.font(.largeTitle)
-							.padding(.top, 164)
-					}
+				
 				case SolarPhaseProgress.dawn(let progress):
 					Group {
 						Rectangle()
@@ -388,11 +374,41 @@ struct SunsetView: View {
 								AnimatableGradient(
 									all: gradients,
 									fromIndex: 2,
-									toIndex: 3,
+									toIndex: 2,
 									pct: CGFloat(progress)
 								)
 							)
 						Text("sunrise \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.shine(let progress):
+					Group {
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 2,
+									toIndex: 3,
+									pct: CGFloat(progress)
+								)
+							)
+						Text("golden hour \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.day(let progress):
+					Group {
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 4,
+									toIndex: 3,
+									pct: CGFloat(1 - progress)
+								)
+							)
+						Text("day \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
@@ -403,7 +419,7 @@ struct SunsetView: View {
 								AnimatableGradient(
 									all: gradients,
 									fromIndex: 2,
-									toIndex: 3,
+									toIndex: 2,
 									pct: CGFloat(progress)
 								)
 							)
@@ -426,33 +442,7 @@ struct SunsetView: View {
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
-				case SolarPhaseProgress.shine(let progress):
-					Group {
-						Rectangle()
-							.modifier(
-								AnimatableGradient(
-									all: gradients,
-									fromIndex: 2,
-									toIndex: 3,
-									pct: CGFloat(progress)
-								)
-							)
-						Text("golden hour \(progress, specifier: "%.2f")")
-							.font(.largeTitle)
-							.padding(.top, 164)
-					}
 			}
-			
-			// if solarPhaseProgress == SolarPhaseProgress.day {
-			// 	day
-			// } else if solarBlock == "_night" {
-			// 	night
-			// }
-			// else {
-			// 	dawn
-			// }
-			// Text("asdf")
-			
 		}//: ZStack
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
@@ -492,71 +482,6 @@ struct SunsetView: View {
 		(color: NativeColor(Color(#colorLiteral(red: 0.9247719646, green: 0.9830601811, blue: 0.9897001386, alpha: 1))), location: 1.0),
 	]
 }
-
-typealias NativeStop = (color: NativeColor, location: CGFloat)
-struct AnimatableGradient: AnimatableModifier {
-
-	// let from: [UIColor]
-	// let to: [UIColor]
-	
-	let all: [[NativeStop]]
-	let fromIndex: Int
-	let toIndex: Int
-	var pct: CGFloat = 0
-	
-	// let from: [NativeStop]
-	// let to: [NativeStop]
-
-	
-	var animatableData: CGFloat {
-		get { pct }
-		set { pct = newValue }
-	}
-	
-	func body(content: Content) -> some View {
-		// var gColors = [Color]()
-		var gStops = [Gradient.Stop]()
-		
-		if let from: [NativeStop] = all[optional: fromIndex],
-			let to: [NativeStop] = all[optional: toIndex] {
-			
-			for i in from.indices {
-				gStops.append(
-					Gradient.Stop(
-						color: colorMixer(c1: from[i].color, c2: to[i].color, pct: pct),
-						location: stopMixer(s1: from[i].location, s2: to[i].location, pct: pct)
-					)
-				)
-				// gColors.append(colorMixer(c1: from[i], c2: to[i], pct: pct))
-			}
-		}
-
-		return LinearGradient(
-					gradient: Gradient(stops: gStops),
-					startPoint: .top,
-					endPoint: .bottom
-				)
-	}
-	
-	// This is a very basic implementation of a color interpolation
-	// between two values.
-	func colorMixer(c1: NativeColor, c2: NativeColor, pct: CGFloat) -> Color {
-		guard let cc1 = c1.cgColor.components else { return Color(c1) }
-		guard let cc2 = c2.cgColor.components else { return Color(c1) }
-		
-		let r = (cc1[0] + (cc2[0] - cc1[0]) * pct)
-		let g = (cc1[1] + (cc2[1] - cc1[1]) * pct)
-		let b = (cc1[2] + (cc2[2] - cc1[2]) * pct)
-		
-		return Color(red: Double(r), green: Double(g), blue: Double(b))
-	}
-	
-	func stopMixer(s1: CGFloat, s2: CGFloat, pct: CGFloat) -> CGFloat {
-		s1 + (s2 - s1) * pct
-	}
-}
-
-
 
 // MARK: - MODEL
 
@@ -613,7 +538,6 @@ struct TemporalConfig {
 		self.currentTime = currentTime
 	}
 }
-
 
 // MARK: - HELPER FUNCTIONS
 
