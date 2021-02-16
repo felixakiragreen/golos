@@ -22,6 +22,7 @@ Next steps:
 - gradient shift of background
 
 - [ ] TINY BUG - the haptic only happens AFTER the mark is passed, not on it
+- [ ] figure out scroll throttling
 
 */
 
@@ -56,7 +57,7 @@ struct SolarView: View {
 			ZStack {
 				Color.pink.opacity(0.2).ignoresSafeArea()
 				
-				// SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
+				SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
 				
 				ScrollViewOffset {
 					scrollOffset = $0
@@ -74,7 +75,7 @@ struct SolarView: View {
 							}
 
 						SolarBlockView(temporalConfig: temporalConfig)
-							// .opacity(0.2)
+							.opacity(0.2)
 						
 						// SolarFocalPointView(temporalConfig: temporalConfig)
 						
@@ -211,7 +212,7 @@ struct SolarBlockView: View {
 				VStack(spacing: 0) {
 					ForEach(solarModel.focalBlocks.indices) { index in
 						let block = solarModel.focalBlocks[index]
-						let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
+						// let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
 						let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
 						let time = DateFormatter.shortFormatter.string(from: block.interval.start)
 						
@@ -298,52 +299,88 @@ struct SunsetWrapperView: View {
 		
 		ZStack(alignment: .top) {
 			// Color.clear.opacity(0.2)
-			SunsetView(solarBlock: insideBlock)
-				.ignoresSafeArea()
+			// SunsetView(solarBlock: insideBlock)
+			
+			if let solarPhaseProgress = solarModel.getPhaseProgressFor(time: cursorTime) {
+				SunsetView(solarPhaseProgress: solarPhaseProgress)
+			}
+			// 	.ignoresSafeArea()
 		}//: ZStack
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
-	
-	// MARK: - COMPUTES
-
-	var solarTimes: [SolarMoment] {
-		solarModel.solarTimes
-	}
-
-	var solarBlocks: [SolarInterval] {
-		solarModel.focalBlocks
-	}
-	
-	var insideBlock: String {
-		var acc = "FUCK"
-		for block in solarBlocks {
-			if block.interval.contains(cursorTime) {
-				acc = getSolarLabel(block.name)
-			}
-		}
-		return acc
-	}
-
 }
 
 struct SunsetView: View {
 	
 	var solarBlock: String = "FUCK"
+	var solarPhaseProgress: SolarPhaseProgress
 	
 	var body: some View {
 		ZStack(alignment: .top) {
-			if solarBlock == "_day" {
-				day
-			} else if solarBlock == "_night" {
-				night
+			switch solarPhaseProgress {
+				case SolarPhaseProgress.night(let progress):
+					Group {
+						night
+						Text("night \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.day(let progress):
+					Group {
+						day
+						Text("day \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				
+				case SolarPhaseProgress.dawn(let progress):
+					Group {
+						dawn
+						Text("dawn \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.rise(let progress):
+					Group {
+						dawn
+						Text("sunrise \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.set(let progress):
+					Group {
+						dawn
+						Text("sunset \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.dusk(let progress):
+					Group {
+						dawn
+						Text("dusk \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				case SolarPhaseProgress.shine(let progress):
+					Group {
+						dawn
+						Text("golden hour \(progress, specifier: "%.2f")")
+							.font(.largeTitle)
+							.padding(.top, 164)
+					}
+				default:
+					dawn
 			}
-			else {
-				dawn
-			}
+			// if solarPhaseProgress == SolarPhaseProgress.day {
+			// 	day
+			// } else if solarBlock == "_night" {
+			// 	night
+			// }
+			// else {
+			// 	dawn
+			// }
 			
-			Text("\(solarBlock)")
-				.font(.largeTitle)
-				.padding(.top, 164)
+			
 		}//: ZStack
 		.animation(.default)
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -410,8 +447,7 @@ struct TemporalConfig {
 	
 	var rangeUnit: Calendar.Component = .hour
 	var rangeValue: Int = 36
-	
-	
+
 	var startTime: Date {
 		calendar.date(
 			byAdding: rangeUnit, value: -(rangeValue), to: currentHour
@@ -446,48 +482,6 @@ struct TemporalConfig {
 
 // MARK: - HELPER FUNCTIONS
 
-func getSolarColor(_ name: String) -> ColorPreset {
-	switch getSolarLabel(name) {
-		case "_night", "NADIR":
-			return ColorPreset(hue: .blue, lum: .normal)
-		case "_day", "NOON":
-			return ColorPreset(hue: .grey, lum: .nearWhite, sys: false)
-		case "astro.dawn", "astro.dusk":
-			return ColorPreset(hue: .purple, lum: .normal)
-		case "nauty.dawn", "nauty.dusk":
-			return ColorPreset(hue: .red, lum: .normal)
-		case "civie.dawn", "civie.dusk":
-			return ColorPreset(hue: .orange, lum: .normal)
-		case "goldy.dawn", "goldy.dusk":
-			return ColorPreset(hue: .yellow, lum: .normal)
-		default:
-			return ColorPreset(hue: .green, lum: .normal)
-	}
-}
-
-func getSolarLabel(_ name: String) -> String {
-	switch name {
-		case "nadir": return "NADIR"
-		case "night": return "_night"
-
-		case "nightEnd": return "astro.dawn"
-		case "nauticalDawn": return "nauty.dawn"
-		case "dawn": return "civie.dawn"
-		case "sunrise": return "SUNRISE"
-		case "sunriseEnd": return "goldy.dawn"
-		
-		case "goldenHourEnd": return "_day"
-		case "solarNoon": return "NOON"
-			
-		case "goldenHour": return "goldy.dusk"
-		case "sunsetStart": return "SUNSET"
-		case "sunset": return "civie.dusk"
-		case "dusk": return "nauty.dusk"
-		case "nauticalDusk": return "astro.dusk"
-
-		default: return name
-	}
-}
 
 func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CGFloat {
 	let numberOfMinutes = Calendar.current.dateComponents(
