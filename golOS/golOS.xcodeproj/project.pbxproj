@@ -51,6 +51,8 @@
 		1D9E4ED625D9870F00350E01 /* SolarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED425D9870F00350E01 /* SolarView.swift */; };
 		1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
 		1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9E4ED925D9900000350E01 /* CGSize+operators.swift */; };
+		1DD30D9125DC543E00634933 /* AnimatableGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9025DC543E00634933 /* AnimatableGradient.swift */; };
+		1DD30D9225DC543E00634933 /* AnimatableGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9025DC543E00634933 /* AnimatableGradient.swift */; };
 		1DFAFCCA25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
 		1DFAFCCB25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
 		1DFAFCCD25DB080B0079EBCB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCCC25DB080B0079EBCB /* Environment.swift */; };
@@ -87,6 +89,7 @@
 		1D751A7325D72ACE00860A62 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		1D9E4ED425D9870F00350E01 /* SolarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarView.swift; sourceTree = "<group>"; };
 		1D9E4ED925D9900000350E01 /* CGSize+operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+operators.swift"; sourceTree = "<group>"; };
+		1DD30D9025DC543E00634933 /* AnimatableGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradient.swift; sourceTree = "<group>"; };
 		1DFAFCC925DB079C0079EBCB /* TickMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickMarks.swift; sourceTree = "<group>"; };
 		1DFAFCCC25DB080B0079EBCB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		1DFAFCCF25DB5BEE0079EBCB /* SolarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarModel.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 				1D5EE0F125D9BE4300142534 /* Hexagon.swift */,
 				1D5EE10325DA1CA900142534 /* ScrollViewOffset.swift */,
 				1DFAFCC925DB079C0079EBCB /* TickMarks.swift */,
+				1DD30D9025DC543E00634933 /* AnimatableGradient.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -311,6 +315,7 @@
 				1D751A7425D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
 				1D5EE0E925D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
 				1D5EE0D525D9BA2E00142534 /* Calendar+generate.swift in Sources */,
+				1DD30D9125DC543E00634933 /* AnimatableGradient.swift in Sources */,
 				1D5EE0E325D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
 				1D5EE0F725D9BE4300142534 /* Hexagon.swift in Sources */,
 				1DFAFCCD25DB080B0079EBCB /* Environment.swift in Sources */,
@@ -342,6 +347,7 @@
 				1D751A7525D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
 				1D5EE0EA25D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
 				1D5EE0D625D9BA2E00142534 /* Calendar+generate.swift in Sources */,
+				1DD30D9225DC543E00634933 /* AnimatableGradient.swift in Sources */,
 				1D5EE0E425D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
 				1D5EE0F825D9BE4300142534 /* Hexagon.swift in Sources */,
 				1DFAFCCE25DB080B0079EBCB /* Environment.swift in Sources */,
