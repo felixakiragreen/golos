@@ -17,6 +17,11 @@ Next steps:
 - [ ] different scales (8h visible, 12h on either side)
 
 
+### 3 EFFECTS
+
+- gradient shift of background
+
+
 */
 
 // MARK: - PREVIEW
@@ -48,6 +53,8 @@ struct SolarView: View {
 			ZStack {
 				Color.pink.opacity(0.2).ignoresSafeArea()
 				
+				SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
+				
 				ScrollViewOffset {
 					scrollOffset = $0
 				} content: {
@@ -64,8 +71,7 @@ struct SolarView: View {
 							}
 
 						SolarBlockView(temporalConfig: temporalConfig)
-						
-						SunsetView(temporalConfig: temporalConfig)
+							// .opacity(0.2)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -238,6 +244,7 @@ struct SolarBlockView: View {
 					)
 					.offset(x: 0, y: offset)
 			}//: ForEach - Points
+
 		}//: ZStack
 		.frame(height: temporalSpec.contentSize * 3, alignment: .top)
 	}
@@ -247,53 +254,62 @@ struct SolarBlockView: View {
 	let dayRange = [
 		-1, 0, 1, 2, 3
 	]
+	let pointNames = [
+		"nadir", "solarNoon",
+		"sunrise", "sunsetStart",
+	]
+	
+	// let blockNames = [
+	// 	"night", "nightEnd",
+	// 	"goldenHourEnd", "goldenHour"
+	// ]
+	
+	let blockNames = [
+		"night", "nightEnd",
+		"nauticalDawn", "dawn",
+		"sunriseEnd", "goldenHourEnd",
+		"goldenHour", "sunset",
+		"dusk", "nauticalDusk",
+	]
 
+	// "nadir", "solarNoon"
+	
+	// "night", "nightEnd",
+	// "nauticalDawn", "dawn",
+	// "sunrise", "sunriseEnd",
+	// "goldenHourEnd", "goldenHour",
+	// "sunsetStart", "sunset",
+	// "dusk", "nauticalDusk",
+	
+	// case "night", "nadir", "nightEnd":
+	// case "nauticalDawn":
+	// case "dawn":
+	// case "sunrise", "sunriseEnd":
+	// case "goldenHourEnd", "solarNoon":
+	// case "goldenHour", "sunsetStart", "sunset":
+	// case "dusk":
+	// case "nauticalDusk":
+	
 	var solarTimes: [SolarMoment] {
 		solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
-		
-		// var allSolarTimes: [(time: Date, name: String)] = []
-		//
-		// for day in dayRange {
-		// 	let dateValue = Calendar.current.date(
-		// 		byAdding: .day, value: day, to: temporalConfig.currentDay
-		// 	)!
-		// 	let times = solarSpec.getTimes(date: dateValue)
-		// 	for (name, time) in times {
-		// 		allSolarTimes.append((time, name))
-		// 	}
-		// }
-		//
-		// allSolarTimes.sort { $0.time < $1.time }
-		//
-		// return allSolarTimes
 	}
-	
-	let pointNames = [
-		"nadir", "solarNoon"
-	]
 	
 	var solarPoints: [SolarMoment] {
 		solarTimes.filter { pointNames.contains($0.name) }
 	}
-	
-	let blockNames = [
-		"night", "nightEnd",
-		"goldenHourEnd", "goldenHour"
-	]
-
 	var solarBlocks: [SolarInterval] {
 		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
 	}
-
 }
 
-struct SunsetView: View {
+struct SunsetWrapperView: View {
 	
 	// MARK: - PROPS
 	
 	@Environment(\.temporalSpec) var temporalSpec
 	@Environment(\.solarSpec) var solarSpec
 	var temporalConfig: TemporalConfig
+	var cursorTime: Date
 	
 	// MARK: - BODY
 	
@@ -301,7 +317,9 @@ struct SunsetView: View {
 		// let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalSpec._minuteSize)
 		
 		ZStack(alignment: .top) {
-			Color.red.ignoresSafeArea()
+			// Color.clear.opacity(0.2)
+			SunsetView(solarBlock: insideBlock)
+				.ignoresSafeArea()
 		}//: ZStack
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
@@ -324,7 +342,76 @@ struct SunsetView: View {
 	var solarBlocks: [SolarInterval] {
 		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
 	}
+	
+	var insideBlock: String {
+		var acc = "FUCK"
+		for block in solarBlocks {
+			if block.interval.contains(cursorTime) {
+				acc = getSolarLabel(block.name)
+			}
+		}
+		return acc
+	}
 
+}
+
+struct SunsetView: View {
+	
+	var solarBlock: String = "FUCK"
+	
+	var body: some View {
+		ZStack(alignment: .top) {
+			if solarBlock == "day" {
+				day
+			} else if solarBlock == "night" {
+				night
+			}
+			else {
+				dawn
+			}
+			
+			Text("\(solarBlock)")
+				.font(.largeTitle)
+				.padding(.top, 164)
+		}//: ZStack
+		.animation(.default)
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+	}
+	
+	var dawn: some View {
+		LinearGradient(
+			gradient: Gradient(stops: [
+				Gradient.Stop(color: Color(#colorLiteral(red: 0.1687308848, green: 0.09176445752, blue: 0.3746856749, alpha: 1)), location: 0.0),
+				Gradient.Stop(color: Color(#colorLiteral(red: 0.5273597836, green: 0.04536166787, blue: 0.1914333701, alpha: 1)), location: 0.33),
+				Gradient.Stop(color: Color(#colorLiteral(red: 0.9155419469, green: 0.4921894073, blue: 0.1403514445, alpha: 1)), location: 0.66),
+				Gradient.Stop(color: Color(#colorLiteral(red: 0.9246239066, green: 0.8353297114, blue: 0.01127522066, alpha: 1)), location: 1.0),
+			]),
+			startPoint: .top,
+			endPoint: .bottom
+		)
+	}
+	
+	var day: some View {
+		LinearGradient(
+			gradient: Gradient(colors: [
+				Color(#colorLiteral(red: 0.009109710343, green: 0.2355630994, blue: 0.7201706767, alpha: 1)),
+				Color(#colorLiteral(red: 0.9282203913, green: 0.9830620885, blue: 0.989700973, alpha: 1)),
+			]),
+			startPoint: .top,
+			endPoint: .bottom
+		)
+	}
+	
+	var night: some View {
+		LinearGradient(
+			gradient: Gradient(colors: [
+				Color(#colorLiteral(red: 0.003380405018, green: 0.01248565037, blue: 0.1030821726, alpha: 1)),
+				Color(#colorLiteral(red: 0.0904847458, green: 0.002781496383, blue: 0.4793588519, alpha: 1)),
+			]),
+			startPoint: .top,
+			endPoint: .bottom
+		)
+	}
 }
 
 
@@ -405,12 +492,25 @@ func getSolarColor(_ name: String) -> ColorPreset {
 
 func getSolarLabel(_ name: String) -> String {
 	switch name {
-		case "night", "nadir": return name
-		case "nightEnd": return "dawn"
-		case "goldenHourEnd": return "day"
-		case "solarNoon": return "noon"
-		case "goldenHour": return "dusk"
-		default: return ""
+		case "nadir": return "NADIR"
+		case "night": return "_night"
+
+		case "nightEnd": return "astro.dawn"
+		case "nauticalDawn": return "nauty.dawn"
+		case "dawn": return "civie.dawn"
+		case "sunrise": return "SUNRISE"
+		case "sunriseEnd": return "goldy.dawn"
+		
+		case "goldenHourEnd": return "_day"
+		case "solarNoon": return "NOON"
+			
+		case "goldenHour": return "goldy.dusk"
+		case "sunsetStart": return "SUNSET"
+		case "sunset": return "civie.dusk"
+		case "dusk": return "nauty.dusk"
+		case "nauticalDusk": return "astro.dusk"
+
+		default: return name
 	}
 }
 
