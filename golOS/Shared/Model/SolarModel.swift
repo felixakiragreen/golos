@@ -151,15 +151,7 @@ class SolarModel: ObservableObject {
 		return accPhases
 	}
 	
-	var phaseCache = [Date: SolarPhaseProgress]()
-	
 	func getPhaseProgressFor(time: Date) -> SolarPhaseProgress? {
-		if let solarPhaseProgress = phaseCache[time] {
-			return solarPhaseProgress
-		}
-		
-		var acc: SolarPhaseProgress? = nil
-		
 		if let insidePhase = focalPhases.first(where: { $0.interval.contains(time) }) {
 			let timeElapsed = insidePhase.interval.start.distance(to: time)
 			let progress = timeElapsed / insidePhase.interval.duration
@@ -167,61 +159,28 @@ class SolarModel: ObservableObject {
 			switch insidePhase.label {
 				case .night:
 					if progress <= 0.5 {
-						acc = .night(progress * 2)
+						return .night(progress * 2)
 					} else {
-						acc = .night((1 - progress) * 2)
+						return .night((1 - progress) * 2)
 					}
-					break
-				case .astroDawn:
-					acc = .dawn(progress)
-					break
-				case .civieDawn:
-					acc = .rise(progress)
-					break
-				case .goldyDawn:
-					acc = .shine(progress)
-					break
+				case .astroDawn: return .dawn(progress)
+				case .civieDawn: return .rise(progress)
+				case .goldyDawn: return .shine(progress)
 				case .day:
 					if progress <= 0.5 {
-						acc = .day(progress * 2)
+						return .day(progress * 2)
 					} else {
-						acc = .day((1 - progress) * 2)
+						return .day((1 - progress) * 2)
 					}
-					break
-				case .goldyDusk:
-					acc = .shine(1 - progress)
-					break
-				case .civieDusk:
-					acc = .set(progress)
-					break
-				case .astroDusk:
-					acc = .dusk(progress)
-					break
-				default:
-					break
+				case .goldyDusk: return .shine(1 - progress)
+				case .civieDusk: return .set(progress)
+				case .astroDusk: return .dusk(progress)
+				default: return nil
 			}
 		}
-		phaseCache[time] = acc
-		return acc
+		return nil
 	}
 }
-
-// // work with any sort of input and output as long as the input is hashable, accept a function that takes Input and returns Output, and send back a function that accepts Input and returns Output
-// func memoize<Input: Hashable, Output>(_ function: @escaping (Input) -> Output) -> (Input) -> Output {
-// 	// our item cache
-// 	var storage = [Input: Output]()
-//
-// 	// send back a new closure that does our calculation
-// 	return { input in
-// 		if let cached = storage[input] {
-// 			return cached
-// 		}
-//
-// 		let result = function(input)
-// 		storage[input] = result
-// 		return result
-// 	}
-// }
 
 enum SolarPhaseProgress {
 	case night(Double), day(Double) // 0.0 start, 1.0 middle, 0.0 end
