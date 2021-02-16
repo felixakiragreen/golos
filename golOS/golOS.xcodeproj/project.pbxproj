@@ -113,9 +113,9 @@
 		1D5EE0C925D9BA2E00142534 /* Principles */ = {
 			isa = PBXGroup;
 			children = (
+				1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */,
 				1D5EE0D225D9BA2E00142534 /* Colors.swift */,
 				1D5EE0EB25D9BB9F00142534 /* SunCalc.swift */,
-				1D5EE0CC25D9BA2E00142534 /* Color+hex.swift */,
 				1D9E4ED925D9900000350E01 /* CGSize+operators.swift */,
 				1D5EE0CA25D9BA2E00142534 /* Calendar+generate.swift */,
 				1D5EE0CE25D9BA2E00142534 /* Calendar+numberOf.swift */,

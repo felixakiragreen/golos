@@ -16,6 +16,12 @@ import AppKit
 typealias ColorComponentsRGBA = (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)
 typealias ColorComponentsHSVA = (hue: CGFloat, saturation: CGFloat, value: CGFloat, alpha: CGFloat)
 
+#if canImport(AppKit)
+typealias NativeColor = NSColor
+#elseif canImport(UIKit)
+typealias NativeColor = UIColor
+#endif
+
 extension Color {
 	
 	var rgba: ColorComponentsRGBA {
