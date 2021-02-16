@@ -22,7 +22,8 @@ Next steps:
 - gradient shift of background
 
 - [ ] TINY BUG - the haptic only happens AFTER the mark is passed, not on it
-- [ ] figure out scroll throttling
+- [x] figure out scroll throttling
+FUCK IT WAS ANIMATION
 
 */
 
@@ -57,7 +58,10 @@ struct SolarView: View {
 			ZStack {
 				Color.pink.opacity(0.2).ignoresSafeArea()
 				
-				SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
+				SunsetWrapperView(
+					temporalConfig: temporalConfig,
+					cursorTime: cursor
+				)
 				
 				ScrollViewOffset {
 					scrollOffset = $0
@@ -77,7 +81,8 @@ struct SolarView: View {
 						SolarBlockView(temporalConfig: temporalConfig)
 							.opacity(0.2)
 						
-						// SolarFocalPointView(temporalConfig: temporalConfig)
+						SolarFocalPointView(temporalConfig: temporalConfig)
+							.opacity(0.5)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -131,21 +136,22 @@ struct SolarView: View {
 		Date().round(precision: minutes(5))
 	}
 	var currentTimeOffset: CGFloat {
-		let numberOfMinutes = Calendar.current.dateComponents(
-			[.minute],
+		getOffsetForTime(
 			from: temporalConfig.startTime,
-			to: currentTime
-		).minute ?? 0
-		
-		return CGFloat(numberOfMinutes) * temporalSpec._minuteSize
+			to: currentTime,
+			minuteSize: temporalSpec._minuteSize
+		)
 	}
 	
 	var cursor: Date {
 		let cursorOffset = temporalSpec.contentSize / 2
-		let minutesToAdd = (cursorOffset + scrollOffset * -1) / temporalSpec._minuteSize
+		let offset = (cursorOffset + scrollOffset * -1)
 		
-		return temporalConfig.startTime
-			.advanced(by: minutes(Double(minutesToAdd)))
+		return getTimeFromOffset(
+			from: temporalConfig.startTime,
+			offset: offset,
+			minuteSize: temporalSpec._minuteSize
+		)
 	}
 	var cursorTime: Date {
 		cursor.round(precision: minutes(5))
@@ -206,13 +212,17 @@ struct SolarBlockView: View {
 	var body: some View {
 		if let firstBlock = solarModel.focalBlocks.first {
 			let start: Date = firstBlock.interval.start
-			let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: start, minuteHeight: temporalSpec._minuteSize)
+			let offset = getOffsetForTime(
+				from: temporalConfig.startTime,
+				to: start,
+				minuteSize: temporalSpec._minuteSize
+			)
 			
 			ZStack(alignment: .top) {
 				VStack(spacing: 0) {
 					ForEach(solarModel.focalBlocks.indices) { index in
 						let block = solarModel.focalBlocks[index]
-						// let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
+						// let offset = getOffsetForTime(from: temporalConfig.startTime, to: block.interval.start, minuteSize: temporalSpec._minuteSize)
 						let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
 						let time = DateFormatter.shortFormatter.string(from: block.interval.start)
 						
@@ -258,7 +268,11 @@ struct SolarFocalPointView: View {
 		ZStack(alignment: .top) {
 			ForEach(solarModel.focalPoints.indices) { index in
 				let moment = solarModel.focalPoints[index]
-				let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: moment.time, minuteHeight: temporalSpec._minuteSize)
+				let offset = getOffsetForTime(
+					from: temporalConfig.startTime,
+					to: moment.time,
+					minuteSize: temporalSpec._minuteSize
+				)
 				let time = DateFormatter.shortFormatter.string(from: moment.time)
 				
 				Rectangle()
@@ -295,16 +309,10 @@ struct SunsetWrapperView: View {
 	// MARK: - BODY
 	
 	var body: some View {
-		// let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalSpec._minuteSize)
-		
 		ZStack(alignment: .top) {
-			// Color.clear.opacity(0.2)
-			// SunsetView(solarBlock: insideBlock)
-			
 			if let solarPhaseProgress = solarModel.getPhaseProgressFor(time: cursorTime) {
 				SunsetView(solarPhaseProgress: solarPhaseProgress)
 			}
-			// 	.ignoresSafeArea()
 		}//: ZStack
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
@@ -332,7 +340,6 @@ struct SunsetView: View {
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
-				
 				case SolarPhaseProgress.dawn(let progress):
 					Group {
 						dawn
@@ -368,8 +375,6 @@ struct SunsetView: View {
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
-				default:
-					dawn
 			}
 			// if solarPhaseProgress == SolarPhaseProgress.day {
 			// 	day
@@ -379,10 +384,9 @@ struct SunsetView: View {
 			// else {
 			// 	dawn
 			// }
-			
+			// Text("asdf")
 			
 		}//: ZStack
-		.animation(.default)
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
 	
@@ -482,15 +486,17 @@ struct TemporalConfig {
 
 // MARK: - HELPER FUNCTIONS
 
-
-func getOffsetForTime(fromDate: Date, toTime: Date, minuteHeight: CGFloat) -> CGFloat {
-	let numberOfMinutes = Calendar.current.dateComponents(
-		[.minute],
-		from: fromDate,
-		to: toTime
-	).minute ?? 0
+func getOffsetForTime(from: Date, to: Date, minuteSize: CGFloat) -> CGFloat {
+	let numberOfMinutes = from.distance(to: to) / 60
 	
-	return CGFloat(numberOfMinutes) * minuteHeight
+	return CGFloat(numberOfMinutes) * minuteSize
+}
+
+func getTimeFromOffset(from: Date, offset: CGFloat, minuteSize: CGFloat) -> Date {
+	let minutesToAdd = offset / minuteSize
+	
+	return from
+		.advanced(by: minutes(Double(minutesToAdd)))
 }
 
 func formatTime(_ date: Date) -> String {
