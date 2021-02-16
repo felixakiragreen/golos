@@ -21,6 +21,7 @@ Next steps:
 
 - gradient shift of background
 
+- [ ] TINY BUG - the haptic only happens AFTER the mark is passed, not on it
 
 */
 
@@ -31,6 +32,7 @@ struct SolarView_Previews: PreviewProvider {
 		GeometryReader { geometry in
 			SolarView()
 				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
+				.environmentObject(SolarModel())
 		}
 	}
 }
@@ -41,6 +43,7 @@ struct SolarView: View {
 
 	@Environment(\.calendar) var calendar
 	@Environment(\.temporalSpec) var temporalSpec
+	@EnvironmentObject var solarModel: SolarModel
 	
 	@State private var temporalConfig = TemporalConfig(currentTime: Date())
 	let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
@@ -71,7 +74,7 @@ struct SolarView: View {
 							}
 
 						SolarBlockView(temporalConfig: temporalConfig)
-							// .opacity(0.2)
+							.opacity(0.2)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -188,7 +191,8 @@ struct SolarBlockView: View {
 	// MARK: - PROPS
 	
 	@Environment(\.temporalSpec) var temporalSpec
-	@Environment(\.solarSpec) var solarSpec
+	@EnvironmentObject var solarModel: SolarModel
+
 	var temporalConfig: TemporalConfig
 
 	// MARK: - BODY
@@ -291,14 +295,16 @@ struct SolarBlockView: View {
 	// case "nauticalDusk":
 	
 	var solarTimes: [SolarMoment] {
-		solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
+		solarModel.solarTimes
+		// solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
 	}
 	
 	var solarPoints: [SolarMoment] {
 		solarTimes.filter { pointNames.contains($0.name) }
 	}
 	var solarBlocks: [SolarInterval] {
-		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
+		solarModel.focalBlocks
+		// solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
 	}
 }
 
@@ -307,7 +313,8 @@ struct SunsetWrapperView: View {
 	// MARK: - PROPS
 	
 	@Environment(\.temporalSpec) var temporalSpec
-	@Environment(\.solarSpec) var solarSpec
+	@EnvironmentObject var solarModel: SolarModel
+
 	var temporalConfig: TemporalConfig
 	var cursorTime: Date
 	
@@ -325,22 +332,13 @@ struct SunsetWrapperView: View {
 	}
 	
 	// MARK: - COMPUTES
-	
-	let dayRange = [
-		-1, 0, 1, 2, 3
-	]
 
 	var solarTimes: [SolarMoment] {
-		solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
+		solarModel.solarTimes
 	}
 
-	let blockNames = [
-		"night", "nightEnd",
-		"goldenHourEnd", "goldenHour"
-	]
-
 	var solarBlocks: [SolarInterval] {
-		solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
+		solarModel.focalBlocks
 	}
 	
 	var insideBlock: String {
@@ -361,9 +359,9 @@ struct SunsetView: View {
 	
 	var body: some View {
 		ZStack(alignment: .top) {
-			if solarBlock == "day" {
+			if solarBlock == "_day" {
 				day
-			} else if solarBlock == "night" {
+			} else if solarBlock == "_night" {
 				night
 			}
 			else {

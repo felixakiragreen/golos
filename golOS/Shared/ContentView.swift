@@ -27,6 +27,8 @@ struct ContentView: View {
 //		animation: .default
 //	)
 //	private var items: FetchedResults<Item>
+	
+	@StateObject var solarModel = SolarModel(date: Date())
 
 	// MARK: - BODY
 
@@ -35,7 +37,7 @@ struct ContentView: View {
 			SolarView()
 				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
 				.environment(\.physicalSpec, PhysicalSpec())
-				.environment(\.solarSpec, SolarSpec())
+				.environmentObject(solarModel)
 		}
 // 		List {
 // //			ForEach(items) { item in
