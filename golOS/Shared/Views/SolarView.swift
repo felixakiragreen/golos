@@ -11,19 +11,8 @@ import SwiftUI
 
 Next steps:
 
-- [ ] overlay a new view with colored gradients that changes based on the cursor position
 - [ ] try adding the horizon
-
-- [ ] different scales (8h visible, 12h on either side)
-
-
-### 3 EFFECTS
-
-- gradient shift of background
-
 - [ ] TINY BUG - the haptic only happens AFTER the mark is passed, not on it
-- [x] figure out scroll throttling
-FUCK IT WAS ANIMATION
 
 */
 
@@ -200,71 +189,7 @@ struct SolarView: View {
 	}
 }
 
-// MARK: - SUBVIEWS
-
-
-
-// MARK: - MODEL
-
-struct TemporalConfig {
-	@Environment(\.calendar) var calendar
-	
-	var currentTime: Date
-	
-	// start of the day
-	var currentDay: Date {
-		calendar.startOfDay(for: currentTime)
-	}
-	var firstDay: Date {
-		calendar.date(
-			byAdding: .day, value: -1, to: currentDay
-		)!
-	}
-	
-	// rounded to hour
-	var currentHour: Date {
-		currentTime.floor(precision: minutes(60))
-	}
-	
-	var rangeUnit: Calendar.Component = .hour
-	var rangeValue: Int = 32
-
-	var startTime: Date {
-		calendar.date(
-			byAdding: rangeUnit, value: -(rangeValue), to: currentHour
-		)!
-	}
-	
-	// currentHour - rangeInHours → rounded to hour
-	var startHour: Date {
-		calendar.date(
-			byAdding: rangeUnit, value: -(rangeValue + 1), to: currentHour
-		)!
-	}
-	// currentHour + rangeInHours → rounded to hour
-	var endHour: Date {
-		calendar.date(
-			byAdding: rangeUnit, value: rangeValue + 1, to: currentHour
-		)!
-	}
-	
-	var hours: [Date] {
-		calendar.generate(
-			inside: DateInterval(start: startHour, end: endHour),
-			matching: DateComponents(minute: 0, second: 0)
-		)
-	}
-	
-	init(currentTime: Date) {
-		self.currentTime = currentTime
-	}
-	
-	init() {
-		self.init(currentTime: Date())
-	}
-}
-
-// MARK: - HELPER FUNCTIONS
+// MARK: - HELPERS
 
 func getOffsetForTime(from: Date, to: Date, minuteSize: CGFloat) -> CGFloat {
 	let numberOfMinutes = from.distance(to: to) / 60

@@ -7,11 +7,21 @@
 
 import SwiftUI
 
+// MARK: - TYPES
+
 typealias SolarMoment = (time: Date, name: String)
 
 typealias SolarInterval = (interval: DateInterval, name: String)
 
 typealias SolarPhase = (label: SolarLabel, interval: DateInterval)
+
+enum SolarPhaseProgress {
+	case night(Double), day(Double) // 0.0 start, 1.0 middle, 0.0 end
+	case dawn(Double), rise(Double), set(Double), dusk(Double) // 0.0 start, 1.0 end
+	case shine(Double) // 0.0 night, 1.0 day
+}
+
+// MARK: - MODEL
 
 class SolarModel: ObservableObject {
 	@Environment(\.calendar) var calendar: Calendar
@@ -164,7 +174,7 @@ class SolarModel: ObservableObject {
 	}
 }
 
-let transitionCutoff = 0.5
+// MARK: - HELPERS
 
 func fadeInOut(_ progress: TimeInterval) -> Double {
 	let cutoff = 0.3
@@ -199,11 +209,7 @@ func fadeHold(_ progress: TimeInterval) -> Double {
 	return 1
 }
 
-enum SolarPhaseProgress {
-	case night(Double), day(Double) // 0.0 start, 1.0 middle, 0.0 end
-	case dawn(Double), rise(Double), set(Double), dusk(Double) // 0.0 start, 1.0 end
-	case shine(Double) // 0.0 night, 1.0 day
-}
+// MARK: - LABELS
 
 enum SolarLabel: String {
 	case nadir = "nadir"
@@ -265,5 +271,65 @@ func getSolarColor(_ name: String) -> ColorPreset {
 			return ColorPreset(hue: .yellow, lum: .normal)
 		default:
 			return ColorPreset(hue: .green, lum: .normal)
+	}
+}
+
+// MARK: - TEMPORAL CONFIG
+
+struct TemporalConfig {
+	@Environment(\.calendar) var calendar
+	
+	var currentTime: Date
+	
+	// start of the day
+	var currentDay: Date {
+		calendar.startOfDay(for: currentTime)
+	}
+	var firstDay: Date {
+		calendar.date(
+			byAdding: .day, value: -1, to: currentDay
+		)!
+	}
+	
+	// rounded to hour
+	var currentHour: Date {
+		currentTime.floor(precision: minutes(60))
+	}
+	
+	var rangeUnit: Calendar.Component = .hour
+	var rangeValue: Int = 32
+	
+	var startTime: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue), to: currentHour
+		)!
+	}
+	
+	// currentHour - rangeInHours → rounded to hour
+	var startHour: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: -(rangeValue + 1), to: currentHour
+		)!
+	}
+	// currentHour + rangeInHours → rounded to hour
+	var endHour: Date {
+		calendar.date(
+			byAdding: rangeUnit, value: rangeValue + 1, to: currentHour
+		)!
+	}
+	
+	var hours: [Date] {
+		calendar.generate(
+			inside: DateInterval(start: startHour, end: endHour),
+			matching: DateComponents(minute: 0, second: 0)
+		)
+	}
+	
+	init(currentTime: Date) {
+		self.currentTime = currentTime
+	}
+	
+	init() {
+		self.init(currentTime: Date())
 	}
 }
