@@ -12,9 +12,14 @@ import SwiftUI
 struct TemporalSpec {
 	
 	var contentSize: CGFloat
-	var hoursInView: CGFloat = 16
+	var rangeUnit: Calendar.Component = .hour
+	var rangeTotal: Int = 64
+	var rangeInView: CGFloat = 16
 	var _minuteSize: CGFloat {
-		contentSize / hoursInView / 60
+		contentSize / rangeInView / 60
+	}
+	var _scrollSize: CGFloat {
+		contentSize / rangeInView * CGFloat(rangeTotal)
 	}
 	
 	init() {
