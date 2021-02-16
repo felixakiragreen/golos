@@ -78,11 +78,11 @@ struct SolarView: View {
 								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
-						SolarBlockView(temporalConfig: temporalConfig)
-							.opacity(0.2)
+						// SolarBlockView(temporalConfig: temporalConfig)
+						// 	.opacity(0.2)
 						
-						SolarFocalPointView(temporalConfig: temporalConfig)
-							.opacity(0.5)
+						// SolarFocalPointView(temporalConfig: temporalConfig)
+						// 	.opacity(0.5)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -319,63 +319,130 @@ struct SunsetWrapperView: View {
 }
 
 struct SunsetView: View {
-	
-	var solarBlock: String = "FUCK"
+
 	var solarPhaseProgress: SolarPhaseProgress
+	
+	var gradients: [[NativeStop]] {
+		[
+			night, // 0
+			twilight, // 1
+			sun, // 2
+			shine, // 3
+			day // 4
+		]
+	}
 	
 	var body: some View {
 		ZStack(alignment: .top) {
+			
 			switch solarPhaseProgress {
 				case SolarPhaseProgress.night(let progress):
 					Group {
-						night
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 0,
+									toIndex: 1,
+									pct: CGFloat(1 - progress)
+								)
+							)
 						Text("night \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.day(let progress):
 					Group {
-						day
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 4,
+									toIndex: 3,
+									pct: CGFloat(1 - progress)
+								)
+							)
 						Text("day \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.dawn(let progress):
 					Group {
-						dawn
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 1,
+									toIndex: 2,
+									pct: CGFloat(progress)
+								)
+							)
 						Text("dawn \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.rise(let progress):
 					Group {
-						dawn
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 2,
+									toIndex: 3,
+									pct: CGFloat(progress)
+								)
+							)
 						Text("sunrise \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.set(let progress):
 					Group {
-						dawn
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 2,
+									toIndex: 3,
+									pct: CGFloat(progress)
+								)
+							)
 						Text("sunset \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.dusk(let progress):
 					Group {
-						dawn
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 2,
+									toIndex: 1,
+									pct: CGFloat(progress)
+								)
+							)
 						Text("dusk \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 				case SolarPhaseProgress.shine(let progress):
 					Group {
-						dawn
+						Rectangle()
+							.modifier(
+								AnimatableGradient(
+									all: gradients,
+									fromIndex: 2,
+									toIndex: 3,
+									pct: CGFloat(progress)
+								)
+							)
 						Text("golden hour \(progress, specifier: "%.2f")")
 							.font(.largeTitle)
 							.padding(.top, 164)
 					}
 			}
+			
 			// if solarPhaseProgress == SolarPhaseProgress.day {
 			// 	day
 			// } else if solarBlock == "_night" {
@@ -390,41 +457,105 @@ struct SunsetView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 	}
 	
-	var dawn: some View {
-		LinearGradient(
-			gradient: Gradient(stops: [
-				Gradient.Stop(color: Color(#colorLiteral(red: 0.1687308848, green: 0.09176445752, blue: 0.3746856749, alpha: 1)), location: 0.0),
-				Gradient.Stop(color: Color(#colorLiteral(red: 0.5273597836, green: 0.04536166787, blue: 0.1914333701, alpha: 1)), location: 0.33),
-				Gradient.Stop(color: Color(#colorLiteral(red: 0.9155419469, green: 0.4921894073, blue: 0.1403514445, alpha: 1)), location: 0.66),
-				Gradient.Stop(color: Color(#colorLiteral(red: 0.9246239066, green: 0.8353297114, blue: 0.01127522066, alpha: 1)), location: 1.0),
-			]),
-			startPoint: .top,
-			endPoint: .bottom
-		)
+	let night: [NativeStop] = [
+		(color: NativeColor(Color(#colorLiteral(red: 0.003380405018, green: 0.01248565037, blue: 0.1030821726, alpha: 1))), location: 0.0),
+		(color: NativeColor(Color(#colorLiteral(red: 0.003690367797, green: 0.02489320002, blue: 0.1723413169, alpha: 1))), location: 0.33),
+		(color: NativeColor(Color(#colorLiteral(red: 0.01167470682, green: 0.04773455113, blue: 0.3371214271, alpha: 1))), location: 0.66),
+		(color: NativeColor(Color(#colorLiteral(red: 0.0904847458, green: 0.002781496383, blue: 0.4793588519, alpha: 1))), location: 1.0),
+	]
+	
+	let twilight: [NativeStop] = [
+		(color: NativeColor(Color(#colorLiteral(red: 0.0009479976725, green: 0.02773871832, blue: 0.2280530632, alpha: 1))), location: 0.0),
+		(color: NativeColor(Color(#colorLiteral(red: 0.003361887531, green: 0.16669783, blue: 0.479382813, alpha: 1))), location: 0.33),
+		(color: NativeColor(Color(#colorLiteral(red: 0.1716162264, green: 0.1648572981, blue: 0.7561655641, alpha: 1))), location: 0.66),
+		(color: NativeColor(Color(#colorLiteral(red: 0.5243727565, green: 0.1154649928, blue: 0.7274202704, alpha: 1))), location: 1.0),
+	]
+	
+	let sun: [NativeStop] = [
+		(color: NativeColor(Color(#colorLiteral(red: 0.1687308848, green: 0.09176445752, blue: 0.3746856749, alpha: 1))), location: 0.0),
+		(color: NativeColor(Color(#colorLiteral(red: 0.5273597836, green: 0.04536166787, blue: 0.1914333701, alpha: 1))), location: 0.33),
+		(color: NativeColor(Color(#colorLiteral(red: 0.9155419469, green: 0.4921894073, blue: 0.1403514445, alpha: 1))), location: 0.66),
+		(color: NativeColor(Color(#colorLiteral(red: 0.9246239066, green: 0.8353297114, blue: 0.01127522066, alpha: 1))), location: 1.0),
+	]
+	
+	let shine: [NativeStop] = [
+		(color: NativeColor(Color(#colorLiteral(red: 0.0158313401, green: 0.005890237633, blue: 0.6395550966, alpha: 1))), location: 0.0),
+		(color: NativeColor(Color(#colorLiteral(red: 0.00617591897, green: 0.3323536515, blue: 0.6396250129, alpha: 1))), location: 0.33),
+		(color: NativeColor(Color(#colorLiteral(red: 0.9244585633, green: 0.9151363969, blue: 0.5425032377, alpha: 1))), location: 0.66),
+		(color: NativeColor(Color(#colorLiteral(red: 0.9897723794, green: 0.8248019814, blue: 0.1941889524, alpha: 1))), location: 1.0),
+	]
+	
+	let day: [NativeStop] = [
+		(color: NativeColor(Color(#colorLiteral(red: 0.009109710343, green: 0.2355630994, blue: 0.7201706767, alpha: 1))), location: 0.0),
+		(color: NativeColor(Color(#colorLiteral(red: 0.1112611368, green: 0.4668209553, blue: 0.8761388063, alpha: 1))), location: 0.33),
+		(color: NativeColor(Color(#colorLiteral(red: 0.5453876257, green: 0.7670046687, blue: 0.958891809, alpha: 1))), location: 0.66),
+		(color: NativeColor(Color(#colorLiteral(red: 0.9247719646, green: 0.9830601811, blue: 0.9897001386, alpha: 1))), location: 1.0),
+	]
+}
+
+typealias NativeStop = (color: NativeColor, location: CGFloat)
+struct AnimatableGradient: AnimatableModifier {
+
+	// let from: [UIColor]
+	// let to: [UIColor]
+	
+	let all: [[NativeStop]]
+	let fromIndex: Int
+	let toIndex: Int
+	var pct: CGFloat = 0
+	
+	// let from: [NativeStop]
+	// let to: [NativeStop]
+
+	
+	var animatableData: CGFloat {
+		get { pct }
+		set { pct = newValue }
 	}
 	
-	var day: some View {
-		LinearGradient(
-			gradient: Gradient(colors: [
-				Color(#colorLiteral(red: 0.009109710343, green: 0.2355630994, blue: 0.7201706767, alpha: 1)),
-				Color(#colorLiteral(red: 0.9282203913, green: 0.9830620885, blue: 0.989700973, alpha: 1)),
-			]),
-			startPoint: .top,
-			endPoint: .bottom
-		)
+	func body(content: Content) -> some View {
+		// var gColors = [Color]()
+		var gStops = [Gradient.Stop]()
+		
+		if let from: [NativeStop] = all[optional: fromIndex],
+			let to: [NativeStop] = all[optional: toIndex] {
+			
+			for i in from.indices {
+				gStops.append(
+					Gradient.Stop(
+						color: colorMixer(c1: from[i].color, c2: to[i].color, pct: pct),
+						location: stopMixer(s1: from[i].location, s2: to[i].location, pct: pct)
+					)
+				)
+				// gColors.append(colorMixer(c1: from[i], c2: to[i], pct: pct))
+			}
+		}
+
+		return LinearGradient(
+					gradient: Gradient(stops: gStops),
+					startPoint: .top,
+					endPoint: .bottom
+				)
 	}
 	
-	var night: some View {
-		LinearGradient(
-			gradient: Gradient(colors: [
-				Color(#colorLiteral(red: 0.003380405018, green: 0.01248565037, blue: 0.1030821726, alpha: 1)),
-				Color(#colorLiteral(red: 0.0904847458, green: 0.002781496383, blue: 0.4793588519, alpha: 1)),
-			]),
-			startPoint: .top,
-			endPoint: .bottom
-		)
+	// This is a very basic implementation of a color interpolation
+	// between two values.
+	func colorMixer(c1: NativeColor, c2: NativeColor, pct: CGFloat) -> Color {
+		guard let cc1 = c1.cgColor.components else { return Color(c1) }
+		guard let cc2 = c2.cgColor.components else { return Color(c1) }
+		
+		let r = (cc1[0] + (cc2[0] - cc1[0]) * pct)
+		let g = (cc1[1] + (cc2[1] - cc1[1]) * pct)
+		let b = (cc1[2] + (cc2[2] - cc1[2]) * pct)
+		
+		return Color(red: Double(r), green: Double(g), blue: Double(b))
+	}
+	
+	func stopMixer(s1: CGFloat, s2: CGFloat, pct: CGFloat) -> CGFloat {
+		s1 + (s2 - s1) * pct
 	}
 }
+
 
 
 // MARK: - MODEL
