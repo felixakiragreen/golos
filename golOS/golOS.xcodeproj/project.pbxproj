@@ -55,6 +55,10 @@
 		1DD30D9225DC543E00634933 /* AnimatableGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9025DC543E00634933 /* AnimatableGradient.swift */; };
 		1DD30D9525DC831700634933 /* SolarSkyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9425DC831700634933 /* SolarSkyGradientView.swift */; };
 		1DD30D9625DC831700634933 /* SolarSkyGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9425DC831700634933 /* SolarSkyGradientView.swift */; };
+		1DD30D9825DC849400634933 /* SolarBlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9725DC849400634933 /* SolarBlocksView.swift */; };
+		1DD30D9925DC849400634933 /* SolarBlocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9725DC849400634933 /* SolarBlocksView.swift */; };
+		1DD30D9B25DC852F00634933 /* SolarFocalPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9A25DC852F00634933 /* SolarFocalPointsView.swift */; };
+		1DD30D9C25DC852F00634933 /* SolarFocalPointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD30D9A25DC852F00634933 /* SolarFocalPointsView.swift */; };
 		1DFAFCCA25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
 		1DFAFCCB25DB079C0079EBCB /* TickMarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCC925DB079C0079EBCB /* TickMarks.swift */; };
 		1DFAFCCD25DB080B0079EBCB /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFAFCCC25DB080B0079EBCB /* Environment.swift */; };
@@ -93,6 +97,8 @@
 		1D9E4ED925D9900000350E01 /* CGSize+operators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+operators.swift"; sourceTree = "<group>"; };
 		1DD30D9025DC543E00634933 /* AnimatableGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableGradient.swift; sourceTree = "<group>"; };
 		1DD30D9425DC831700634933 /* SolarSkyGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSkyGradientView.swift; sourceTree = "<group>"; };
+		1DD30D9725DC849400634933 /* SolarBlocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarBlocksView.swift; sourceTree = "<group>"; };
+		1DD30D9A25DC852F00634933 /* SolarFocalPointsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarFocalPointsView.swift; sourceTree = "<group>"; };
 		1DFAFCC925DB079C0079EBCB /* TickMarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickMarks.swift; sourceTree = "<group>"; };
 		1DFAFCCC25DB080B0079EBCB /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		1DFAFCCF25DB5BEE0079EBCB /* SolarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarModel.swift; sourceTree = "<group>"; };
@@ -214,6 +220,8 @@
 			children = (
 				1D9E4ED425D9870F00350E01 /* SolarView.swift */,
 				1DD30D9425DC831700634933 /* SolarSkyGradientView.swift */,
+				1DD30D9725DC849400634933 /* SolarBlocksView.swift */,
+				1DD30D9A25DC852F00634933 /* SolarFocalPointsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,6 +334,7 @@
 				1D5EE0DF25D9BA2E00142534 /* Date+round.swift in Sources */,
 				1D751A7425D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
 				1D5EE0E925D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
+				1DD30D9B25DC852F00634933 /* SolarFocalPointsView.swift in Sources */,
 				1D5EE0D525D9BA2E00142534 /* Calendar+generate.swift in Sources */,
 				1DD30D9125DC543E00634933 /* AnimatableGradient.swift in Sources */,
 				1D5EE0E325D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
@@ -334,6 +343,7 @@
 				1DD30D9525DC831700634933 /* SolarSkyGradientView.swift in Sources */,
 				1D5EE0D925D9BA2E00142534 /* Color+hex.swift in Sources */,
 				1D5EE10425DA1CA900142534 /* ScrollViewOffset.swift in Sources */,
+				1DD30D9825DC849400634933 /* SolarBlocksView.swift in Sources */,
 				1D5EE0E125D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
 				1D5EE0E725D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
 				1D9E4EDA25D9900100350E01 /* CGSize+operators.swift in Sources */,
@@ -359,6 +369,7 @@
 				1D5EE0E025D9BA2E00142534 /* Date+round.swift in Sources */,
 				1D751A7525D72ACE00860A62 /* golOS.xcdatamodeld in Sources */,
 				1D5EE0EA25D9BA2E00142534 /* View+hexagonalFrame.swift in Sources */,
+				1DD30D9C25DC852F00634933 /* SolarFocalPointsView.swift in Sources */,
 				1D5EE0D625D9BA2E00142534 /* Calendar+generate.swift in Sources */,
 				1DD30D9225DC543E00634933 /* AnimatableGradient.swift in Sources */,
 				1D5EE0E425D9BA2E00142534 /* DateFormatter+future.swift in Sources */,
@@ -367,6 +378,7 @@
 				1DD30D9625DC831700634933 /* SolarSkyGradientView.swift in Sources */,
 				1D5EE0DA25D9BA2E00142534 /* Color+hex.swift in Sources */,
 				1D5EE10525DA1CA900142534 /* ScrollViewOffset.swift in Sources */,
+				1DD30D9925DC849400634933 /* SolarBlocksView.swift in Sources */,
 				1D5EE0E225D9BA2E00142534 /* Comparable+clamp.swift in Sources */,
 				1D5EE0E825D9BA2E00142534 /* Dictionary+optional.swift in Sources */,
 				1D9E4EDB25D9900100350E01 /* CGSize+operators.swift in Sources */,
