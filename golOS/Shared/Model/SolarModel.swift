@@ -151,51 +151,17 @@ class SolarModel: ObservableObject {
 		return accPhases
 	}
 	
-	
-	
 	func getPhaseProgressFor(time: Date) -> SolarPhaseProgress? {
 		if let insidePhase = focalPhases.first(where: { $0.interval.contains(time) }) {
 			let timeElapsed = insidePhase.interval.start.distance(to: time)
 			let progress = timeElapsed / insidePhase.interval.duration
 			
 			switch insidePhase.label {
-				case .night:
-					// if progress <= 0.5 {
-					// 	return .night(progress * 2)
-					// } else {
-					// 	return .night((1 - progress) * 2)
-					// }
-					
-					// if progress <= transitionCutoff {
-					// 	return .night(progress / transitionCutoff)
-					// } else if progress >= 1 - transitionCutoff {
-					// 	return .night((1 - progress) / transitionCutoff)
-					// } else {
-					// 	return .night(1)
-					// }
-					return .night(fadeInOut(progress))
-					
-				// case .astroDawn: return .dawn(progress)
-				// case .civieDawn: return .rise(progress)
-				// case .goldyDawn: return .shine(progress)
+				case .night: return .night(fadeInOut(progress))
 				case .astroDawn: return .dawn(fadeOut(progress))
 				case .civieDawn: return .rise(fadeHold(progress))
 				case .goldyDawn: return .shine(fadeIn(progress))
-				case .day:
-					// if progress <= 0.5 {
-					// 	return .day(progress * 2)
-					// } else {
-					// 	return .day((1 - progress) * 2)
-					// }
-				
-					// if progress <= transitionCutoff {
-					// 	return .day(progress / transitionCutoff)
-					// } else if progress >= 1 - transitionCutoff {
-					// 	return .day((1 - progress) / transitionCutoff)
-					// } else {
-					// 	return .day(1)
-					// }
-					return .day(fadeInOut(progress))
+				case .day: return .day(fadeInOut(progress))
 				case .goldyDusk: return .shine(fadeIn(1 - progress))
 				case .civieDusk: return .set(fadeHold(progress))
 				case .astroDusk: return .dusk(fadeOut(progress))
@@ -206,36 +172,39 @@ class SolarModel: ObservableObject {
 	}
 }
 
-let transitionCutoff = 0.25
+let transitionCutoff = 0.5
 
 func fadeInOut(_ progress: TimeInterval) -> Double {
-	if progress <= transitionCutoff {
-		return progress / transitionCutoff
-	} else if progress >= 1 - transitionCutoff {
-		return (1 - progress) / transitionCutoff
+	let cutoff = 0.3
+	if progress <= cutoff {
+		return progress / cutoff
+	} else if progress >= 1 - cutoff {
+		return (1 - progress) / cutoff
 	} else {
 		return 1
 	}
 }
 
 func fadeOut(_ progress: TimeInterval) -> Double {
-	if progress >= 1 - transitionCutoff {
-		return 1 - ((1 - progress) / transitionCutoff)
+	let cutoff = 1.0
+	if progress >= 1 - cutoff {
+		return 1 - ((1 - progress) / cutoff)
 	} else {
 		return 0
 	}
 }
 
 func fadeIn(_ progress: TimeInterval) -> Double {
-	if progress <= transitionCutoff {
-		return progress / transitionCutoff
+	let cutoff = 1.0
+	if progress <= cutoff {
+		return progress / cutoff
 	} else {
 		return 1
 	}
 }
 
 func fadeHold(_ progress: TimeInterval) -> Double {
-	return 0
+	return 1
 }
 
 enum SolarPhaseProgress {
