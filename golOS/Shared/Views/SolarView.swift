@@ -79,10 +79,10 @@ struct SolarView: View {
 								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
-						SolarBlockView(temporalConfig: temporalConfig)
+						SolarBlocksView(temporalConfig: temporalConfig)
 							.opacity(0.25)
 						
-						SolarFocalPointView(temporalConfig: temporalConfig)
+						SolarFocalPointsView(temporalConfig: temporalConfig)
 							.opacity(0.5)
 						
 						TickMarks(temporalConfig: temporalConfig)
@@ -202,102 +202,6 @@ struct SolarView: View {
 
 // MARK: - SUBVIEWS
 
-struct SolarBlockView: View {
-
-	// MARK: - PROPS
-	
-	@Environment(\.temporalSpec) var temporalSpec
-	@EnvironmentObject var solarModel: SolarModel
-
-	var temporalConfig: TemporalConfig
-
-	// MARK: - BODY
-	
-	var body: some View {
-		if let firstBlock = solarModel.focalBlocks.first {
-			let start: Date = firstBlock.interval.start
-			let offset = getOffsetForTime(
-				from: temporalConfig.startTime,
-				to: start,
-				minuteSize: temporalSpec._minuteSize
-			)
-			
-			ZStack(alignment: .top) {
-				VStack(spacing: 0) {
-					ForEach(solarModel.focalBlocks.indices) { index in
-						let block = solarModel.focalBlocks[index]
-						// let offset = getOffsetForTime(from: temporalConfig.startTime, to: block.interval.start, minuteSize: temporalSpec._minuteSize)
-						let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
-						let time = DateFormatter.shortFormatter.string(from: block.interval.start)
-						
-						Rectangle()
-							.fill(getSolarColor(block.name).getSecondaryColor())
-							.frame(height: height)
-							.overlay(
-								VStack {
-									HStack {
-										Text("\(getSolarLabel(block.name)) \(index)")
-										Spacer()
-										// Text("\(offset, specifier: "%.1f")")
-										// Spacer()
-										Text("\(time)")
-										Spacer()
-										Text("\(block.interval.duration / 60, specifier: "%.0f")min")
-									}
-									Spacer()
-								}
-							)
-					}
-				}//: VStack - Blocks
-				.offset(x: 0, y: offset)
-				
-			}//: ZStack
-			.frame(height: temporalSpec._scrollSize, alignment: .top)
-		}//: if let
-	}//: var body
-}
-
-struct SolarFocalPointView: View {
-	
-	// MARK: - PROPS
-	
-	@Environment(\.temporalSpec) var temporalSpec
-	@EnvironmentObject var solarModel: SolarModel
-	
-	var temporalConfig: TemporalConfig
-	
-	// MARK: - BODY
-	
-	var body: some View {
-		ZStack(alignment: .top) {
-			ForEach(solarModel.focalPoints.indices) { index in
-				let moment = solarModel.focalPoints[index]
-				let offset = getOffsetForTime(
-					from: temporalConfig.startTime,
-					to: moment.time,
-					minuteSize: temporalSpec._minuteSize
-				)
-				let time = DateFormatter.shortFormatter.string(from: moment.time)
-				
-				Rectangle()
-					.fill(getSolarColor(moment.name).getColor())
-					.frame(height: 24)
-					.overlay(
-						HStack {
-							Text("\(getSolarLabel(moment.name))")
-							Spacer()
-							Text("\(offset, specifier: "%.1f")")
-							Spacer()
-							Text("\(time)")
-						}
-					)
-					.offset(x: 0, y: offset)
-			}//: ForEach - Points
-			
-		}//: ZStack
-		.frame(height: temporalSpec._scrollSize, alignment: .top)
-	}
-}
 
 
 // MARK: - MODEL
