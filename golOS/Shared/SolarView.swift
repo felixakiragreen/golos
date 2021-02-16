@@ -62,6 +62,7 @@ struct SolarView: View {
 					temporalConfig: temporalConfig,
 					cursorTime: cursor
 				)
+				.ignoresSafeArea()
 				
 				ScrollViewOffset {
 					scrollOffset = $0
@@ -79,10 +80,10 @@ struct SolarView: View {
 							}
 
 						SolarBlockView(temporalConfig: temporalConfig)
-							.opacity(0.1)
+							.opacity(0.25)
 						
-						// SolarFocalPointView(temporalConfig: temporalConfig)
-						// 	.opacity(0.5)
+						SolarFocalPointView(temporalConfig: temporalConfig)
+							.opacity(0.5)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -251,7 +252,7 @@ struct SolarBlockView: View {
 				.offset(x: 0, y: offset)
 				
 			}//: ZStack
-			.frame(height: temporalSpec.contentSize * 3, alignment: .top)
+			.frame(height: temporalSpec._scrollSize, alignment: .top)
 		}//: if let
 	}//: var body
 }
@@ -294,7 +295,7 @@ struct SolarFocalPointView: View {
 			}//: ForEach - Points
 			
 		}//: ZStack
-		.frame(height: temporalSpec.contentSize * 3, alignment: .top)
+		.frame(height: temporalSpec._scrollSize, alignment: .top)
 	}
 }
 
@@ -509,7 +510,7 @@ struct TemporalConfig {
 	}
 	
 	var rangeUnit: Calendar.Component = .hour
-	var rangeValue: Int = 36
+	var rangeValue: Int = 32
 
 	var startTime: Date {
 		calendar.date(
@@ -558,5 +559,5 @@ func getTimeFromOffset(from: Date, offset: CGFloat, minuteSize: CGFloat) -> Date
 }
 
 func formatTime(_ date: Date) -> String {
-	DateFormatter.bestTimeFormatter.string(from: date)
+	DateFormatter.shortFormatter.string(from: date)
 }
