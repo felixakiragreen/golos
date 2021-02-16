@@ -16,8 +16,9 @@ struct SolarSkyGradientView_Previews: PreviewProvider {
 				temporalConfig: TemporalConfig(),
 				cursorTime: Date()
 			)
-				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-				.environmentObject(SolarModel())
+			.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
+			.environment(\.debugSpec, DebugSpec())
+			.environmentObject(SolarModel())
 		}
 	}
 }

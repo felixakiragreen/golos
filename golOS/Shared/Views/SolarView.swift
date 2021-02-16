@@ -21,9 +21,11 @@ struct SolarView_Previews: PreviewProvider {
 
 	static var previews: some View {
 		GeometryReader { geometry in
-			SolarView()
-				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-				.environmentObject(SolarModel())
+			SolarView(
+			)
+			.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
+			.environment(\.debugSpec, DebugSpec())
+			.environmentObject(SolarModel())
 		}
 	}
 }
