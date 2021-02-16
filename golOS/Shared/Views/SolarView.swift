@@ -36,6 +36,7 @@ struct SolarView: View {
 
 	@Environment(\.calendar) var calendar
 	@Environment(\.temporalSpec) var temporalSpec
+	@Environment(\.devDebug) var devDebug
 	@EnvironmentObject var solarModel: SolarModel
 	
 	@State private var temporalConfig = TemporalConfig(currentTime: Date())
@@ -70,11 +71,13 @@ struct SolarView: View {
 								scrollImpact(prevTime: cursorTimeHour, nextTime: newValue)
 							}
 
-						SolarBlocksView(temporalConfig: temporalConfig)
-							.opacity(0.25)
+						if devDebug {
+							SolarBlocksView(temporalConfig: temporalConfig)
+								.opacity(0.25)
 						
-						SolarFocalPointsView(temporalConfig: temporalConfig)
-							.opacity(0.5)
+							SolarFocalPointsView(temporalConfig: temporalConfig)
+								.opacity(0.5)
+						}
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
