@@ -56,7 +56,7 @@ struct SolarView: View {
 			ZStack {
 				Color.pink.opacity(0.2).ignoresSafeArea()
 				
-				SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
+				// SunsetWrapperView(temporalConfig: temporalConfig, cursorTime: cursorTime)
 				
 				ScrollViewOffset {
 					scrollOffset = $0
@@ -74,7 +74,9 @@ struct SolarView: View {
 							}
 
 						SolarBlockView(temporalConfig: temporalConfig)
-							.opacity(0.2)
+							// .opacity(0.2)
+						
+						// SolarFocalPointView(temporalConfig: temporalConfig)
 						
 						TickMarks(temporalConfig: temporalConfig)
 						
@@ -96,9 +98,10 @@ struct SolarView: View {
 								.overlay(
 									VStack {
 										Text(formatTime(currentTime))
-										Text("\(scrollOffset, specifier: "%.1f")")
-										Text(formatTime(cursorTime))
-										Text(formatTime(cursorTimeHour))
+										// Text("\(scrollOffset, specifier: "%.1f")")
+										Text("e: \(formatTime(cursor))")
+										Text("5: \(formatTime(cursorTime))")
+										Text("h: \(formatTime(cursorTimeHour))")
 									}
 								)
 								.onTapGesture {
@@ -136,16 +139,18 @@ struct SolarView: View {
 		return CGFloat(numberOfMinutes) * temporalSpec._minuteSize
 	}
 	
-	var cursorTime: Date {
+	var cursor: Date {
 		let cursorOffset = temporalSpec.contentSize / 2
 		let minutesToAdd = (cursorOffset + scrollOffset * -1) / temporalSpec._minuteSize
 		
 		return temporalConfig.startTime
 			.advanced(by: minutes(Double(minutesToAdd)))
-			.round(precision: minutes(5))
+	}
+	var cursorTime: Date {
+		cursor.round(precision: minutes(5))
 	}
 	var cursorTimeHour: Date {
-		cursorTime.floor(precision: hours(1))
+		cursor.floor(precision: hours(1))
 	}
 	
 	// MARK: - METHODS
@@ -198,42 +203,63 @@ struct SolarBlockView: View {
 	// MARK: - BODY
 	
 	var body: some View {
-		let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: solarBlocks[0].interval.start, minuteHeight: temporalSpec._minuteSize)
-		
-		ZStack(alignment: .top) {
-			VStack(spacing: 0) {
-				ForEach(solarBlocks.indices) { index in
-					let block = solarBlocks[index]
-					let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
-					let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
-					let time = DateFormatter.shortFormatter.string(from: block.interval.start)
-
-					Rectangle()
-						.fill(getSolarColor(block.name).getSecondaryColor())
-						.frame(height: height)
-						.overlay(
-							VStack {
-								HStack {
-									Text("\(getSolarLabel(block.name)) \(index)")
+		if let firstBlock = solarModel.focalBlocks.first {
+			let start: Date = firstBlock.interval.start
+			let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: start, minuteHeight: temporalSpec._minuteSize)
+			
+			ZStack(alignment: .top) {
+				VStack(spacing: 0) {
+					ForEach(solarModel.focalBlocks.indices) { index in
+						let block = solarModel.focalBlocks[index]
+						let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: block.interval.start, minuteHeight: temporalSpec._minuteSize)
+						let height = CGFloat(block.interval.duration) / 60 * temporalSpec._minuteSize
+						let time = DateFormatter.shortFormatter.string(from: block.interval.start)
+						
+						Rectangle()
+							.fill(getSolarColor(block.name).getSecondaryColor())
+							.frame(height: height)
+							.overlay(
+								VStack {
+									HStack {
+										Text("\(getSolarLabel(block.name)) \(index)")
+										Spacer()
+										// Text("\(offset, specifier: "%.1f")")
+										// Spacer()
+										Text("\(time)")
+										Spacer()
+										Text("\(block.interval.duration / 60, specifier: "%.0f")min")
+									}
 									Spacer()
-									Text("\(offset, specifier: "%.1f")")
-									Spacer()
-									Text("\(time)")
-									Spacer()
-									Text("\(block.interval.duration / 60, specifier: "%.0f")min")
 								}
-								Spacer()
-							}
-						)
-				}
-			}//: VStack - Blocks
-			.offset(x: 0, y: offset)
+							)
+					}
+				}//: VStack - Blocks
+				.offset(x: 0, y: offset)
+				
+			}//: ZStack
+			.frame(height: temporalSpec.contentSize * 3, alignment: .top)
+		}//: if let
+	}//: var body
+}
 
-			ForEach(solarPoints.indices) { index in
-				let moment = solarPoints[index]
+struct SolarFocalPointView: View {
+	
+	// MARK: - PROPS
+	
+	@Environment(\.temporalSpec) var temporalSpec
+	@EnvironmentObject var solarModel: SolarModel
+	
+	var temporalConfig: TemporalConfig
+	
+	// MARK: - BODY
+	
+	var body: some View {
+		ZStack(alignment: .top) {
+			ForEach(solarModel.focalPoints.indices) { index in
+				let moment = solarModel.focalPoints[index]
 				let offset = getOffsetForTime(fromDate: temporalConfig.startTime, toTime: moment.time, minuteHeight: temporalSpec._minuteSize)
 				let time = DateFormatter.shortFormatter.string(from: moment.time)
-					
+				
 				Rectangle()
 					.fill(getSolarColor(moment.name).getColor())
 					.frame(height: 24)
@@ -248,65 +274,12 @@ struct SolarBlockView: View {
 					)
 					.offset(x: 0, y: offset)
 			}//: ForEach - Points
-
+			
 		}//: ZStack
 		.frame(height: temporalSpec.contentSize * 3, alignment: .top)
 	}
-
-	// MARK: - COMPUTES
-	
-	let dayRange = [
-		-1, 0, 1, 2, 3
-	]
-	let pointNames = [
-		"nadir", "solarNoon",
-		"sunrise", "sunsetStart",
-	]
-	
-	// let blockNames = [
-	// 	"night", "nightEnd",
-	// 	"goldenHourEnd", "goldenHour"
-	// ]
-	
-	let blockNames = [
-		"night", "nightEnd",
-		"nauticalDawn", "dawn",
-		"sunriseEnd", "goldenHourEnd",
-		"goldenHour", "sunset",
-		"dusk", "nauticalDusk",
-	]
-
-	// "nadir", "solarNoon"
-	
-	// "night", "nightEnd",
-	// "nauticalDawn", "dawn",
-	// "sunrise", "sunriseEnd",
-	// "goldenHourEnd", "goldenHour",
-	// "sunsetStart", "sunset",
-	// "dusk", "nauticalDusk",
-	
-	// case "night", "nadir", "nightEnd":
-	// case "nauticalDawn":
-	// case "dawn":
-	// case "sunrise", "sunriseEnd":
-	// case "goldenHourEnd", "solarNoon":
-	// case "goldenHour", "sunsetStart", "sunset":
-	// case "dusk":
-	// case "nauticalDusk":
-	
-	var solarTimes: [SolarMoment] {
-		solarModel.solarTimes
-		// solarSpec.getTimesFor(date: temporalConfig.currentDay, range: dayRange)
-	}
-	
-	var solarPoints: [SolarMoment] {
-		solarTimes.filter { pointNames.contains($0.name) }
-	}
-	var solarBlocks: [SolarInterval] {
-		solarModel.focalBlocks
-		// solarSpec.getIntervalsFor(times: solarTimes, names: blockNames)
-	}
 }
+
 
 struct SunsetWrapperView: View {
 	
@@ -474,17 +447,21 @@ struct TemporalConfig {
 // MARK: - HELPER FUNCTIONS
 
 func getSolarColor(_ name: String) -> ColorPreset {
-	switch name {
-		case "night", "nadir":
+	switch getSolarLabel(name) {
+		case "_night", "NADIR":
+			return ColorPreset(hue: .blue, lum: .normal)
+		case "_day", "NOON":
+			return ColorPreset(hue: .grey, lum: .nearWhite, sys: false)
+		case "astro.dawn", "astro.dusk":
 			return ColorPreset(hue: .purple, lum: .normal)
-		case "nightEnd":
+		case "nauty.dawn", "nauty.dusk":
 			return ColorPreset(hue: .red, lum: .normal)
-		case "goldenHourEnd", "solarNoon":
-			return ColorPreset(hue: .yellow, lum: .normal)
-		case "goldenHour":
+		case "civie.dawn", "civie.dusk":
 			return ColorPreset(hue: .orange, lum: .normal)
+		case "goldy.dawn", "goldy.dusk":
+			return ColorPreset(hue: .yellow, lum: .normal)
 		default:
-			return ColorPreset(lum: .normal)
+			return ColorPreset(hue: .green, lum: .normal)
 	}
 }
 
