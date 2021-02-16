@@ -79,15 +79,7 @@ class SolarModel: ObservableObject {
 		.day,
 		.goldyDusk,
 		.civieDusk,
-		.astroDusk
-		// "night", // night
-		// "nightEnd", // astro.dawn
-		// "dawn", // civie.dawn
-		// "sunriseEnd", // goldy.dawn
-		// "goldenHourEnd", // day
-		// "goldenHour", // goldy.dusk
-		// "sunset", // civie.dusk
-		// "nauticalDusk", // astro.dusk
+		.nautyDusk
 	]
 	
 	func getTimesFor(date: Date) -> [String: Date] {
@@ -164,7 +156,7 @@ class SolarModel: ObservableObject {
 				case .day: return .day(fadeInOut(progress))
 				case .goldyDusk: return .shine(fadeIn(1 - progress))
 				case .civieDusk: return .set(fadeHold(progress))
-				case .astroDusk: return .dusk(fadeOut(progress))
+				case .nautyDusk: return .dusk(fadeOut(progress))
 				default: return nil
 			}
 		}
