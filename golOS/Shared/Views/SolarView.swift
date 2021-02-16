@@ -206,6 +206,6 @@ func getTimeFromOffset(from: Date, offset: CGFloat, minuteSize: CGFloat) -> Date
 		.advanced(by: minutes(Double(minutesToAdd)))
 }
 
-func formatTime(_ date: Date) -> String {
+fileprivate func formatTime(_ date: Date) -> String {
 	DateFormatter.shortFormatter.string(from: date)
 }
