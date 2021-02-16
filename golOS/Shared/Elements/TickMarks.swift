@@ -40,6 +40,9 @@ struct TickMarks: View {
 						MinorTick()
 					}
 				}
+				// .overlay(
+				// 	Text("\(DateFormatter.shortFormatter.string(from: time))")
+				// )
 				.frame(height: temporalSpec._minuteSize * 60)
 			}
 		}
