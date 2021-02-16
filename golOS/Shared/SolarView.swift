@@ -97,18 +97,21 @@ struct SolarView: View {
 						}//: VStack - "now" line
 
 						ZStack {
-							Circle()
-								.fill(Color.gray.opacity(0.85))
-								.frame(width: 150, height: 150)
-								.shadow(radius: 8)
-								.overlay(
-									VStack {
-										Text(formatTime(currentTime))
-										// Text("\(scrollOffset, specifier: "%.1f")")
-										Text("e: \(formatTime(cursor))")
-										Text("5: \(formatTime(cursorTime))")
-										Text("h: \(formatTime(cursorTimeHour))")
-									}
+							VisualEffectBlur(
+								blurStyle: .systemThinMaterial,
+								vibrancyStyle: UIVibrancyEffectStyle.label
+							) {
+								VStack {
+									Text(formatTime(currentTime))
+									// Text("\(scrollOffset, specifier: "%.1f")")
+									Text("e: \(formatTime(cursor))")
+									Text("5: \(formatTime(cursorTime))")
+									Text("h: \(formatTime(cursorTimeHour))")
+								}
+							}
+								.mask(
+									Circle()
+										.frame(width: 150, height: 150)
 								)
 								.onTapGesture {
 									scrollToNow(proxy: scrollProxy)

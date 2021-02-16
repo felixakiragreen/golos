@@ -12,6 +12,16 @@ TODO:
 - [ ] add iOS
 */
 
+struct BlurView: View {
+	var body: some View {
+		#if os(iOS)
+		return VisualEffectBlur(blurStyle: .systemMaterial)
+		#else
+		return VisualEffectBlur()
+		#endif
+	}
+}
+
 // MARK: - macOS
 
 #if os(macOS)
