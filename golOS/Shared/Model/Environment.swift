@@ -62,18 +62,14 @@ extension EnvironmentValues {
 
 // MARK: - DEBUG
 
-struct DebugSpec {
-	var dev: Bool = true
-}
-
-struct DebugSpecEnvKey: EnvironmentKey {
-	static var defaultValue: DebugSpec = DebugSpec()
+struct DevDebugEnvKey: EnvironmentKey {
+	static var defaultValue: Bool = true
 }
 
 extension EnvironmentValues {
-	var debugSpec: DebugSpec {
-		get { self[DebugSpecEnvKey.self] }
-		set { self[DebugSpecEnvKey.self] = newValue }
+	var devDebug: Bool {
+		get { self[DevDebugEnvKey.self] }
+		set { self[DevDebugEnvKey.self] = newValue }
 	}
 }
 

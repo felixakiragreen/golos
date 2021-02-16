@@ -37,7 +37,7 @@ struct ContentView: View {
 			SolarView()
 				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
 				.environment(\.physicalSpec, PhysicalSpec())
-				.environment(\.debugSpec, DebugSpec())
+				.environment(\.devDebug, true)
 				.environmentObject(solarModel)
 		}
 // 		List {

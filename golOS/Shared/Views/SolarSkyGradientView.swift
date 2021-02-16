@@ -17,7 +17,7 @@ struct SolarSkyGradientView_Previews: PreviewProvider {
 				cursorTime: Date()
 			)
 			.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-			.environment(\.debugSpec, DebugSpec())
+			.environment(\.devDebug, true)
 			.environmentObject(SolarModel())
 		}
 	}

@@ -15,7 +15,7 @@ struct SolarBlocksView_Previews: PreviewProvider {
 				temporalConfig: TemporalConfig()
 			)
 			.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-			.environment(\.debugSpec, DebugSpec())
+			.environment(\.devDebug, true)
 			.environmentObject(SolarModel())
 		}
 	}

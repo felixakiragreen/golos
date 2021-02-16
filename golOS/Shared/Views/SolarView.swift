@@ -24,7 +24,7 @@ struct SolarView_Previews: PreviewProvider {
 			SolarView(
 			)
 			.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-			.environment(\.debugSpec, DebugSpec())
+			.environment(\.devDebug, true)
 			.environmentObject(SolarModel())
 		}
 	}
