@@ -9,11 +9,12 @@ import SwiftUI
 
 // MARK: - TYPES
 
-typealias SolarMoment = (time: Date, name: String)
+// typealias SolarMoment = (time: Date, name: String)
 
-typealias SolarInterval = (interval: DateInterval, name: String)
+// typealias SolarInterval = (interval: DateInterval, name: String)
 
-typealias SolarPhase = (label: SolarLabel, interval: DateInterval)
+typealias SolarTime = (label: SolarLabel, time: Date)
+typealias SolarInterval = (label: SolarLabel, interval: DateInterval)
 
 enum SolarPhaseProgress {
 	case night(Double), day(Double) // 0.0 start, 1.0 middle, 0.0 end
@@ -27,106 +28,189 @@ class SolarModel: ObservableObject {
 	@Environment(\.calendar) var calendar: Calendar
 	@Environment(\.physicalSpec) var location: PhysicalSpec
 	
+	@ObservedObject var temporality: TemporalModel
+	
 	var sunCalc: SunCalc = SunCalc()
 	
-	var focal: Date
-	var solarTimes: [SolarMoment]
-	var focalPoints: [SolarMoment]
-	var focalBlocks: [SolarInterval]
-	var focalPhases: [SolarPhase]
-
-	init(date: Date) {
-		self.focal = date
-		self.solarTimes = []
+	// cached solar times
+	var solarTimes: [Date: [SolarTime]]
+	
+	/// points in time, used for visual markers
+	@Published var focalPoints: [SolarTime]
+	// specifically
+	let pointLabels: [SolarLabel] = [
+		.nadir, // nadir
+		.noon, // solarNoon
+		.sunrise, // sunrise
+		.sunset, // sunsetStart
+	]
+	
+	/// blocks of time, used for calculating durations, visual markers
+	@Published var focalBlocks: [SolarInterval]
+	let blockLabels: [SolarLabel] = [
+		.night, // night
+		.astroDawn, // nightEnd
+		.nautyDawn, // nauticalDawn
+		.civieDawn, // dawn
+		.goldyDawn, // sunriseEnd
+		.day, // goldenHourEnd
+		.goldyDusk, // goldenHour
+		.civieDusk, // sunset
+		.nautyDusk, // dusk
+		.astroDusk, // nauticalDusk
+	]
+	
+	/// phases of time, used for gradient coloring
+	@Published var focalPhases: [SolarInterval]
+	let phaseLabels: [SolarLabel] = [
+		.night, // night
+		.astroDawn, // nightEnd
+		.civieDawn, // dawn
+		.goldyDawn, // sunriseEnd
+		.day, // goldenHourEnd
+		.goldyDusk, // goldenHour
+		.civieDusk, // sunset
+		.nautyDusk, // dusk
+	]
+	
+	
+	init(temporality: TemporalModel) {
+		self.temporality = temporality
+		
+		self.solarTimes = [:]
 		self.focalPoints = []
 		self.focalBlocks = []
 		self.focalPhases = []
 		
-		reinit(date: date)
+		// reinit(date: date)
+		updateEverything()
 	}
 	
 	convenience init() {
-		self.init(date: Date())
+		self.init(temporality: TemporalModel())
 	}
 	
-	func reinit(date: Date) {
-		self.focal = calendar.startOfDay(for: date)
-
-		let solarTimes = getTimesFor(date: date, range: dayRange)
-		self.solarTimes = solarTimes
-		self.focalPoints = solarTimes.filter { pointNames.contains($0.name) }
-		self.focalBlocks = getIntervalsFor(times: solarTimes, names: blockNames)
-		
-		self.focalPhases = getPhasesFor(times: solarTimes, labels: phaseNames)
+	// func reinit(date: Date) {
+	// 	let startOfDay = calendar.startOfDay(for: date)
+	//
+	// 	print("\(#function)", focalDate, startOfDay)
+	// 	if focalDate != startOfDay {
+	// 		print("\(#function) → calculating")
+	// 		focalDate = startOfDay
+	// 		calculateEverything()
+	// 	} else {
+	// 		print("\(#function) → skipping")
+	// 	}
+	// }
+	
+	// MARK: - asdf
+	
+	// func 
+	
+	// MARK: - SOLAR CALCULATIONS
+	
+	private func updateEverything() {
+		// 1. update the normalized cache of solar times
+		updateSolarTimesCache()
+		// 2. focal points
+		updateFocalPoints()
+		// 3. focal blocks
+		updateFocalBlocks()
+		// 4. focal phases
+		updateFocalPhases()
 	}
 	
-	let dayRange = [
-		-1, 0, 1, 2
-	]
-	let pointNames = [
-		"nadir", // NADIR
-		"solarNoon", // NOON
-		"sunrise", // SUNRISE
-		"sunsetStart", // SUNSET
-	]
-	let blockNames = [
-		"night", // night
-		"nightEnd", // astro.dawn
-		"nauticalDawn", // nauty.dawn
-		"dawn", // civie.dawn
-		"sunriseEnd", // goldy.dawn
-		"goldenHourEnd", // day
-		"goldenHour", // goldy.dusk
-		"sunset", // civie.dusk
-		"dusk", // nauty.dusk
-		"nauticalDusk", // astro.dusk
-	]
-	let phaseNames: [SolarLabel] = [
-		.night,
-		.astroDawn,
-		.civieDawn,
-		.goldyDawn,
-		.day,
-		.goldyDusk,
-		.civieDusk,
-		.nautyDusk
-	]
-	
-	func getTimesFor(date: Date) -> [String: Date] {
-		sunCalc.getTimes(date: date, lat: location.lat, lng: location.lng)
-	}
-	
-	func getTimesFor(date: Date, range: [Int]) -> [SolarMoment] {
-		var accTimes: [(time: Date, name: String)] = []
-		
-		for day in range {
+	private func updateSolarTimesCache() {
+		for day in temporality.dayRange {
 			let dateValue = calendar.date(
-				byAdding: .day, value: day, to: date
+				byAdding: .day, value: day, to: temporality.focalDate
 			)!
-			let times = getTimesFor(date: dateValue)
-			for (name, time) in times {
-				accTimes.append((time, name))
+			// check to see if the values are cached
+			if let times = solarTimes[optional: dateValue], !times.isEmpty {}
+			else {
+				// add values to cache
+				solarTimes[dateValue] = getSolarTimesFor(date: dateValue)
 			}
 		}
-		
-		accTimes.sort { $0.time < $1.time }
-		
-		return accTimes
 	}
 	
-	func getIntervalsFor(times: [SolarMoment], names: [String]) -> [SolarInterval] {
+	private func getCachedSolarTimes() -> [SolarTime] {
+		var accPoints: [SolarTime] = []
+		for day in temporality.dayRange {
+			// TODO: might this ever not be the start of day?
+			let dateValue = calendar.date(
+				byAdding: .day, value: day, to: temporality.focalDate
+			)!
+			
+			if let cachedTimes = solarTimes[dateValue], !cachedTimes.isEmpty {
+				accPoints += cachedTimes
+			}
+		}
+		return accPoints.sorted { $0.time < $1.time }
+	}
+	
+	private func updateFocalPoints() {
+		// derive the focals from the cached SolarTimes
+		let points: [SolarTime] = getCachedSolarTimes()
+			.filter { pointLabels.contains($0.label) }
+			.sorted { $0.time < $1.time }
+
+		focalPoints = points
+	}
+	
+	private func updateFocalBlocks() {
+		let blocks: [SolarInterval] = getSolarIntervalsFor(
+			allTimes: getCachedSolarTimes(),
+			labels: blockLabels
+		)
+		
+		focalBlocks = blocks
+	}
+	
+	private func updateFocalPhases() {
+		let phases: [SolarInterval] = getSolarIntervalsFor(
+			allTimes: getCachedSolarTimes(),
+			labels: phaseLabels
+		)
+		
+		focalPhases = phases
+	}
+	
+	
+	// func getTimesFor(date: Date) -> [String: Date] {
+	// 	sunCalc.getTimes(date: date, lat: location.lat, lng: location.lng)
+	// }
+	
+	func getSolarTimesFor(date: Date) -> [SolarTime] {
+		var accTimes: [SolarTime] = []
+		// calculate the times
+		let times = sunCalc.getTimes(date: date, lat: location.lat, lng: location.lng)
+		
+		for (name, time) in times {
+			// convert String to enum.SolarLabel
+			if let label = SolarLabel(rawValue: name) {
+				accTimes.append((label, time))
+			}
+		}
+		// sort the values by time
+		return accTimes.sorted { $0.time < $1.time }
+	}
+	
+	func getSolarIntervalsFor(allTimes: [SolarTime], labels: [SolarLabel]) -> [SolarInterval] {
 		var accIntervals: [SolarInterval] = []
+		// filter the times by the labels to use for calculating intervals
+		let times = allTimes
+			.filter { labels.contains($0.label) }
+			.sorted { $0.time < $1.time } // just in case
 		
-		let namedTimes = times.filter { names.contains($0.name) }
-		
-		for index in namedTimes.indices {
-			if index + 2 < namedTimes.count {
-				let thisTime = namedTimes[index]
-				let nextTime = namedTimes[index + 1]
+		for index in times.indices {
+			if index + 1 < times.count - 1 {
+				let thisTime = times[index]
+				let nextTime = times[index + 1]
 				
 				accIntervals.append((
-					interval: DateInterval(start: thisTime.time, end: nextTime.time),
-					name: thisTime.name
+					label: thisTime.label,
+					interval: DateInterval(start: thisTime.time, end: nextTime.time)
 				))
 			}
 		}
@@ -134,24 +218,62 @@ class SolarModel: ObservableObject {
 		return accIntervals
 	}
 	
-	func getPhasesFor(times: [SolarMoment], labels: [SolarLabel]) -> [SolarPhase] {
-		var accPhases: [SolarPhase] = []
-
-		let names = labels.map { $0.rawValue }
-		
-		let intervals = getIntervalsFor(times: times, names: names)
-		
-		for block in intervals {
-			if let label = SolarLabel(rawValue: block.name) {
-				accPhases.append((
-					label: label,
-					interval: block.interval
-				))
-			}
-		}
-		
-		return accPhases
-	}
+	// func getTimesFor(date: Date, range: [Int]) -> [SolarMoment] {
+	// 	var accTimes: [(time: Date, name: String)] = []
+	//
+	// 	for day in range {
+	// 		let dateValue = calendar.date(
+	// 			byAdding: .day, value: day, to: date
+	// 		)!
+	// 		let times = getTimesFor(date: dateValue)
+	// 		for (name, time) in times {
+	// 			accTimes.append((time, name))
+	// 		}
+	// 	}
+	//
+	// 	accTimes.sort { $0.time < $1.time }
+	//
+	// 	return accTimes
+	// }
+	
+	// func getIntervalsFor(times: [SolarMoment], names: [String]) -> [SolarInterval] {
+	// 	var accIntervals: [SolarInterval] = []
+	//
+	// 	let namedTimes = times.filter { names.contains($0.name) }
+	//
+	// 	for index in namedTimes.indices {
+	// 		if index + 2 < namedTimes.count {
+	// 			let thisTime = namedTimes[index]
+	// 			let nextTime = namedTimes[index + 1]
+	//
+	// 			accIntervals.append((
+	// 				interval: DateInterval(start: thisTime.time, end: nextTime.time),
+	// 				name: thisTime.name
+	// 			))
+	// 		}
+	// 	}
+	//
+	// 	return accIntervals
+	// }
+	
+	// func getPhasesFor(times: [SolarMoment], labels: [SolarLabel]) -> [SolarPhase] {
+	// 	var accPhases: [SolarPhase] = []
+ //
+	// 	let names = labels.map { $0.rawValue }
+	//
+	// 	let intervals = getIntervalsFor(times: times, names: names)
+	//
+	// 	for block in intervals {
+	// 		if let label = SolarLabel(rawValue: block.name) {
+	// 			accPhases.append((
+	// 				label: label,
+	// 				interval: block.interval
+	// 			))
+	// 		}
+	// 	}
+	//
+	// 	return accPhases
+	// }
 	
 	func getPhaseProgressFor(time: Date) -> SolarPhaseProgress? {
 		if let insidePhase = focalPhases.first(where: { $0.interval.contains(time) }) {
@@ -275,6 +397,8 @@ func getSolarColor(_ name: String) -> ColorPreset {
 }
 
 // MARK: - TEMPORAL CONFIG
+
+// TODO: CHANGE THIS to be held inside the solar model? OR... next to?
 
 struct TemporalConfig {
 	@Environment(\.calendar) var calendar
