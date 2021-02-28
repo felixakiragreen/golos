@@ -104,13 +104,14 @@ struct SolarView: View {
 									Text("h: \(formatTime(cursorTimeHour))")
 								}
 							}
-								.mask(
-									Circle()
-										.frame(width: 150, height: 150)
-								)
-								.onTapGesture {
-									scrollToNow(proxy: scrollProxy)
-								}
+							.frame(width: 150, height: 150)
+							.clipShape(
+								Circle()
+							)
+							.onTapGesture {
+								scrollToNow(proxy: scrollProxy)
+							}
+								
 							
 							Rectangle()
 								.fill(Color.blue)
@@ -210,5 +211,9 @@ func getTimeFromOffset(from: Date, offset: CGFloat, minuteSize: CGFloat) -> Date
 }
 
 fileprivate func formatTime(_ date: Date) -> String {
+	DateFormatter.shortFormatter.string(from: date)
+}
+
+func debugTime(_ date: Date) -> String {
 	DateFormatter.shortFormatter.string(from: date)
 }

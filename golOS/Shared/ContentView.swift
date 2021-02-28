@@ -20,6 +20,7 @@ struct ContentView_Previews: PreviewProvider {
 struct ContentView: View {
 	// MARK: - PROPS
 
+	@Environment(\.calendar) var calendar
 	// @Environment(\.managedObjectContext) private var viewContext
 
 //	@FetchRequest(
@@ -34,11 +35,19 @@ struct ContentView: View {
 
 	var body: some View {
 		GeometryReader { geometry in
-			SolarView()
-				.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
-				.environment(\.physicalSpec, PhysicalSpec())
-				.environment(\.devDebug, false)
-				.environmentObject(solarModel)
+			ZStack(alignment: .top) {
+				SolarView()
+					.environment(\.temporalSpec, TemporalSpec(contentSize: geometry.size.height))
+					.environment(\.physicalSpec, PhysicalSpec())
+					.environment(\.devDebug, false)
+					.environmentObject(solarModel)
+				VStack {
+					Spacer()
+					bottomBar
+				}
+				.ignoresSafeArea()
+			}//: ZStack
+			.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
 		}
 // 		List {
 // //			ForEach(items) { item in
@@ -55,6 +64,34 @@ struct ContentView: View {
 // 				Label("Add Item", systemImage: "plus")
 // 			}
 // 		}
+	}
+	
+	var bottomBar: some View {
+		VisualEffectBlur(
+			blurStyle: .systemThinMaterial,
+			vibrancyStyle: UIVibrancyEffectStyle.label
+		) {
+			VStack {
+				HStack {
+					Button("go back 1 day") {
+						let backOne = calendar.date(
+							byAdding: .day, value: -1, to: solarModel.focalDate
+						)!
+						
+						solarModel.reinit(date: backOne)
+					}
+					Text("today: \(debugTime(solarModel.focalDate))")
+					Button("go forward 1 day") {
+						let backOne = calendar.date(
+							byAdding: .day, value: 1, to: solarModel.focalDate
+						)!
+						
+						solarModel.reinit(date: backOne)
+					}
+				}
+			}
+		}
+		.frame(maxHeight: 100)
 	}
 
 	private func addItem() {
